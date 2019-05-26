@@ -10,7 +10,7 @@ export class LoginComponent implements OnInit {
 
   email: string;
   password: string;
-  constructor( private route: ActivatedRoute, private router: Router) { }
+  constructor(private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
   }
@@ -20,10 +20,11 @@ export class LoginComponent implements OnInit {
     console.log(this.email, this.password);
     // TODO: API CALL TO LOGIN
     // success ->
-      localStorage.setItem('role','EMPLOYEEE');
-      localStorage.setItem('id','40833');
-      localStorage.setItem('name','VAIBHAV MINIYAR')
-      localStorage.setItem('emali', this.email)
+    localStorage.setItem('role', 'EMPLOYEEE');
+    localStorage.setItem('id', '40833');
+    localStorage.setItem('name', 'VAIBHAV MINIYAR')
+    localStorage.setItem('emali', this.email)
+    this.router.navigateByUrl('dashboard')
   }
 
   register() {
