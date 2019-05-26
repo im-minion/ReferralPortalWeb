@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { isNullOrUndefined } from 'util';
 
 @Component({
   selector: 'app-navbar',
@@ -12,4 +13,17 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
   }
 
+  valid() {
+    // check if login is successful or not
+    if (!isNullOrUndefined(localStorage.getItem('id'))) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  logout() {
+    localStorage.clear();
+  }
+  
 }
