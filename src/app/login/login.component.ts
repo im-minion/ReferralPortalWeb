@@ -8,7 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  username: string;
+  email: string;
   password: string;
   constructor( private route: ActivatedRoute, private router: Router) { }
 
@@ -17,13 +17,13 @@ export class LoginComponent implements OnInit {
 
   login() {
 
-    console.log(this.username, this.password);
+    console.log(this.email, this.password);
     // TODO: API CALL TO LOGIN
     // success ->
       localStorage.setItem('role','EMPLOYEEE');
       localStorage.setItem('id','40833');
       localStorage.setItem('name','VAIBHAV MINIYAR')
-      localStorage.setItem('emali','vaibhavminiyar@gmail.com')
+      localStorage.setItem('emali', this.email)
   }
 
   register() {
