@@ -1,0 +1,18 @@
+.container-row {
+    display: flex;
+    /* or inline-flex */
+    flex-direction: row;
+    justify-content: center;
+}
+
+.container-col {
+    display: flex;
+    /* or inline-flex */
+    flex-direction: col;
+    justify-content: center
+}
+
+.item {
+    flex-grow: 10;
+    /* default 0 */
+}
