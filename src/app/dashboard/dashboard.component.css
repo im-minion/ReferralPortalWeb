@@ -11,8 +11,3 @@
     flex-direction: col;
     justify-content: center
 }
-
-.item {
-    flex-grow: 10;
-    /* default 0 */
-}
