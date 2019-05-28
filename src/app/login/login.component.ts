@@ -22,14 +22,12 @@ export class LoginComponent implements OnInit {
     console.log(this.email, this.password);
     // TODO: API CALL TO LOGIN
     // success ->
-    this.authService.login(this.email, this.password).subscribe((res) => {
-      console.log(res);
-      if (!isNullOrUndefined(res) && res.message === 'SUCCESS') {
-        this.router.navigateByUrl('dashboard');
-        localStorage.setItem('role', res.employeeRole);
-        localStorage.setItem('id', res.employeeId);
-        localStorage.setItem('name', 'VAIBHAV MINIYAR');
-        localStorage.setItem('emali', this.email);
+    this.authService.login(this.email, this.password).subscribe((e: Employee) => {
+      console.log(e);
+      if (!isNullOrUndefined(e) && e.message === 'SUCCESS') {
+        this.router.navigate(['dashboard']);
+        localStorage.setItem('role', e.employeeRole);
+        localStorage.setItem('id', e.employeeId);
       }
 
     },
@@ -45,4 +43,9 @@ export class LoginComponent implements OnInit {
     this.router.navigate(['register']);
   }
 
+}
+class Employee{
+    message: string;
+    employeeRole: string;
+    employeeId: string;
 }
