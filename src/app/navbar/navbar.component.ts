@@ -16,7 +16,7 @@ export class NavbarComponent implements OnInit {
 
   valid() {
     // check if login is successful or not
-    if (!isNullOrUndefined(localStorage.getItem('id'))) {
+    if (!isNullOrUndefined(localStorage.getItem('employeeRole')) && !isNullOrUndefined(localStorage.getItem('employeeId'))) {
       return true;
     } else {
       return false;
