@@ -4,9 +4,6 @@
             <div class="card-header">
                 <h3>Sign In</h3>
                 <div class="d-flex justify-content-end social_icon">
-                    <!-- <span><i class="fab fa-facebook-square"></i></span>
-                    <span><i class="fab fa-google-plus-square"></i></span>
-                    <span><i class="fab fa-twitter-square"></i></span> -->
                 </div>
             </div>
             <div class="card-body">
@@ -15,7 +12,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-user"></i></span>
                         </div>
-                        <input [(ngModel)]="email" name="email" type="text" class="form-control" placeholder="E-mail Id">
+                        <input [(ngModel)]="employeeId" name="employeeId" type="text" class="form-control" placeholder="EmployeeId">
 
                     </div>
                     <div class="input-group form-group">
@@ -24,12 +21,13 @@
                         </div>
                         <input [(ngModel)]="password" name="password" type="password" class="form-control" placeholder="Password">
                     </div>
-                    <!-- <div class="row align-items-center remember">
-                        <input type="checkbox">Remember Me
-                    </div> -->
                     <div class="form-group">
                         <input (click)="login()" type="submit" value="Login" class="btn float-center login_btn">
                     </div>
+                    <div *ngIf="messageBool">
+                        <app-message [messageBool]="messageBool" [messageType]="messageType" [message]="message"></app-message>
+                    </div>
+
                 </form>
             </div>
             <div class="card-footer">
@@ -37,9 +35,6 @@
                     Don't have an account?
                     <button (click)="register()" class="btn register_btn">Register</button>
                 </div>
-                <!-- <div class="d-flex justify-content-center">
-                    <a href="#">Forgot your password?</a>
-                </div> -->
             </div>
         </div>
     </div>

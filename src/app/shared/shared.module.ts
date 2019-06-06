@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SuccessMessageComponent } from './success-message/success-message.component';
+import { MessageComponent } from './message/message.component';
 
 @NgModule({
-  declarations: [SuccessMessageComponent],
+  declarations: [MessageComponent],
   imports: [
     CommonModule
-  ]
+  ],
+  exports: [ MessageComponent ]
 })
 export class SharedModule { }

@@ -11,8 +11,11 @@ import { Employee } from '../employee';
 })
 export class LoginComponent implements OnInit {
 
-  email: string;
+  employeeId: string;
   password: string;
+  messageBool: boolean = false;
+  messageType: string;
+  message: string;
   constructor(private router: Router, private authService: AuthService) { }
 
   ngOnInit() {
@@ -20,24 +23,32 @@ export class LoginComponent implements OnInit {
 
   login() {
 
-    console.log(this.email, this.password);
+    console.log(this.employeeId, this.password);
     // TODO: API CALL TO LOGIN
     // success ->
-    this.authService.login(this.email, this.password).subscribe((e: Employee) => {
+    this.authService.login(this.employeeId, this.password).subscribe((e: Employee) => {
       console.log(e);
       if (!isNullOrUndefined(e) && e.message === 'SUCCESS') {
         localStorage.setItem('employeeRole', e.employeeRole);
         localStorage.setItem('employeeId', e.employeeId);
         this.router.navigate(['dashboard']);
+        this.messageBool = true;
+        this.messageType = 'SUCCESS';
+        this.message = 'Login';
+      } else if (!isNullOrUndefined(e) && e.message === 'FAILED') {
+        this.messageBool = true;
+        this.messageType = 'FAILED';
+        this.message = 'EmployeeId or Password do not match';
       }
 
     },
       (err) => {
-        console.log(err);
+        this.messageBool = true;
+        this.messageType = 'FAILED';
+        this.message = 'FAILED';
       }
-    )
-
-
+    );
+    this.messageBool = false;
   }
 
   register() {
