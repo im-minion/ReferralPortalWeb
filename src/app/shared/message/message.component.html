@@ -1,4 +1,4 @@
 <div *ngIf="messageBool">
-    <strong *ngIf="messageType === 'SUCCESS'"> {{ message }} </strong>
-    <strong *ngIf="messageType === 'FAILED'"> {{ message }} </strong>
+    <strong class="success" *ngIf="messageType === 'SUCCESS'"> {{ message }} </strong>
+    <strong class="failed" *ngIf="messageType === 'FAILED'"> {{ message }} </strong>
 </div>
