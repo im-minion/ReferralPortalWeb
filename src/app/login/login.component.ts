@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
 
   employeeId: string;
   password: string;
+  loader: boolean = false;
   messageBool: boolean = false;
   messageType: string;
   message: string;
@@ -22,6 +23,7 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
+    this.loader = true;
 
     console.log(this.employeeId, this.password);
     // TODO: API CALL TO LOGIN
@@ -48,6 +50,7 @@ export class LoginComponent implements OnInit {
         this.message = 'FAILED';
       }
     );
+    this.loader = false;
     this.messageBool = false;
   }
 
