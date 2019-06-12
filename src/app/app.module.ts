@@ -13,7 +13,7 @@ import { ReferralsComponent } from './referrals/referrals.component';
 import { RegisterComponent } from './register/register.component';
 import { HttpClientModule }    from '@angular/common/http';
 import { SharedModule } from './shared/shared.module';
-import { ReactiveFormsModule } from '@angular/forms';
+// import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -25,7 +25,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     ReferComponent,
     ReferralsComponent,
     RegisterComponent,
-    ReactiveFormsModule
+    // ReactiveFormsModule
   ],
   imports: [
     BrowserModule,

@@ -3,7 +3,11 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  BASE_URL: 'https://referral-portal-ws.herokuapp.com/',
+  AUTH_END_POINT: 'rp/auth/',
+  EMPLOYEE_END_POINT: 'rp/employee/',
+  HM_END_POINT: 'rp/hm/'
 };
 // https://referral-portal-ws.herokuapp.com/
 /*
