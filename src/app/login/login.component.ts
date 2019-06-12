@@ -24,10 +24,6 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.loader = true;
-
-    console.log(this.employeeId, this.password);
-    // TODO: API CALL TO LOGIN
-    // success ->
     this.authService.login(this.employeeId, this.password).subscribe((e: Employee) => {
       console.log(e);
       if (!isNullOrUndefined(e) && e.message === 'SUCCESS') {
@@ -42,15 +38,15 @@ export class LoginComponent implements OnInit {
         this.messageType = 'FAILED';
         this.message = 'EmployeeId or Password do not match';
       }
-
+      this.loader = false;
     },
       (err) => {
         this.messageBool = true;
         this.messageType = 'FAILED';
-        this.message = 'FAILED';
+        this.message = 'Probably Server Down!';
+        this.loader = false;
       }
-    );
-    this.loader = false;
+    );    
     this.messageBool = false;
   }
 
