@@ -8,14 +8,14 @@
         <ul *ngIf="valid()" class="navbar-nav">
             <!-- <a routerLink="register" routerLinkActive="" [routerActiveOption]="{exact: true}" routerActive="active">Sign Up</a> -->
             <!-- <a routerLink="/hm/jobs" routerLinkActive="active">Jobs</a> -->
-            <li class="nav-item active">
-                <a class="nav-link" routerLink="/dashboard" routerLinkActive="active">Home <span class="sr-only">(current)</span></a>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/dashboard" routerLinkActive="active">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Refer a friend</a>
+                <a class="nav-link" routerLink="/dashboard">Refer a friend</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Statistics</a>
+                <a class="nav-link" routerLink="/dashboard">Statistics</a>
             </li>
             <li *ngIf="employeeRole === 'HM'" class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="hmDropDownTabs" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
