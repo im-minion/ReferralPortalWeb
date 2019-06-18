@@ -7,26 +7,37 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul *ngIf="valid()" class="navbar-nav">
             <!-- <a routerLink="register" routerLinkActive="" [routerActiveOption]="{exact: true}" routerActive="active">Sign Up</a> -->
-            <!-- <a routerLink="/crisis-center" routerLinkActive="active">Crisis Center</a> -->
+            <!-- <a routerLink="/hm/jobs" routerLinkActive="active">Jobs</a> -->
             <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" routerLink="/dashboard" routerLinkActive="active">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Features</a>
+                <a class="nav-link" href="#">Refer a friend</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Pricing</a>
+                <a class="nav-link" href="#">Statistics</a>
             </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown link
-        </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
+            <li *ngIf="employeeRole === 'HM'" class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="hmDropDownTabs" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Hiring Manager Section 
+                </a>
+                <div class="dropdown-menu" aria-labelledby="hmDropDownTabs">
+                    <a class="dropdown-item" routerLink="/hm/referrals" routerLinkActive="active">See Referrals</a>
+                    <a class="dropdown-item" routerLink="/hm/jobs" routerLinkActive="active">Jobs Status</a>
+                    <a class="dropdown-item" routerLink="/hm/referralsStatus" routerLinkActive="active">Referrals Status</a>
                 </div>
             </li>
+
+            <li *ngIf="employeeRole === 'HR'" class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="hrDropDownTabs" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        HR Section 
+                    </a>
+                <div class="dropdown-menu" aria-labelledby="hrDropDownTabs">
+                    <a class="dropdown-item" href="#">Referrals at HR Round</a>
+                    <a class="dropdown-item" href="#">Referrals Status</a>
+                </div>
+            </li>
+
             <ul class="navbar-nav navbar-right">
                 <li>
                     <button (click)="logout()" class="btn btn-primary">Log Out</button>

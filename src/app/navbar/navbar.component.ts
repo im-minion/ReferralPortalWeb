@@ -8,10 +8,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-
+  employeeRole: string;
   constructor(private router: Router) { }
 
   ngOnInit() {
+    this.employeeRole = localStorage.getItem('employeeRole');
+    console.log(this.employeeRole);
   }
 
   valid() {

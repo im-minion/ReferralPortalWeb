@@ -5,6 +5,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ReferComponent } from './refer/refer.component';
 import { ReferralsComponent } from './referrals/referrals.component';
 import { RegisterComponent } from './register/register.component';
+import { HmReferralsComponent } from './hm-referrals/hm-referrals.component';
+import { HmJobsComponent } from './hm-jobs/hm-jobs.component';
+import { HmReferralsStatusComponent } from './hm-referrals-status/hm-referrals-status.component';
 
 const routes: Routes = [
   {
@@ -30,6 +33,18 @@ const routes: Routes = [
   {
     path: 'referrals',
     component: ReferralsComponent
+  },
+  {
+    path: 'hm/jobs',
+    component: HmJobsComponent
+  },
+  {
+    path:'hm/referrals',
+    component: HmReferralsComponent
+  },
+  {
+    path: 'hm/referralsStatus',
+    component: HmReferralsStatusComponent
   }
 ];
 

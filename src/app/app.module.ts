@@ -13,6 +13,9 @@ import { ReferralsComponent } from './referrals/referrals.component';
 import { RegisterComponent } from './register/register.component';
 import { HttpClientModule }    from '@angular/common/http';
 import { SharedModule } from './shared/shared.module';
+import { HmReferralsComponent } from './hm-referrals/hm-referrals.component';
+import { HmJobsComponent } from './hm-jobs/hm-jobs.component';
+import { HmReferralsStatusComponent } from './hm-referrals-status/hm-referrals-status.component';
 // import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
@@ -25,6 +28,9 @@ import { SharedModule } from './shared/shared.module';
     ReferComponent,
     ReferralsComponent,
     RegisterComponent,
+    HmReferralsComponent,
+    HmJobsComponent,
+    HmReferralsStatusComponent,
     // ReactiveFormsModule
   ],
   imports: [
