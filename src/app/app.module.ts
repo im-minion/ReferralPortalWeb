@@ -11,11 +11,12 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ReferComponent } from './refer/refer.component';
 import { ReferralsComponent } from './referrals/referrals.component';
 import { RegisterComponent } from './register/register.component';
-import { HttpClientModule }    from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS }    from '@angular/common/http';
 import { SharedModule } from './shared/shared.module';
 import { HmReferralsComponent } from './hm-referrals/hm-referrals.component';
 import { HmJobsComponent } from './hm-jobs/hm-jobs.component';
 import { HmReferralsStatusComponent } from './hm-referrals-status/hm-referrals-status.component';
+import { TokenInterceptorService } from './services/interceptor/token-interceptor.service';
 // import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
@@ -40,7 +41,13 @@ import { HmReferralsStatusComponent } from './hm-referrals-status/hm-referrals-s
     HttpClientModule,
     SharedModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
