@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
     this.loader = true;
     this.authService.login(this.employeeId, this.password).subscribe((e: Employee) => {
       console.log(e);
-      if (!isNullOrUndefined(e) && e.message === 'SUCCESS') {
+      if (!isNullOrUndefined(e) && !isNullOrUndefined(e.employeeRole) ) {
         localStorage.setItem('employeeRole', e.employeeRole);
         localStorage.setItem('employeeId', e.employeeId);
         this.router.navigate(['dashboard']);
