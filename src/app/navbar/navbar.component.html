@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">Referral Portal</a>
+    <a class="navbar-brand" routerLink="/dashboard">Referral Portal</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -12,12 +12,12 @@
                 <a class="nav-link" routerLink="/dashboard" routerLinkActive="active">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" routerLink="/dashboard">Refer a friend</a>
+                <a class="nav-link" routerLink="/refer">Refer a friend</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" routerLink="/dashboard">Statistics</a>
+                <a class="nav-link" routerLink="/dashboard">Status</a>
             </li>
-            <li *ngIf="employeeRole === 'HM'" class="nav-item dropdown">
+            <li *ngIf="isRole('HM')" class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="hmDropDownTabs" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Hiring Manager Section 
                 </a>
@@ -28,7 +28,7 @@
                 </div>
             </li>
 
-            <li *ngIf="employeeRole === 'HR'" class="nav-item dropdown">
+            <li *ngIf="isRole('HR')" class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="hrDropDownTabs" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         HR Section 
                     </a>

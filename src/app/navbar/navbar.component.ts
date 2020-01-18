@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges, Input } from '@angular/core';
 import { isNullOrUndefined } from 'util';
 import { Router } from '@angular/router';
+import { AuthService } from '../services/authentication/auth.service';
+import { Observable } from 'rxjs';
+import { async } from 'q';
 
 @Component({
   selector: 'app-navbar',
@@ -23,6 +26,10 @@ export class NavbarComponent implements OnInit {
     } else {
       return false;
     }
+  }
+
+  isRole(role: string): boolean {
+    return localStorage.getItem('employeeRole') === role;
   }
 
   logout() {
