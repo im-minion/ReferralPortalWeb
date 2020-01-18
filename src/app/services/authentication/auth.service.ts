@@ -6,6 +6,9 @@ import { CommonService } from '../common.service';
   providedIn: 'root'
 })
 export class AuthService {
+  isLoggedIN() {
+    return !!localStorage.getItem('employeeRole');
+  }
 
   constructor(private commonService: CommonService) { }
 

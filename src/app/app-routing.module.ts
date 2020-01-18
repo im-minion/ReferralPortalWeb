@@ -8,6 +8,7 @@ import { RegisterComponent } from './register/register.component';
 import { HmReferralsComponent } from './hm-referrals/hm-referrals.component';
 import { HmJobsComponent } from './hm-jobs/hm-jobs.component';
 import { HmReferralsStatusComponent } from './hm-referrals-status/hm-referrals-status.component';
+import { EmployeeGuard } from './employee.guard';
 
 const routes: Routes = [
   {
@@ -24,27 +25,46 @@ const routes: Routes = [
   },
   {
     path: 'dashboard',
-    component: DashboardComponent
+    component: DashboardComponent,
+    canActivate: [EmployeeGuard],
+    /*children: [
+      {
+        path: 'refer',
+        component: ReferComponent,
+        canActivate: [EmployeeGuard]
+      },
+      {
+        path: 'status',
+        component: ReferralsComponent,
+        canActivate: [EmployeeGuard],
+      },
+    ]*/
   },
   {
     path: 'refer',
-    component: ReferComponent
+    component: ReferComponent,
+    canActivate: [EmployeeGuard]
   },
   {
-    path: 'referrals',
-    component: ReferralsComponent
+    path: 'status',
+    component: ReferralsComponent,
+    canActivate: [EmployeeGuard],
   },
   {
     path: 'hm/jobs',
     component: HmJobsComponent
   },
   {
-    path:'hm/referrals',
+    path: 'hm/referrals',
     component: HmReferralsComponent
   },
   {
     path: 'hm/referralsStatus',
     component: HmReferralsStatusComponent
+  },
+  {
+    path: '**',
+    component: LoginComponent
   }
 ];
 
