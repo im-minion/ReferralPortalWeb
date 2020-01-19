@@ -17,7 +17,7 @@
             <li class="nav-item">
                 <a class="nav-link" routerLink="/status">Status</a>
             </li>
-            <li *ngIf="isRole('HM')" class="nav-item dropdown">
+            <li *ngIf="employeeRole === userRoleConstants.HM" class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="hmDropDownTabs" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Hiring Manager Section 
                 </a>
@@ -28,7 +28,7 @@
                 </div>
             </li>
 
-            <li *ngIf="isRole('HR')" class="nav-item dropdown">
+            <li *ngIf="employeeRole === userRoleConstants.HR" class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="hrDropDownTabs" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         HR Section 
                     </a>

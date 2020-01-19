@@ -11,7 +11,7 @@ export class EmployeeGuard implements CanActivate {
 
   }
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | import("rxjs").Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
-    if (this.authService.isLoggedIN()) {
+    if (this.authService.isLoggedIn()) {
       console.log("route::" , route);
       console.log("state::", state);
       return true;

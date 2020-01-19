@@ -27,18 +27,6 @@ const routes: Routes = [
     path: 'dashboard',
     component: DashboardComponent,
     canActivate: [EmployeeGuard],
-    /*children: [
-      {
-        path: 'refer',
-        component: ReferComponent,
-        canActivate: [EmployeeGuard]
-      },
-      {
-        path: 'status',
-        component: ReferralsComponent,
-        canActivate: [EmployeeGuard],
-      },
-    ]*/
   },
   {
     path: 'refer',

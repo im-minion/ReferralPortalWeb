@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../services/authentication/auth.service';
 import { isNullOrUndefined } from 'util';
 import { Employee } from '../employee';
+import { ResponseTypes } from '../app.constants';
 
 @Component({
   selector: 'app-login',
@@ -27,11 +28,10 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.employeeId, this.password).subscribe((e: Employee) => {
       console.log(e);
       if (!isNullOrUndefined(e) && !isNullOrUndefined(e.employeeRole) ) {
-        localStorage.setItem('employeeRole', e.employeeRole);
-        localStorage.setItem('employeeId', e.employeeId);
+        this.authService.setAuthToken(e);
         this.router.navigate(['dashboard']);
         this.messageBool = true;
-        this.messageType = 'SUCCESS';
+        this.messageType = ResponseTypes.SUCCESS;
         this.message = 'Login';
       } else if (!isNullOrUndefined(e) && e.message === 'FAILED') {
         this.messageBool = true;
