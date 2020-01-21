@@ -2,7 +2,6 @@
     "name": "referral-portal-web",
     "version": "0.0.0",
     "scripts": {
-        "npm start": "ng serve",
         "ng": "ng",
         "start": "ng serve",
         "build": "ng build",
