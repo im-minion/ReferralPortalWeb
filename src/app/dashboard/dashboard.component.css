@@ -3,6 +3,8 @@
     align-self: center;
     flex-direction: row;
     align-content: space-between;
+    flex-wrap: nowrap;
+    margin-top: 8%;
 }
 
 .box-1 {
@@ -28,24 +30,11 @@
 
 .row {
     justify-content: space-evenly;
-    margin: 56px;
+    /* margin: 56px; */
 }
 
 .large-size {
-    width: 220px;
+    width: 36%;
     height: 90px;
-}
-
-.container-row {
-    display: flex;
-    /* or inline-flex */
-    flex-direction: row;
-    justify-content: center;
-}
-
-.container-col {
-    display: flex;
-    /* or inline-flex */
-    flex-direction: col;
-    justify-content: center
+    word-wrap: break-word;
 }
