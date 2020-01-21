@@ -8,7 +8,7 @@
         "test": "ng test",
         "lint": "ng lint",
         "e2e": "ng e2e",
-        "preinstall": "npm install -g angular-cli@7.3.9",
+        "preinstall": "npm install -g angular-cli@7.0.7",
         "heroku-postbuild": "ng build --prod"
     },
     "private": true,
