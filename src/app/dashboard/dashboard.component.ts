@@ -7,8 +7,6 @@ import { Employee } from '../employee';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-
-
   employee: Employee;
   constructor() {
   }

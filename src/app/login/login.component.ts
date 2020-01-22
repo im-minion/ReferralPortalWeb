@@ -29,6 +29,7 @@ export class LoginComponent implements OnInit {
       console.log(e);
       if (!isNullOrUndefined(e) && !isNullOrUndefined(e.employeeRole) ) {
         this.authService.setAuthToken(e);
+        localStorage.setItem("employeeId",this.employeeId);
         this.router.navigate(['dashboard']);
         this.messageBool = true;
         this.messageType = ResponseTypes.SUCCESS;
