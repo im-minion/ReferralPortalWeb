@@ -12,7 +12,7 @@ export class AuthService {
   userRole$: BehaviorSubject<string> = new BehaviorSubject<string>(null);
 
   isLoggedIn() {
-    return !!localStorage.getItem('employeeRole');
+    return !!sessionStorage.getItem('employeeRole');
   }
 
   constructor(private commonService: CommonService) { }
@@ -25,9 +25,10 @@ export class AuthService {
     return this.commonService.postMethod(environment.BASE_URL + environment.AUTH_END_POINT + 'login', requestBody);
   }
 
-  setAuthToken(e: Employee) {
-    localStorage.setItem('employeeRole', e.employeeRole);
-    localStorage.setItem('employeeId', e.employeeId);
+  setAuthToken(e: any) {
+    sessionStorage.setItem('employeeRole', e.employeeRole);
+    sessionStorage.setItem('employeeId', e.employeeId);
+    sessionStorage.setItem('token',e.authToken);
     this.updateUserRole( e.employeeRole);
   }
 
@@ -35,10 +36,10 @@ export class AuthService {
     this.userRole$.next(employeeRole);
   }
 
-  setUserRoleUsingLocalStorage() {
-    const userRoleFromLocalStorage: string = localStorage.getItem('employeeRole');
-    if(userRoleFromLocalStorage) {
-      this.updateUserRole(userRoleFromLocalStorage);
+  setUserRoleUsingSessionStorage() {
+    const userRoleFromSessionStorage: string = sessionStorage.getItem('employeeRole');
+    if(userRoleFromSessionStorage) {
+      this.updateUserRole(userRoleFromSessionStorage);
     }
   }
 }

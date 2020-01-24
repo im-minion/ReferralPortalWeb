@@ -26,7 +26,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
       if(role) {
         this.employeeRole = role;
       } else {
-        this.authService.setUserRoleUsingLocalStorage();
+        this.authService.setUserRoleUsingSessionStorage();
       }
     });
     console.log(this.employeeRole);
@@ -38,7 +38,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   valid() {
     // check if login is successful or not
-    if (!isNullOrUndefined(localStorage.getItem('employeeRole')) && !isNullOrUndefined(localStorage.getItem('employeeId'))) {
+    if (!isNullOrUndefined(sessionStorage.getItem('employeeRole')) && !isNullOrUndefined(sessionStorage.getItem('employeeId'))) {
       return true;
     } else {
       return false;
@@ -46,11 +46,11 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
 
   isRole(role: string): boolean {
-    return localStorage.getItem('employeeRole') === role;
+    return sessionStorage.getItem('employeeRole') === role;
   }
 
   logout() {
-    localStorage.clear();
+    sessionStorage.clear();
     this.router.navigateByUrl('login');
   }
   

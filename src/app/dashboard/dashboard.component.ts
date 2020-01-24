@@ -12,7 +12,7 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.employee = new Employee('', localStorage.getItem('employeeRole'), localStorage.getItem('employeeId'));
+    this.employee = new Employee(sessionStorage.getItem('employeeRole'), sessionStorage.getItem('employeeId'));
   }
 
 }

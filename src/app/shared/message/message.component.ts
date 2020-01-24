@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { ResponseTypes } from '../../app.constants';
 
 @Component({
   selector: 'app-message',
@@ -6,21 +7,20 @@ import { Component, OnInit, Input, OnChanges } from '@angular/core';
   styleUrls: ['./message.component.css']
 })
 export class MessageComponent implements OnInit {
-  @Input()messageBool: boolean = false;
+  @Input() messageBool: boolean = false;
   @Input() messageType: string;
   @Input() message: string;
-
+  responses: ResponseTypes;
   constructor() {
   }
 
   ngOnInit() {
-    console.log("Init1 " + this.messageBool);
+    this.responses = ResponseTypes;
     if (this.messageBool) {
-      console.log("Init2 " + this.messageBool);
       setTimeout(() => {
         this.messageBool = false;
         this.message = null;
-      }, 2000);
+      }, 3000);
     }
   }
 
@@ -34,6 +34,6 @@ export class MessageComponent implements OnInit {
   //     }, 2000);
   //   }
   // }
-  
+
 
 }

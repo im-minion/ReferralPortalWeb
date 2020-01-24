@@ -1,5 +1,6 @@
 export class ResponseTypes {
     static SUCCESS = 'SUCCESS';
+    static FAILED = 'FAILED';
 }
 
 export class UserRoles {

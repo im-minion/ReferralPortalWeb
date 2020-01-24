@@ -4,6 +4,7 @@ import { AuthService } from '../services/authentication/auth.service';
 import { isNullOrUndefined } from 'util';
 import { Employee } from '../employee';
 import { ResponseTypes } from '../app.constants';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -25,29 +26,29 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.loader = true;
-    this.authService.login(this.employeeId, this.password).subscribe((e: Employee) => {
-      console.log(e);
-      if (!isNullOrUndefined(e) && !isNullOrUndefined(e.employeeRole) ) {
-        this.authService.setAuthToken(e);
-        localStorage.setItem("employeeId",this.employeeId);
+    this.authService.login(this.employeeId, this.password).subscribe((loginResponse: any) => {
+      if (!isNullOrUndefined(loginResponse) && !isNullOrUndefined(loginResponse.employeeId)) {
+        // const e: Employee = new Employee('', loginResponse.employeeRole, loginResponse.employeeId);
+        this.authService.setAuthToken(loginResponse);
         this.router.navigate(['dashboard']);
         this.messageBool = true;
         this.messageType = ResponseTypes.SUCCESS;
         this.message = 'Login';
-      } else if (!isNullOrUndefined(e) && e.message === 'FAILED') {
+      } else {
         this.messageBool = true;
-        this.messageType = 'FAILED';
+        this.messageType = ResponseTypes.FAILED;
         this.message = 'EmployeeId or Password do not match';
       }
       this.loader = false;
     },
-      (err) => {
+      (err: HttpErrorResponse) => {
+        console.log(err);
         this.messageBool = true;
         this.messageType = 'FAILED';
-        this.message = 'Probably Server Down!';
+        this.message = err.error;
         this.loader = false;
       }
-    );    
+    );
     this.messageBool = false;
   }
 
