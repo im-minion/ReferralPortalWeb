@@ -28,7 +28,6 @@ export class LoginComponent implements OnInit {
     this.loader = true;
     this.authService.login(this.employeeId, this.password).subscribe((loginResponse: any) => {
       if (!isNullOrUndefined(loginResponse) && !isNullOrUndefined(loginResponse.employeeId)) {
-        // const e: Employee = new Employee('', loginResponse.employeeRole, loginResponse.employeeId);
         this.authService.setAuthToken(loginResponse);
         this.router.navigate(['dashboard']);
         this.messageBool = true;

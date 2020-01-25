@@ -1,0 +1,18 @@
+.flex-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-nav {
+    flex: 2;
+}
+
+.flex-body {
+    flex: 7;
+}
+
+.flex-footer {
+    flex: 1;
+    align-self: baseline;
+    margin-top: 40px;
+}
