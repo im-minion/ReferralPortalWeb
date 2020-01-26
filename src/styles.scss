@@ -1,0 +1,59 @@
+// $color-very-dark:rgb(255, 255, 255);
+// $color-dark:rgba(180, 110, 70, 0.747);
+// $color-mid:yellow;
+// $color-light: rgba(243, 197, 170, 0.747);
+// $color-very-light:#FFFFFF;
+$color-white:#FFFFFF;
+$color-black:#000000;
+$color-light-blue:#609DE6;
+$color-dark-blue:#8CA7BA;
+$color-light-green:#61C06E;
+@import '~bootstrap/dist/css/bootstrap.min.css';
+.custom-background-color {
+    background-color: $color-white;
+    color: $color-black;
+}
+
+.revert-background-color {
+    color: $color-white;
+    background-color: $color-black;
+}
+
+// .very-dark-background {
+//     background-color: $color-very-dark;
+//     color: $color-dark;
+// }
+// .dark-background {
+//     background-color: $color-dark;
+//     color: white;
+// }
+// .mid-background {
+//     background-color: $color-mid;
+//     color: black;
+// }
+// .light-background {
+//     background-color: $color-light;
+//     color: black;
+// }
+// .very-light-background {
+//     background-color: $color-very-light;
+//     color: black;
+// }
+// .custom-color {
+//     color: $color-very-dark;
+// }
+// .very-dark {
+//     color: $color-very-dark;
+// }
+// .dark {
+//     color: $color-dark;
+// }
+// .mid {
+//     color: $color-mid;
+// }
+// .light {
+//     color: $color-light;
+// }
+// .very-light {
+//     color: $color-very-light;
+// }
