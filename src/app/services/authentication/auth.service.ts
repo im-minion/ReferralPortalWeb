@@ -28,7 +28,7 @@ export class AuthService {
   setAuthToken(e: any) {
     sessionStorage.setItem('employeeRole', e.employeeRole);
     sessionStorage.setItem('employeeId', e.employeeId);
-    sessionStorage.setItem('token',e.authToken);
+    sessionStorage.setItem('token',e.accessToken);
     this.updateUserRole( e.employeeRole);
   }
 
