@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CommonService } from './common.service';
+import { CommonService } from '../common.service';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
