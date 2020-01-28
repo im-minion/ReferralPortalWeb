@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { EmployeeService } from '../services/employee-services/employee.service';
+import { OpenJobs } from '../services/employee-services/open-jobs-class';
 
 @Component({
   selector: 'app-refer',
@@ -7,12 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReferComponent implements OnInit {
 
-  constructor() { }
+  constructor(private employeeService: EmployeeService) { }
 
-  openJobs: any;
+  openJobs: Array<OpenJobs>;
 
   ngOnInit() {
-    // this.openJobs =
+    this.employeeService.getOpenJobs().subscribe((response: Array<OpenJobs>) => {
+      this.openJobs = response;
+    });
   }
-
 }

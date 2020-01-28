@@ -14,31 +14,10 @@
             <a href="#" class="btn btn-primary flex-card-button">See Details and Refer</a>
         </div>
     </div>
-    <div class="card flex-card custom-background-color">
+    <div *ngFor="let job of openJobs" class="card flex-card custom-background-color">
         <div class="card-body flex-body text-black">
-            <h5 class="card-title flex-card-title">Java Backend - #1082</h5>
-            <p class="card-text flex-card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="btn btn-primary flex-card-button">See Details and Refer</a>
-        </div>
-    </div>
-    <div class="card flex-card custom-background-color">
-        <div class="card-body flex-body text-black">
-            <h5 class="card-title flex-card-title">Java Backend - #1082</h5>
-            <p class="card-text flex-card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="btn btn-primary flex-card-button">See Details and Refer</a>
-        </div>
-    </div>
-    <div class="card flex-card custom-background-color">
-        <div class="card-body flex-body text-black">
-            <h5 class="card-title flex-card-title">Java Backend - #1082</h5>
-            <p class="card-text flex-card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="btn btn-primary flex-card-button">See Details and Refer</a>
-        </div>
-    </div>
-    <div class="card flex-card custom-background-color">
-        <div class="card-body flex-body text-black">
-            <h5 class="card-title flex-card-title">Java Backend - #1082</h5>
-            <p class="card-text flex-card-text">With supporting text below as a natural lead-in to additional content.</p>
+            <h5 class="card-title flex-card-title">{{ job.jobTitle }} - #{{ job.jobId }}</h5>
+            <p class="card-text flex-card-text">{{ job.jobDescription }}</p>
             <a href="#" class="btn btn-primary flex-card-button">See Details and Refer</a>
         </div>
     </div>

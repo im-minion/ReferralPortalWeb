@@ -10,6 +10,7 @@ export const environment = {
   HM_END_POINT: 'rp/hm/'
 };
 // https://referral-portal-ws.herokuapp.com/
+// ng build --prod --base-href https://im-minion.github.io/ReferralPortalWeb/
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
