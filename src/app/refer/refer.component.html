@@ -1,5 +1,8 @@
 <h4>Refer a Friend</h4>
 <div class="flex-container">
+    <div *ngIf="openJobs.length < 0">
+        No Data Available
+    </div>
     <div *ngFor="let job of openJobs" class="card flex-card custom-background-color">
         <div class="card-body flex-body text-black">
             <h5 class="card-title flex-card-title">{{ job.jobTitle }} - #{{ job.jobId }}</h5>
