@@ -9,6 +9,7 @@ import { HmReferralsComponent } from './hm-referrals/hm-referrals.component';
 import { HmJobsComponent } from './hm-jobs/hm-jobs.component';
 import { HmReferralsStatusComponent } from './hm-referrals-status/hm-referrals-status.component';
 import { EmployeeGuard } from './employee.guard';
+import { ReferFormComponent } from './refer-form/refer-form.component';
 
 const routes: Routes = [
   {
@@ -32,6 +33,12 @@ const routes: Routes = [
     path: 'refer',
     component: ReferComponent,
     canActivate: [EmployeeGuard]
+  },
+  {
+    path:'referForm/:jobId',
+    component: ReferFormComponent,
+    // data: { animation: 'hero' } 
+    // canActivate: [EmployeeGuard]
   },
   {
     path: 'status',
