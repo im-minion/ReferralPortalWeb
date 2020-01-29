@@ -1,7 +1,12 @@
 <h4>Refer a Friend</h4>
 <div class="flex-container">
-    <div *ngIf="openJobs.length < 0">
-        No Data Available
+    <div *ngIf="isLoading">
+        <app-loader></app-loader>
+    </div>
+    <div class="card flex-card custom-background-color" *ngIf="openJobs.length <= 0 && !isLoading">
+        <div class="card-body flex-body text-black">
+            <h6>No Data Available!</h6>
+        </div>
     </div>
     <div *ngFor="let job of openJobs" class="card flex-card custom-background-color">
         <div class="card-body flex-body text-black">

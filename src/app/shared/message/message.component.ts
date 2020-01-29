@@ -23,17 +23,4 @@ export class MessageComponent implements OnInit {
       }, 3000);
     }
   }
-
-  // ngOnChanges(changes: import("@angular/core").SimpleChanges): void {
-  //   console.log("Change1 " + this.messageBool);
-  //   if (this.messageBool) {
-  //     console.log("Change2 " + this.messageBool);
-  //     setTimeout(() => {
-  //       this.messageBool = false;
-  //       this.message = null;
-  //     }, 2000);
-  //   }
-  // }
-
-
 }

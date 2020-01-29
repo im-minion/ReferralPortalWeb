@@ -29,7 +29,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
         this.authService.setUserRoleUsingSessionStorage();
       }
     });
-    console.log(this.employeeRole);
   }
 
   ngOnDestroy() {

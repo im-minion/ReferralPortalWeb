@@ -1,4 +1,4 @@
-export class OpenJobs {
+export class OpenJob {
     /* 
     [
   {

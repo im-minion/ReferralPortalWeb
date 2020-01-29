@@ -1,3 +1,11 @@
-<div *ngIf="sub$ | async as sub">
-    <h3>"{{ sub }}"</h3>
+<div *ngIf="isLoading" class="loader-align">
+    <app-loader></app-loader>
+</div>
+
+<div *ngIf="job != null && !isLoading">
+    <h2>Applying for Position: {{ job.jobTitle }} - #{{ jobId }}</h2>
+
+    <p>
+        {{job.jobDescription}}
+    </p>
 </div>
