@@ -7,7 +7,7 @@
         <div class="card-body flex-body text-black">
             <h5 class="card-title flex-card-title">{{ job.jobTitle }} - #{{ job.jobId }}</h5>
             <p class="card-text flex-card-text">{{ job.jobDescription }}</p>
-            <a [routerLink]="['/referForm', jobId]" class="btn btn-primary flex-card-button">See Details and Refer</a>
+            <a [routerLink]="['/referForm', job.jobId]" class="btn btn-primary flex-card-button">See Details and Refer</a>
         </div>
     </div>
 </div>
