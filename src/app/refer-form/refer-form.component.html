@@ -1,7 +1,9 @@
 <div *ngIf="isLoading" class="loader-align">
     <app-loader></app-loader>
 </div>
-
+<div *ngIf="!isLoading && job ==null">
+    Invalid JobId
+</div>
 <div *ngIf="job != null && !isLoading">
     <h2>Applying for Position: {{ job.jobTitle }} - #{{ jobId }}</h2>
 

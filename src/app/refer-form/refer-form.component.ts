@@ -1,10 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute, Router, ParamMap } from '@angular/router';
-import { Observable, of, Subscription, Subject } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { EmployeeService } from '../services/employee-services/employee.service';
-import { switchMap } from 'rxjs/operators';
 import { OpenJob } from '../services/employee-services/open-job-class';
-import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-refer-form',
@@ -17,7 +14,6 @@ export class ReferFormComponent implements OnInit {
   job: OpenJob = null;
   isLoading: boolean = true;
   constructor(private route: ActivatedRoute,
-    private router: Router,
     private employeeService: EmployeeService) { }
 
   ngOnInit() {
