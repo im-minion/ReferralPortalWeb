@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './login/login.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ReferComponent } from './refer/refer.component';
 import { ReferralsComponent } from './referrals/referrals.component';
@@ -40,6 +40,7 @@ import { ReferFormComponent } from './refer-form/refer-form.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     SharedModule
   ],

@@ -4,10 +4,82 @@
 <div *ngIf="!isLoading && job ==null">
     Invalid JobId
 </div>
-<div *ngIf="job != null && !isLoading">
-    <h2>Applying for Position: {{ job.jobTitle }} - #{{ jobId }}</h2>
-
-    <p>
-        {{job.jobDescription}}
-    </p>
+<div class="flex-container" *ngIf="job != null && !isLoading">
+    <h2 class="flex-title">Applying for Position: {{ job.jobTitle }} - #{{ jobId }}</h2>
+    <h6>{{job.jobDescription}}</h6>
+    <!-- <div class="field">
+        <label class="label">First Name</label>
+        <div class="control has-icons-left">
+          <input class="input" type="text" placeholder="First Name" formControlName="firstName" name="firstName">
+          <span class="icon is-small is-left">
+            <fa-icon icon="user"></fa-icon>
+          </span>
+        </div>
+      </div> -->
+    <!-- referralEmailId: new FormControl('', [Validators.required]),
+      referralName: new FormControl('', [Validators.required, Validators.email]),
+      jobId: new FormControl('', [Validators.required]),
+      panNumber: new FormControl('', [Validators.required]),
+      dob: new FormControl('', [Validators.required]),
+      yoe: new FormControl('', [Validators.required]),
+      primarySkill: new FormControl('', [Validators.required]),
+      secondarySkill: new FormControl('', [Validators.required])
+      //referDate and referredBy -> not be input -->
+    <div class="col-md-8">
+        <form [formGroup]="referForm" (ngSubmit)="refer()">
+            <div class="form-group row">
+                <label for="referralEmailId" class="col-sm-2 col-form-label">referralEmailId</label>
+                <div class="control col-sm-10">
+                    <input formControlName="referralEmailId" name="referralEmailId" type="email" class="form-control" id="referralEmailId" placeholder="Email">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="referralName" class="col-sm-2 col-form-label">referralName</label>
+                <div class="control col-sm-10">
+                    <input formControlName="referralName" name="referralName" type="text" class="form-control" id="referralName" placeholder="referralName">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="jobId" class="col-sm-2 col-form-label">jobId</label>
+                <div class="col-sm-10">
+                    <input type="text" readonly class="form-control" id="jobId" value="{{jobId}}">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="panNumber" class="col-sm-2 col-form-label">panNumber</label>
+                <div class="control col-sm-10">
+                    <input formControlName="panNumber" name="panNumber" type="text" class="form-control" id="panNumber" placeholder="panNumber">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="dob" class="col-sm-2 col-form-label">dob</label>
+                <div class="control col-sm-10">
+                    <input formControlName="dob" name="dob" type="text" class="form-control" id="dob" placeholder="dob">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="yoe" class="col-sm-2 col-form-label">yoe</label>
+                <div class="control col-sm-10">
+                    <input formControlName="yoe" name="yoe" type="text" class="form-control" id="yoe" placeholder="yoe">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="primarySkill" class="col-sm-2 col-form-label">primarySkill</label>
+                <div class="control col-sm-10">
+                    <input formControlName="primarySkill" name="primarySkill" type="text" class="form-control" id="primarySkill" placeholder="primarySkill">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="secondarySkill" class="col-sm-2 col-form-label">secondarySkill</label>
+                <div class="control col-sm-10">
+                    <input formControlName="secondarySkill" name="secondarySkill" type="text" class="form-control" id="secondarySkill" placeholder="secondarySkill">
+                </div>
+            </div>
+            <div class="field is-grouped">
+                <div class="control">
+                    <button type="button" class="btn btn-primary" [disabled]="!referForm.valid" (click)="submit()">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
 </div>
