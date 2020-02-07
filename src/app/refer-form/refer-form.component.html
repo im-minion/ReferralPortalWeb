@@ -7,6 +7,8 @@
 <div class="flex-container" *ngIf="job != null && !isLoading">
     <h2 class="flex-title">Applying for Position: {{ job.jobTitle }} - #{{ jobId }}</h2>
     <h6>{{job.jobDescription}}</h6>
+    <hr width="100%">
+    <h5 class="heading">Fill Up the Referral's Details : </h5>
     <!-- <div class="field">
         <label class="label">First Name</label>
         <div class="control has-icons-left">
@@ -18,61 +20,66 @@
       </div> -->
     <!-- referralEmailId: new FormControl('', [Validators.required]),
       referralName: new FormControl('', [Validators.required, Validators.email]),
-      jobId: new FormControl('', [Validators.required]),
       panNumber: new FormControl('', [Validators.required]),
       dob: new FormControl('', [Validators.required]),
       yoe: new FormControl('', [Validators.required]),
       primarySkill: new FormControl('', [Validators.required]),
       secondarySkill: new FormControl('', [Validators.required])
-      //referDate and referredBy -> not be input -->
+      //jobId, referDate and referredBy -> not be input -->
     <div class="col-md-8">
         <form [formGroup]="referForm" (ngSubmit)="refer()">
             <div class="form-group row">
-                <label for="referralEmailId" class="col-sm-2 col-form-label">referralEmailId</label>
+                <label for="referralEmailId" class="col-sm-2 col-form-label">Email ID</label>
                 <div class="control col-sm-10">
                     <input formControlName="referralEmailId" name="referralEmailId" type="email" class="form-control" id="referralEmailId" placeholder="Email">
                 </div>
             </div>
             <div class="form-group row">
-                <label for="referralName" class="col-sm-2 col-form-label">referralName</label>
+                <label for="referralName" class="col-sm-2 col-form-label">Referral Name</label>
                 <div class="control col-sm-10">
                     <input formControlName="referralName" name="referralName" type="text" class="form-control" id="referralName" placeholder="referralName">
                 </div>
             </div>
             <div class="form-group row">
-                <label for="jobId" class="col-sm-2 col-form-label">jobId</label>
+                <label for="jobId" class="col-sm-2 col-form-label">Job ID</label>
                 <div class="col-sm-10">
                     <input type="text" readonly class="form-control" id="jobId" value="{{jobId}}">
                 </div>
             </div>
             <div class="form-group row">
-                <label for="panNumber" class="col-sm-2 col-form-label">panNumber</label>
+                <label for="panNumber" class="col-sm-2 col-form-label">Pan Number</label>
                 <div class="control col-sm-10">
                     <input formControlName="panNumber" name="panNumber" type="text" class="form-control" id="panNumber" placeholder="panNumber">
                 </div>
             </div>
             <div class="form-group row">
-                <label for="dob" class="col-sm-2 col-form-label">dob</label>
+                <label for="dob" class="col-sm-2 col-form-label">DOB</label>
                 <div class="control col-sm-10">
                     <input formControlName="dob" name="dob" type="text" class="form-control" id="dob" placeholder="dob">
                 </div>
             </div>
             <div class="form-group row">
-                <label for="yoe" class="col-sm-2 col-form-label">yoe</label>
+                <label for="yoe" class="col-sm-2 col-form-label">Experience(years)</label>
                 <div class="control col-sm-10">
                     <input formControlName="yoe" name="yoe" type="text" class="form-control" id="yoe" placeholder="yoe">
                 </div>
             </div>
             <div class="form-group row">
-                <label for="primarySkill" class="col-sm-2 col-form-label">primarySkill</label>
+                <label for="primarySkill" class="col-sm-2 col-form-label">Primary Skill</label>
                 <div class="control col-sm-10">
                     <input formControlName="primarySkill" name="primarySkill" type="text" class="form-control" id="primarySkill" placeholder="primarySkill">
                 </div>
             </div>
             <div class="form-group row">
-                <label for="secondarySkill" class="col-sm-2 col-form-label">secondarySkill</label>
+                <label for="secondarySkill" class="col-sm-2 col-form-label">Secondary Skill</label>
                 <div class="control col-sm-10">
                     <input formControlName="secondarySkill" name="secondarySkill" type="text" class="form-control" id="secondarySkill" placeholder="secondarySkill">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="resume">Resume</label>
+                <div class="control col-sm-10">
+                    <input (change)="onFileChange($event)" type="file" value="resume" id="resume" class="form-control-file" id="resume">
                 </div>
             </div>
             <div class="field is-grouped">

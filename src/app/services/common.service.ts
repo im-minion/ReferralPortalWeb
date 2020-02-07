@@ -20,4 +20,9 @@ export class CommonService {
     return this.httpClient.post(url, requestBody).pipe();
   }
 
+  postFormDataMethod(url: any, param: HttpParams, file: FormData): any {
+    console.log("postFormDataMethod", url, param, file);
+    return this.httpClient.post(url, file, { params: param });
+  }
+
 }

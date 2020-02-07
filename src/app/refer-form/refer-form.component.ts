@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EmployeeService } from '../services/employee-services/employee.service';
 import { OpenJob } from '../services/employee-services/open-job-class';
@@ -15,8 +15,9 @@ export class ReferFormComponent implements OnInit {
   jobId: string;
   job: OpenJob = null;
   isLoading: boolean = true;
+  resume: File = null;
   constructor(private route: ActivatedRoute,
-    private employeeService: EmployeeService) { }
+    private employeeService: EmployeeService, private cd: ChangeDetectorRef) { }
 
   ngOnInit() {
     // this.sub$ = this.route.paramMap.pipe(
@@ -64,7 +65,35 @@ export class ReferFormComponent implements OnInit {
     //unsubscribe;
   }
   submit() {
+    console.log(this.resume);
     console.log(this.referForm.value);
+    console.log(JSON.stringify(this.referForm.value));
+    this.employeeService.addReferral(JSON.stringify(this.referForm.value), this.resume).subscribe(resp => {
+      console.log(resp);
+    });
+  }
+
+  onFileChange(event) {
+    // let reader = new FileReader();
+
+    if (event.target.files && event.target.files.length) {
+      console.log(event.target.files[0]);
+      // const [file] = event.target.files;
+      // this.referForm.patchValue({
+      this.resume = event.target.files[0]
+      // });
+
+      // reader.readAsDataURL(file);
+
+      // reader.onload = () => {
+      //   this.referForm.patchValue({
+      //     resume: reader.result
+      //   });
+
+      //   // need to run CD since file load runs outside of zone
+      //   this.cd.markForCheck();
+      // };
+    }
   }
 
 }
