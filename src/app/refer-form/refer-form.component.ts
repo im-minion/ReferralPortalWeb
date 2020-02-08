@@ -15,7 +15,7 @@ export class ReferFormComponent implements OnInit {
   jobId: string;
   job: OpenJob = null;
   isLoading: boolean = true;
-  resume: File = null;
+  resume: any = null;
   constructor(private route: ActivatedRoute,
     private employeeService: EmployeeService, private cd: ChangeDetectorRef) { }
 
