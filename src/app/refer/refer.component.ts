@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from '../services/employee-services/employee.service';
-import { OpenJob } from '../services/employee-services/open-job-class';
+import { OpenJob } from '../utilities/open-job-class';
 
 @Component({
   selector: 'app-refer',

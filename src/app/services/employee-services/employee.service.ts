@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { CommonService } from '../common.service';
 import { environment } from 'src/environments/environment';
-import { OpenJob } from './open-job-class';
+import { OpenJob } from '../../utilities/open-job-class';
 import { Observable } from 'rxjs';
 import { HttpParams } from '@angular/common/http';
+import { Referrals } from 'src/app/utilities/referrals-class';
 
 @Injectable({
   providedIn: 'root'
@@ -30,5 +31,11 @@ export class EmployeeService {
     fd.append('file', resume);
     console.log('FD', fd);
     return this.commonService.postFormDataMethod(environment.BASE_URL + environment.EMPLOYEE_END_POINT + 'addReferral', hp, fd);
+  }
+
+  getReferralsByEmployeeId(employeeId: string): Observable<Array<Referrals>> {
+    let hp = new HttpParams();
+    hp = hp.append('employeeId', employeeId);
+    return this.commonService.getMethodWithQueryParam(environment.BASE_URL + environment.EMPLOYEE_END_POINT + 'getReferralsByEmployeeId', hp);
   }
 }

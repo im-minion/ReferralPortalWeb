@@ -18,7 +18,7 @@ export class OpenJob {
     */
     private createdByEmployeeId: string;
     private jobDescription: string;
-    private jobId: number;
+    private jobId: string;
     private jobStatus: string;
     private jobTitle: string;
     private jobVisibility: boolean;
@@ -26,7 +26,7 @@ export class OpenJob {
     private primarySkill: string;
     private secondarySkill: string;
     private yeo: string;
-    constructor($createdByEmployeeId: string, $jobDescription: string, $jobId: number, $jobStatus: string, $jobTitle: string, $jobVisibility: boolean, $prefLocation: string, $primarySkill: string, $secondarySkill: string, $yeo: string) {
+    constructor($createdByEmployeeId: string, $jobDescription: string, $jobId: string, $jobStatus: string, $jobTitle: string, $jobVisibility: boolean, $prefLocation: string, $primarySkill: string, $secondarySkill: string, $yeo: string) {
         this.createdByEmployeeId = $createdByEmployeeId;
         this.jobDescription = $jobDescription;
         this.jobId = $jobId;
