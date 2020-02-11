@@ -84,7 +84,10 @@
             </div>
             <div class="field is-grouped">
                 <div class="control">
-                    <button type="button" class="btn btn-primary" [disabled]="!referForm.valid" (click)="submit()">Submit</button>
+                    <div *ngIf="isLoadingSubmit">
+                        <app-loader></app-loader>
+                    </div>
+                    <button *ngIf="!isLoadingSubmit" type="button" class="btn btn-primary" [disabled]="!referForm.valid && !resumeAdded" (click)="submit()">Submit</button>
                 </div>
             </div>
         </form>

@@ -15,6 +15,8 @@ export class ReferFormComponent implements OnInit {
   jobId: string;
   job: OpenJob = null;
   isLoading: boolean = true;
+  resumeAdded: boolean = false;
+  isLoadingSubmit: boolean = false;
   resume: any = null;
   constructor(private route: ActivatedRoute,
     private employeeService: EmployeeService, private cd: ChangeDetectorRef) { }
@@ -65,11 +67,17 @@ export class ReferFormComponent implements OnInit {
     //unsubscribe;
   }
   submit() {
+    this.isLoadingSubmit = true;
     console.log(this.resume);
     console.log(this.referForm.value);
     console.log(JSON.stringify(this.referForm.value));
     this.employeeService.addReferral(JSON.stringify(this.referForm.value), this.resume).subscribe(resp => {
       console.log(resp);
+      if(resp.referred) {
+        this.referForm.reset();
+      }
+      alert(resp.message);
+      this.isLoadingSubmit = false;
     });
   }
 
@@ -81,6 +89,7 @@ export class ReferFormComponent implements OnInit {
       // const [file] = event.target.files;
       // this.referForm.patchValue({
       this.resume = event.target.files[0]
+      this.resumeAdded = true;
       // });
 
       // reader.readAsDataURL(file);
