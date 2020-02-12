@@ -1,3 +1,9 @@
 <h3 class="heading-tag">
     Jobs You have created
 </h3>
+<div *ngIf="isLoading" class="loader-align">
+    <app-loader></app-loader>
+</div>
+<div *ngIf="!isLoading">
+    <app-rp-table [columns]="displayedColumns" [source]="dataSource"></app-rp-table>
+</div>

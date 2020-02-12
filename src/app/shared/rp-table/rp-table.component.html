@@ -30,19 +30,24 @@
             <td mat-cell *matCellDef="let row"> {{ getProgress(row.referralCurrentLevel) }} </td>
         </ng-container>
 
-        <ng-container matColumnDef="a">
+        <ng-container matColumnDef="Title">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Job Title </th>
+            <td mat-cell *matCellDef="let row"> {{ row.jobTitle }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Visibility">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Visibility </th>
+            <td mat-cell *matCellDef="let row"> {{ row.jobVisibility }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Job Status">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Job Status </th>
+            <td mat-cell *matCellDef="let row"> {{ row.jobStatus }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="See Details">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> See Details </th>
             <td mat-cell *matCellDef="let row"> <button class="btn btn-sm btn-primary" (click)="rowClick(row)">See Details</button> </td>
-        </ng-container>
-
-        <ng-container matColumnDef="b">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> b </th>
-            <td mat-cell *matCellDef="let row"> b </td>
-        </ng-container>
-
-        <ng-container matColumnDef="c">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> c </th>
-            <td mat-cell *matCellDef="let row"> c </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
