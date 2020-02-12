@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
-import { Referrals } from 'src/app/utilities/referrals-class';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { isNullOrUndefined } from 'util';
+import { Levels } from 'src/app/app.constants';
 
 @Component({
   selector: 'app-rp-table',
@@ -10,10 +10,10 @@ import { isNullOrUndefined } from 'util';
 })
 export class RpTableComponent implements OnInit {
   @Input()
-  columns: string[];
+  columns: string[] = null;
   
   @Input()
-  source: Array<any>;
+  source: Array<any> = null;
   
   displayedColumns: string[];
   dataSource: MatTableDataSource<any> = null;
@@ -37,6 +37,25 @@ export class RpTableComponent implements OnInit {
         this.dataSource.paginator.firstPage();
       }
     }
+  }
+  rowClick(data: any) {
+    console.log(data);
+  }
+
+  getProgress( currentLevel: string) {
+    switch (currentLevel){
+      case Levels.RESUME_SCREENING:
+        return '25%';
+      case Levels.L1:
+        return '50%';
+      case Levels.L2:
+        return '75%';
+      case Levels.HR:
+        return '100%';
+      default:
+        return 'NONE'   
+    }
+
   }
 
 }
