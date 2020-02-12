@@ -8,7 +8,7 @@
 <div *ngIf="isLoading" class="loader-align">
     <app-loader></app-loader>
 </div>
-<div *ngIf="!isLoading && job ==null">
+<div *ngIf="!isLoading && job == null">
     Invalid JobId
 </div>
 <div class="flex-container" *ngIf="job != null && !isLoading">

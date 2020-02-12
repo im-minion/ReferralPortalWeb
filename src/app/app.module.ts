@@ -18,6 +18,12 @@ import { HmJobsComponent } from './hm-jobs/hm-jobs.component';
 import { HmReferralsStatusComponent } from './hm-referrals-status/hm-referrals-status.component';
 import { TokenInterceptorService } from './services/interceptor/token-interceptor.service';
 import { ReferFormComponent } from './refer-form/refer-form.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material';
+
 // import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
@@ -42,7 +48,12 @@ import { ReferFormComponent } from './refer-form/refer-form.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    SharedModule
+    SharedModule,
+    BrowserAnimationsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatPaginatorModule,
+    MatTableModule
   ],
   providers: [
     {
