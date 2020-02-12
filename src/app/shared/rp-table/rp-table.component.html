@@ -1,0 +1,54 @@
+<mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+</mat-form-field>
+
+<div class="mat-elevation-z8 rp-center">
+    <table mat-table [dataSource]="dataSource" matSort>
+        <ng-container matColumnDef="Referral Name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Referral Name </th>
+            <td mat-cell *matCellDef="let row"> {{row.referralName}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Job Id">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Job Id </th>
+            <td mat-cell *matCellDef="let row"> {{row.jobId}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Current Level">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Current Level </th>
+            <td mat-cell *matCellDef="let row"> {{row.referralCurrentLevel}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Current Status">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Current Status </th>
+            <td mat-cell *matCellDef="let row"> {{row.referralCurrentStatus}} </td>
+            <!-- [style.color]="row.color" -->
+        </ng-container>
+
+        <ng-container matColumnDef="Progress">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Progress </th>
+            <td mat-cell *matCellDef="let row"> {{ getProgress(row.referralCurrentLevel) }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="a">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> See Details </th>
+            <td mat-cell *matCellDef="let row"> <button class="btn btn-sm btn-primary" (click)="rowClick(row)">See Details</button> </td>
+        </ng-container>
+
+        <ng-container matColumnDef="b">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> b </th>
+            <td mat-cell *matCellDef="let row"> b </td>
+        </ng-container>
+
+        <ng-container matColumnDef="c">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> c </th>
+            <td mat-cell *matCellDef="let row"> c </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+        </tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>

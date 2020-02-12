@@ -1,45 +1,7 @@
+<h3> Your Referrals</h3>
 <div *ngIf="isLoading" class="loader-align">
     <app-loader></app-loader>
 </div>
 <div *ngIf="!isLoading">
-    <mat-form-field>
-        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-    </mat-form-field>
-
-    <div class="mat-elevation-z8">
-        <table mat-table [dataSource]="dataSource" matSort>
-            <!-- 'Referral Name', 'Job Id', 'Current Level', 'Current Status', 'Progress' -->
-            <ng-container matColumnDef="Referral Name">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Referral Name </th>
-                <td mat-cell *matCellDef="let row"> {{row.referralName}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="Job Id">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Job Id </th>
-                <td mat-cell *matCellDef="let row"> {{row.jobId}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="Current Level">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Current Level </th>
-                <td mat-cell *matCellDef="let row"> {{row.referralCurrentLevel}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="Current Status">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Current Status </th>
-                <td mat-cell *matCellDef="let row"> {{row.referralCurrentStatus}} </td>
-                <!-- [style.color]="row.color" -->
-            </ng-container>
-
-            <ng-container matColumnDef="Progress">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Progress </th>
-                <td mat-cell *matCellDef="let row"> progress </td>
-            </ng-container>
-
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;">
-            </tr>
-        </table>
-
-        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
-    </div>
+    <app-rp-table [columns]="displayedColumns" [source]="dataSource"></app-rp-table>
 </div>
