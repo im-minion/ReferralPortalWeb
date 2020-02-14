@@ -9,14 +9,20 @@ export class UserRoles {
     static HR = 'HR';
     static ADMIN = 'ADMIN';
 }
-export class Levels {
+export class ReferralLevels {
     static RESUME_SCREENING = 'RESUME_SCREENING';
     static L1 = 'L1';
     static L2 = 'L2';
     static HR = 'HR';
 }
 
-export class Status {
+export class ReferralStatus {
     static ACCEPTED = 'ACCEPTED';
     static REJECTED = 'REJECTED';
+}
+
+export class JobStatus {
+    static OPEN = 'OPEN';
+    static CLOSED = 'CLOSED';
+    static ONHOLD = 'ONHOLD';
 }

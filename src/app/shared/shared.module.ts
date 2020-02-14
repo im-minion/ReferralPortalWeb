@@ -8,6 +8,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [MessageComponent, LoaderComponent, RpTableComponent],
@@ -17,7 +18,9 @@ import { MatPaginatorModule } from '@angular/material';
     MatFormFieldModule,
     MatInputModule,
     MatPaginatorModule,
-    MatTableModule
+    MatTableModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [ MessageComponent, LoaderComponent, RpTableComponent ]
 })

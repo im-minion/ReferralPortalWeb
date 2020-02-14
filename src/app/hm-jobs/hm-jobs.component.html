@@ -5,5 +5,47 @@
     <app-loader></app-loader>
 </div>
 <div *ngIf="!isLoading">
-    <app-rp-table [columns]="displayedColumns" [source]="dataSource"></app-rp-table>
+    <app-rp-table [columns]="displayedColumns" [source]="dataSource" (clicked)="onClicked($event)"></app-rp-table>
+</div>
+
+
+<div *ngIf="(openJob != null) || (openJob != undefined)" class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="updateModalLabel">{{ openJob.jobTitle }} - # {{ openJob.jobId }}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="updateJobForm">
+                    <div class="form-group">
+                        <label for="jobDescription">Job Description:</label>
+                        <textarea formControlName="jobDescription" type="text" name="jobDescription" class="form-control" id="jobDescription">
+                        </textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="jobVisibility">Visible:</label>
+                        <select formControlName="jobVisibility" name="jobVisibility" class="form-control" id="jobVisibility">
+                          <option [selected]="openJob.jobVisibility" value=true>true</option>
+                          <option [selected]="!openJob.jobVisibility" value=false>false</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="jobStatus">Job Status:</label>
+                        <select formControlName="jobStatus" name="jobStatus" class="form-control" id="jobStatus">
+                          <option [selected]="openJob.jobStatus == _JobStatus.OPEN">OPEN</option>
+                          <option [selected]="openJob.jobStatus == _JobStatus.ONHOLD">ONHOLD</option>
+                          <option [selected]="openJob.jobStatus == _JobStatus.CLOSED">CLOSED</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" (click)="updateJob()">Update</button>
+            </div>
+        </div>
+    </div>
 </div>

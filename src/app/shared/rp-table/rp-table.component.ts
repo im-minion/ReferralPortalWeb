@@ -1,8 +1,9 @@
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, EventEmitter, Output } from '@angular/core';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { isNullOrUndefined } from 'util';
-import { Levels } from 'src/app/app.constants';
+import { ReferralLevels } from 'src/app/app.constants';
 
+declare var $: any;
 @Component({
   selector: 'app-rp-table',
   templateUrl: './rp-table.component.html',
@@ -11,14 +12,17 @@ import { Levels } from 'src/app/app.constants';
 export class RpTableComponent implements OnInit {
   @Input()
   columns: string[] = null;
-  
+
   @Input()
   source: Array<any> = null;
-  
+
   displayedColumns: string[];
   dataSource: MatTableDataSource<any> = null;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+
+  @Output()
+  clicked = new EventEmitter<any>();
 
   constructor() { }
 
@@ -38,24 +42,24 @@ export class RpTableComponent implements OnInit {
       }
     }
   }
-  rowClick(data: any) {
-    console.log(data);
+
+  click(data: any) {
+    this.clicked.emit(data);
   }
 
-  getProgress( currentLevel: string) {
-    switch (currentLevel){
-      case Levels.RESUME_SCREENING:
+  getProgress(currentLevel: string) {
+    switch (currentLevel) {
+      case ReferralLevels.RESUME_SCREENING:
         return '25%';
-      case Levels.L1:
+      case ReferralLevels.L1:
         return '50%';
-      case Levels.L2:
+      case ReferralLevels.L2:
         return '75%';
-      case Levels.HR:
+      case ReferralLevels.HR:
         return '100%';
       default:
-        return 'NONE'   
+        return 'NONE'
     }
-
   }
 
 }

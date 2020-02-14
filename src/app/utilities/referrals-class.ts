@@ -17,19 +17,19 @@ referredBy: "40801"
 referralStatusReasonsList: null
 referralId: "5e42303aa6d2750004d6cce6"
      */
-    private referralEmailId: string;
-    private referralName: string;
-    private jobId: string;
-    private referDate: string;
-    private panNumber: string;
-    private dob: string;
-    private yoe: string;
-    private primarySkill: string;
-    private secondarySkill: string;
+    referralEmailId: string;
+    referralName: string;
+    jobId: string;
+    referDate: string;
+    panNumber: string;
+    dob: string;
+    yoe: string;
+    primarySkill: string;
+    secondarySkill: string;
     //resume: {type: 0,…} binary ignoring for now
-    private resumeV2: string;
-    private referralCurrentLevel: string;
-    private referralCurrentStatus: string;
+    resumeV2: string;
+    referralCurrentLevel: string;
+    referralCurrentStatus: string;
 
 
 	constructor($referralEmailId: string, $referralName: string, $jobId: string, $referDate: string, $panNumber: string, $dob: string, $yoe: string, $primarySkill: string, $secondarySkill: string, $resumeV2: string, $referralCurrentLevel: string, $referralCurrentStatus: string) {

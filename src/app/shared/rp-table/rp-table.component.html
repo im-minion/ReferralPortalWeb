@@ -37,7 +37,10 @@
 
         <ng-container matColumnDef="Visibility">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Visibility </th>
-            <td mat-cell *matCellDef="let row"> {{ row.jobVisibility }} </td>
+            <td mat-cell *matCellDef="let row">
+                <i *ngIf="row.jobVisibility" class="fas fa-check"> Visible</i>
+                <i *ngIf="!row.jobVisibility" class="fas fa-times"> InVisible</i>
+            </td>
         </ng-container>
 
         <ng-container matColumnDef="Job Status">
@@ -46,14 +49,15 @@
         </ng-container>
 
         <ng-container matColumnDef="See Details">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> See Details </th>
-            <td mat-cell *matCellDef="let row"> <button class="btn btn-sm btn-primary" (click)="rowClick(row)">See Details</button> </td>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Update </th>
+            <td mat-cell *matCellDef="let row">
+                <button type="button" class="btn btn-sm col-btn btn-primary" data-toggle="modal" data-target="#updateModal" (click)="click(row) ">Update</button> </td>
         </ng-container>
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+        <tr mat-header-row *matHeaderRowDef="displayedColumns "></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns; ">
         </tr>
     </table>
 
-    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100] "></mat-paginator>
 </div>
