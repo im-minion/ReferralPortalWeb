@@ -5,7 +5,13 @@
     <app-loader></app-loader>
 </div>
 <div *ngIf="!isLoading">
-    <app-rp-table [columns]="displayedColumns" [source]="dataSource" (clicked)="onClicked($event)"></app-rp-table>
+    <div class="row">
+        <div class="col-md-10"></div>
+        <div class="col-md-2"><a [routerLink]="['/hm/jobsForm']" class="btn btn-primary">Create New Job</a></div>
+    </div>
+    <div>
+        <app-rp-table (clicked)="onClicked($event)"></app-rp-table>
+    </div>
 </div>
 
 
@@ -27,10 +33,9 @@
                     </div>
                     <div class="form-group">
                         <label for="jobVisibility">Visible:</label>
-                        <select formControlName="jobVisibility" name="jobVisibility" class="form-control" id="jobVisibility">
-                          <option [selected]="openJob.jobVisibility" value=true>true</option>
-                          <option [selected]="!openJob.jobVisibility" value=false>false</option>
-                        </select>
+                        <div class="custom-control custom-switch">
+                            <input type="checkbox" name="jobVisibility" formControlName="jobVisibility" [checked]="openJob.jobVisibility" class="checkbox form-control" id="jobVisibility">
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="jobStatus">Job Status:</label>
@@ -44,7 +49,10 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" (click)="updateJob()">Update</button>
+                <div *ngIf="isLoadingUpdate">
+                    <app-loader></app-loader>
+                </div>
+                <button *ngIf="!isLoadingUpdate" type="button" class="btn btn-primary" (click)="updateJob()">Update</button>
             </div>
         </div>
     </div>

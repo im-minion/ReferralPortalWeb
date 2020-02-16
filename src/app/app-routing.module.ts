@@ -10,6 +10,7 @@ import { HmJobsComponent } from './hm-jobs/hm-jobs.component';
 import { HmReferralsStatusComponent } from './hm-referrals-status/hm-referrals-status.component';
 import { EmployeeGuard } from './employee.guard';
 import { ReferFormComponent } from './refer-form/refer-form.component';
+import { HmJobsFormComponent } from './hm-jobs-form/hm-jobs-form.component';
 
 const routes: Routes = [
   {
@@ -37,8 +38,7 @@ const routes: Routes = [
   {
     path:'referForm/:jobId',
     component: ReferFormComponent,
-    // data: { animation: 'hero' } 
-    // canActivate: [EmployeeGuard]
+    canActivate: [EmployeeGuard]
   },
   {
     path: 'status',
@@ -47,15 +47,23 @@ const routes: Routes = [
   },
   {
     path: 'hm/jobs',
-    component: HmJobsComponent
+    component: HmJobsComponent,
+    canActivate: [EmployeeGuard]
+  },
+  {
+    path: 'hm/jobsForm',
+    component: HmJobsFormComponent,
+    canActivate: [EmployeeGuard]
   },
   {
     path: 'hm/referrals',
-    component: HmReferralsComponent
+    component: HmReferralsComponent,
+    canActivate: [EmployeeGuard]
   },
   {
     path: 'hm/referralsStatus',
-    component: HmReferralsStatusComponent
+    component: HmReferralsStatusComponent,
+    canActivate: [EmployeeGuard]
   },
   {
     path: '**',

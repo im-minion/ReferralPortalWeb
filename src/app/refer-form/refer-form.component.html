@@ -16,23 +16,6 @@
     <h6>{{job.jobDescription}}</h6>
     <hr width="100%">
     <h5 class="heading">Fill Up the Referral's Details : </h5>
-    <!-- <div class="field">
-        <label class="label">First Name</label>
-        <div class="control has-icons-left">
-          <input class="input" type="text" placeholder="First Name" formControlName="firstName" name="firstName">
-          <span class="icon is-small is-left">
-            <fa-icon icon="user"></fa-icon>
-          </span>
-        </div>
-      </div> -->
-    <!-- referralEmailId: new FormControl('', [Validators.required]),
-      referralName: new FormControl('', [Validators.required, Validators.email]),
-      panNumber: new FormControl('', [Validators.required]),
-      dob: new FormControl('', [Validators.required]),
-      yoe: new FormControl('', [Validators.required]),
-      primarySkill: new FormControl('', [Validators.required]),
-      secondarySkill: new FormControl('', [Validators.required])
-      //jobId, referDate and referredBy -> not be input -->
     <div class="col-md-8">
         <form [formGroup]="referForm" (ngSubmit)="refer()">
             <div class="form-group row">

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -21,8 +22,11 @@ export class CommonService {
   }
 
   postFormDataMethod(url: any, param: HttpParams, file: FormData): any {
-    console.log("postFormDataMethod", url, param, file);
     return this.httpClient.post(url, file, { params: param });
+  }
+
+  putMethod(url: any, requestBody: any): Observable<any> {
+    return this.httpClient.put(url, requestBody).pipe();
   }
 
 }

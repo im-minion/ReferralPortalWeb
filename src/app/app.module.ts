@@ -18,6 +18,7 @@ import { HmJobsComponent } from './hm-jobs/hm-jobs.component';
 import { HmReferralsStatusComponent } from './hm-referrals-status/hm-referrals-status.component';
 import { TokenInterceptorService } from './services/interceptor/token-interceptor.service';
 import { ReferFormComponent } from './refer-form/refer-form.component';
+import { HmJobsFormComponent } from './hm-jobs-form/hm-jobs-form.component';
 
 // import { ReactiveFormsModule } from '@angular/forms';
 
@@ -35,6 +36,7 @@ import { ReferFormComponent } from './refer-form/refer-form.component';
     HmJobsComponent,
     HmReferralsStatusComponent,
     ReferFormComponent,
+    HmJobsFormComponent,
     // ReactiveFormsModule
   ],
   imports: [

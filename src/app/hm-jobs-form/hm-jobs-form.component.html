@@ -1,0 +1,71 @@
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink="/hm/jobs">HM Open Jobs</a></li>
+        <li class="breadcrumb-item">HM Create a New Job</li>
+    </ol>
+</nav>
+<div class="flex-container">
+    <h2 class="flex-title">Create a New Job</h2>
+    <hr width="100%">
+    <h5 class="heading">Please fill up the details : </h5>
+    <div class="col-md-8">
+        <form [formGroup]="createJobForm" (ngSubmit)="submit()">
+            <div class="form-group row">
+                <label for="jobId" class="col-sm-2 col-form-label">Job ID</label>
+                <div class="control col-sm-10">
+                    <input formControlName="jobId" name="referralEmailId" type="string" class="form-control" id="jobId" placeholder="Job ID(Prefer Number)">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="jobTitle" class="col-sm-2 col-form-label">Job Title</label>
+                <div class="control col-sm-10">
+                    <input formControlName="jobTitle" name="jobTitle" type="text" class="form-control" id="jobTitle" placeholder="Job Title">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="createdBy" class="col-sm-2 col-form-label">Created By</label>
+                <div class="col-sm-10">
+                    <input type="text" readonly class="form-control" id="createdBy" value="{{employeeId}}">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="jobDescription" class="col-sm-2 col-form-label">Job Description</label>
+                <div class="control col-sm-10">
+                    <textarea formControlName="jobDescription" name="jobDescription" type="text" class="form-control" id="jobDescription" placeholder="Job Description"></textarea>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="yoe" class="col-sm-2 col-form-label">Experience(years)</label>
+                <div class="control col-sm-10">
+                    <input formControlName="yoe" name="yoe" type="text" class="form-control" id="yoe" placeholder="Minium year of experience required.">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="primarySkill" class="col-sm-2 col-form-label">Primary Skill</label>
+                <div class="control col-sm-10">
+                    <input formControlName="primarySkill" name="primarySkill" type="text" class="form-control" id="primarySkill" placeholder="Primary Skill">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="secondarySkill" class="col-sm-2 col-form-label">Secondary Skill</label>
+                <div class="control col-sm-10">
+                    <input formControlName="secondarySkill" name="secondarySkill" type="text" class="form-control" id="secondarySkill" placeholder="Secondary Skill">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="prefLocation" class="col-sm-2 col-form-label">Preferred Loc.</label>
+                <div class="control col-sm-10">
+                    <input formControlName="prefLocation" name="prefLocation" type="text" class="form-control" id="prefLocation" placeholder="Preferred Location">
+                </div>
+            </div>
+            <div class="field is-grouped">
+                <div class="control btn-align-end">
+                    <div *ngIf="isLoadingSubmit">
+                        <app-loader></app-loader>
+                    </div>
+                    <button *ngIf="!isLoadingSubmit" type="button" class="btn btn-primary" [disabled]="!createJobForm.valid" (click)="submit()">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

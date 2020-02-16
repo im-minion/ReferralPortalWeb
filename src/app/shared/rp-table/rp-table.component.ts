@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild, Input, EventEmitter, Output } from '@angu
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { isNullOrUndefined } from 'util';
 import { ReferralLevels } from 'src/app/app.constants';
+import { HmService } from 'src/app/services/hm-services/hm.service';
+import { TableDataService } from 'src/app/services/shared-service/table-data.service';
 
 declare var $: any;
 @Component({
@@ -10,11 +12,11 @@ declare var $: any;
   styleUrls: ['./rp-table.component.scss']
 })
 export class RpTableComponent implements OnInit {
-  @Input()
-  columns: string[] = null;
+  // @Input()
+  // columns: string[] = null;
 
-  @Input()
-  source: Array<any> = null;
+  // @Input()
+  // source: Array<any> = null;
 
   displayedColumns: string[];
   dataSource: MatTableDataSource<any> = null;
@@ -24,13 +26,20 @@ export class RpTableComponent implements OnInit {
   @Output()
   clicked = new EventEmitter<any>();
 
-  constructor() { }
+  constructor(private tableDataService: TableDataService) { }
 
   ngOnInit() {
-    this.displayedColumns = this.columns;
-    this.dataSource = new MatTableDataSource(this.source);
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+    // this.displayedColumns = this.columns;
+    // this.dataSource = new MatTableDataSource(this.source);
+
+    this.tableDataService.dataSource$.subscribe((data) => {
+      this.dataSource = new MatTableDataSource(data);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    });
+    this.tableDataService.displayedColumns$.subscribe((data) => {
+      this.displayedColumns = data;
+    })
   }
 
   applyFilter(filterValue: string) {

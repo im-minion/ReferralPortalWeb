@@ -17,4 +17,12 @@ export class HmService {
     hp = hp.append('employeeId', employeeId);
     return this.commonService.getMethodWithQueryParam(environment.BASE_URL + environment.HM_END_POINT + 'getOpenJobs', hp);
   }
+
+  updateJobStatus(value: any): Observable<boolean> {
+    return this.commonService.putMethod(environment.BASE_URL + environment.HM_END_POINT + 'updateJob', value)
+  }
+
+  insertJob(newJobRequest: OpenJob): Observable<any> {
+    return this.commonService.postMethod(environment.BASE_URL + environment.HM_END_POINT + 'insertJob', newJobRequest);
+  }
 }

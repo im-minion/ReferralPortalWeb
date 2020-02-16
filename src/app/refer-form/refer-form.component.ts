@@ -35,18 +35,6 @@ export class ReferFormComponent implements OnInit {
       this.job = jobDetails;
       this.isLoading = false;
     });
-    /*
-     private String referralEmailId;
-    private String referralName;
-    private Double jobId;
-    private String referDate;
-    private String panNumber;
-    private String dob;
-    private String yoe;
-    private String primarySkill;
-    private String secondarySkill;
-    private String referredBy;
-    */
     this.referForm = new FormGroup({
       referralEmailId: new FormControl('', [Validators.required, Validators.email]),
       referralName: new FormControl('', [Validators.required]),
@@ -66,6 +54,7 @@ export class ReferFormComponent implements OnInit {
   ngOnDestroy() {
     //unsubscribe;
   }
+  
   submit() {
     this.isLoadingSubmit = true;
     console.log(this.resume);
@@ -82,26 +71,10 @@ export class ReferFormComponent implements OnInit {
   }
 
   onFileChange(event) {
-    // let reader = new FileReader();
-
     if (event.target.files && event.target.files.length) {
       console.log(event.target.files[0]);
-      // const [file] = event.target.files;
-      // this.referForm.patchValue({
       this.resume = event.target.files[0]
       this.resumeAdded = true;
-      // });
-
-      // reader.readAsDataURL(file);
-
-      // reader.onload = () => {
-      //   this.referForm.patchValue({
-      //     resume: reader.result
-      //   });
-
-      //   // need to run CD since file load runs outside of zone
-      //   this.cd.markForCheck();
-      // };
     }
   }
 
