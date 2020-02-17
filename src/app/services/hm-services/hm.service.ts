@@ -32,8 +32,8 @@ export class HmService {
     return this.commonService.getMethodWithQueryParam(environment.BASE_URL + environment.HM_END_POINT + 'getReferrals', hp)
   }
 
-  getAllReferrals(): Observable<Array<Referrals>> {
-    return this.commonService.getMethod(environment.BASE_URL + environment.HM_END_POINT + 'getAllReferralsAtHM');
-  }
+  // getAllReferrals(): Observable<Array<Referrals>> {
+  //   return this.commonService.getMethod(environment.BASE_URL + environment.HM_END_POINT + 'getAllReferralsAtHM');
+  // }
 
 }

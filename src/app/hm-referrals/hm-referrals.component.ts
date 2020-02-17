@@ -40,7 +40,7 @@ referralId: "5e42303aa6d2750004d6cce6"
     this.hmService.getReferralsOfJobId(this.jobId).subscribe((resp: Array<Referrals>) => {
       console.log(resp);
       this.tableDataService.changeDataSource(resp);
-      this.tableDataService.changeDisplayedColumns(['Referral Name','Job Id']);
+      this.tableDataService.changeDisplayedColumns(['Job Id', 'Referral Name', 'Current Level', 'Current Status', 'See Details']);
     });
   }
 
@@ -49,7 +49,7 @@ referralId: "5e42303aa6d2750004d6cce6"
   }
 
   onClicked(data: any) {
-    
+    console.log(data);
   }
 
 }
