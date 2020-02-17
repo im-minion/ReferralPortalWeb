@@ -2,14 +2,13 @@ export class Referrals {
     /**
 referralEmailId: "Merry@chris.com"
 referralName: "Merry Chris"
-jobId: 153
+jobId: "153"
 referDate: "2020-02-11T04:39:27.030Z"
 panNumber: "PMFPM5728T"
 dob: "1993-05-06"
 yoe: null
 primarySkill: "Mule"
 secondarySkill: "Java"
-resume: {type: 0,…}
 resumeV2: "5e42303aa6d2750004d6cce4"
 referralCurrentLevel: "RESUME_SCREENING"
 referralCurrentStatus: "PENDING"

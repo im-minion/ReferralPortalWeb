@@ -1,8 +1,7 @@
-import { Component, OnInit, ViewChild, Input, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, ViewChild, EventEmitter, Output } from '@angular/core';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { isNullOrUndefined } from 'util';
 import { ReferralLevels } from 'src/app/app.constants';
-import { HmService } from 'src/app/services/hm-services/hm.service';
 import { TableDataService } from 'src/app/services/shared-service/table-data.service';
 
 declare var $: any;
@@ -12,12 +11,6 @@ declare var $: any;
   styleUrls: ['./rp-table.component.scss']
 })
 export class RpTableComponent implements OnInit {
-  // @Input()
-  // columns: string[] = null;
-
-  // @Input()
-  // source: Array<any> = null;
-
   displayedColumns: string[];
   dataSource: MatTableDataSource<any> = null;
   @ViewChild(MatPaginator) paginator: MatPaginator;

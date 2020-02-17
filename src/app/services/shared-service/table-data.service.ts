@@ -19,4 +19,9 @@ export class TableDataService {
   changeDisplayedColumns(data: Array<any>) {
     this.displayedColumns$.next(data);
   }
+
+  clearData() {
+    this.dataSource$.next([]);
+    this.displayedColumns$.next([]);
+  }
 }

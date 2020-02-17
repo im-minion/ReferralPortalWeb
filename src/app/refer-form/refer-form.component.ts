@@ -19,7 +19,7 @@ export class ReferFormComponent implements OnInit {
   isLoadingSubmit: boolean = false;
   resume: any = null;
   constructor(private route: ActivatedRoute,
-    private employeeService: EmployeeService, private cd: ChangeDetectorRef) { }
+    private employeeService: EmployeeService) { }
 
   ngOnInit() {
     // this.sub$ = this.route.paramMap.pipe(

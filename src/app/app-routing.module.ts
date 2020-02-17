@@ -56,7 +56,7 @@ const routes: Routes = [
     canActivate: [EmployeeGuard]
   },
   {
-    path: 'hm/referrals',
+    path: 'hm/referrals/:jobId',
     component: HmReferralsComponent,
     canActivate: [EmployeeGuard]
   },

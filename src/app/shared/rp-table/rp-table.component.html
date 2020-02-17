@@ -3,7 +3,7 @@
 </mat-form-field>
 
 <div class="mat-elevation-z8 rp-center">
-    <table mat-table [dataSource]="dataSource" matSort>
+    <table mat-table [dataSource]="dataSource" class="table-responsive" matSort>
         <ng-container matColumnDef="Referral Name">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Referral Name </th>
             <td mat-cell *matCellDef="let row"> {{row.referralName}} </td>
@@ -48,10 +48,17 @@
             <td mat-cell *matCellDef="let row"> {{ row.jobStatus }} </td>
         </ng-container>
 
-        <ng-container matColumnDef="See Details">
+        <ng-container matColumnDef="Update">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Update </th>
             <td mat-cell *matCellDef="let row">
                 <button type="button" class="btn btn-sm col-btn btn-primary" data-toggle="modal" data-target="#updateModal" (click)="click(row) ">Update</button> </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Check Referrals">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Check Referrals </th>
+            <td mat-cell *matCellDef="let row">
+                <a [routerLink]="['/hm/referrals', row.jobId]" class="btn btn-sm col-btn btn-primary">Check Referrals</a>
+            </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns "></tr>

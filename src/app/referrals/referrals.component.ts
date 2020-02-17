@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { EmployeeService } from '../services/employee-services/employee.service';
 import { Referrals } from '../utilities/referrals-class';
 import { TableDataService } from '../services/shared-service/table-data.service';
@@ -7,7 +7,7 @@ import { TableDataService } from '../services/shared-service/table-data.service'
   templateUrl: './referrals.component.html',
   styleUrls: ['./referrals.component.scss']
 })
-export class ReferralsComponent implements OnInit {
+export class ReferralsComponent implements OnInit, OnDestroy {
   isLoading: boolean = true;
   displayedColumns: string[] = ['Referral Name', 'Job Id', 'Current Level', 'Current Status', 'Progress'];
   dataSource: Array<Referrals> = null;
@@ -20,5 +20,9 @@ export class ReferralsComponent implements OnInit {
       this.tableDataService.changeDisplayedColumns(this.displayedColumns);
       this.isLoading = false;
     });
+  }
+
+  ngOnDestroy() {
+    this.tableDataService.clearData();
   }
 }

@@ -26,3 +26,8 @@ export class JobStatus {
     static CLOSED = 'CLOSED';
     static ONHOLD = 'ONHOLD';
 }
+
+export class PURPOSE {
+    static UPDATE = 'UPDATE';
+    static CHECK_REFERRAL = 'CHECK_REFERRAL'
+}

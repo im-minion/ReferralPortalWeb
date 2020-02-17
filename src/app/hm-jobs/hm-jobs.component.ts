@@ -2,7 +2,7 @@ import { Component, OnInit, Output, ChangeDetectorRef, OnChanges, OnDestroy } fr
 import { HmService } from '../services/hm-services/hm.service';
 import { OpenJob } from '../utilities/open-job-class';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { JobStatus } from '../app.constants';
+import { JobStatus, PURPOSE } from '../app.constants';
 import { TableDataService } from '../services/shared-service/table-data.service';
 declare var $: any;
 @Component({
@@ -10,9 +10,9 @@ declare var $: any;
   templateUrl: './hm-jobs.component.html',
   styleUrls: ['./hm-jobs.component.scss']
 })
-export class HmJobsComponent implements OnInit, OnChanges {
+export class HmJobsComponent implements OnInit, OnChanges, OnDestroy {
   isLoading: boolean = true;
-  displayedColumns: string[] = ['Job Id', 'Title', 'Visibility', 'Job Status', 'See Details'];
+  displayedColumns: string[] = ['Job Id', 'Title', 'Visibility', 'Job Status', 'Update', 'Check Referrals'];
   dataSource: Array<OpenJob>;
   openJob: OpenJob = null;
   updateJobForm: FormGroup;
@@ -20,7 +20,7 @@ export class HmJobsComponent implements OnInit, OnChanges {
   employeeId: string;
   isLoadingUpdate: boolean = false;
   constructor(private hmService: HmService, private tableDataService: TableDataService) {
-   }
+  }
 
   ngOnInit() {
     this.employeeId = sessionStorage.getItem('employeeId');
@@ -37,6 +37,10 @@ export class HmJobsComponent implements OnInit, OnChanges {
     this.loadOpenJobs();
   }
 
+  ngOnDestroy() {
+    this.tableDataService.clearData();
+  }
+
   loadOpenJobs() {
     this.hmService.getOpenJobsByEmployeeId(this.employeeId).subscribe((resp: Array<OpenJob>) => {
       // this.dataSource = resp;
@@ -44,7 +48,7 @@ export class HmJobsComponent implements OnInit, OnChanges {
       this.tableDataService.changeDisplayedColumns(this.displayedColumns);
       this.isLoading = false;
     });
-    
+
   }
 
   onClicked(data: any) {
@@ -66,13 +70,13 @@ export class HmJobsComponent implements OnInit, OnChanges {
         console.log(resp);
         this.isLoadingUpdate = false;
         this.loadOpenJobs();
-        $("#updateModal").modal('hide');        
+        $("#updateModal").modal('hide');
       },
       (err: any) => {
         console.log(err);
         this.isLoadingUpdate = false;
       }
-      );
+    );
   }
 
 }
