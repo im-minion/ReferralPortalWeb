@@ -36,4 +36,8 @@ export class HmService {
   //   return this.commonService.getMethod(environment.BASE_URL + environment.HM_END_POINT + 'getAllReferralsAtHM');
   // }
 
+  updateReferral(data: any): Observable<any> {
+    return this.commonService.postMethod(environment.BASE_URL + environment.HM_END_POINT + 'updateReferralsStatus', data)
+  }
+
 }

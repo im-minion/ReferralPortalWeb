@@ -64,10 +64,23 @@
         <ng-container matColumnDef="See Details">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> See Details </th>
             <td mat-cell *matCellDef="let row">
-                <button type="button" class="btn btn-sm col-btn btn-primary" (click)="click(row) ">See Details</button>
+                <button type="button" class="btn btn-sm col-btn btn-primary" data-toggle="modal" data-target="#seeDetails" (click)="click(row) ">See Details</button>
             </td>
         </ng-container>
 
+        <ng-container matColumnDef="Resume">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Resume </th>
+            <td mat-cell *matCellDef="let row">
+                <!-- <button (click)="resume(row.resumeV2)">Resume</button> -->
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Update Status">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Update Status </th>
+            <td mat-cell *matCellDef="let row">
+                <button type="button" class="btn btn-sm col-btn btn-primary" data-toggle="modal" data-target="#updateModal" (click)="click(row) ">Update Status</button>
+            </td>
+        </ng-container>
         <tr mat-header-row *matHeaderRowDef="displayedColumns "></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns; ">
         </tr>

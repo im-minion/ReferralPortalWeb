@@ -3,6 +3,7 @@ import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { isNullOrUndefined } from 'util';
 import { ReferralLevels } from 'src/app/app.constants';
 import { TableDataService } from 'src/app/services/shared-service/table-data.service';
+import { EmployeeService } from 'src/app/services/employee-services/employee.service';
 
 declare var $: any;
 @Component({
@@ -19,7 +20,7 @@ export class RpTableComponent implements OnInit {
   @Output()
   clicked = new EventEmitter<any>();
 
-  constructor(private tableDataService: TableDataService) { }
+  constructor(private tableDataService: TableDataService, private employeeService: EmployeeService) { }
 
   ngOnInit() {
     // this.displayedColumns = this.columns;
@@ -47,6 +48,10 @@ export class RpTableComponent implements OnInit {
 
   click(data: any) {
     this.clicked.emit(data);
+  }
+
+  resume(fileId: string) {
+    // this.employeeService.getFileByID(fileId);
   }
 
   getProgress(currentLevel: string) {

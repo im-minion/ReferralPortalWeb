@@ -38,4 +38,11 @@ export class EmployeeService {
     hp = hp.append('employeeId', employeeId);
     return this.commonService.getMethodWithQueryParam(environment.BASE_URL + environment.EMPLOYEE_END_POINT + 'getReferralsByEmployeeId', hp);
   }
+
+  getFileByID(fileId: string) {
+    let hp = new HttpParams();
+    hp = hp.append('fileId', fileId);
+    return this.commonService.getMethodWithQueryParamPDF(environment.BASE_URL + environment.EMPLOYEE_END_POINT + 'getFileById', hp);
+  }
+
 }
