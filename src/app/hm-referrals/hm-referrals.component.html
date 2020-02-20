@@ -50,10 +50,10 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <!-- <div *ngIf="isLoadingUpdate">
+                <div *ngIf="isLoadingUpdate">
                     <app-loader></app-loader>
-                </div> -->
-                <button type="button" class="btn btn-primary" (click)="updateReferral(updateData)">Update</button>
+                </div>
+                <button *ngIf="!isLoadingUpdate" type="button" class="btn btn-primary" (click)="updateReferral(updateData)">Update</button>
             </div>
         </div>
     </div>

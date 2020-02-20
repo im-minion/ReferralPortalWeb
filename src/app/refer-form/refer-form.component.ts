@@ -1,5 +1,5 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { EmployeeService } from '../services/employee-services/employee.service';
 import { OpenJob } from '../utilities/open-job-class';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -57,9 +57,6 @@ export class ReferFormComponent implements OnInit {
   
   submit() {
     this.isLoadingSubmit = true;
-    console.log(this.resume);
-    console.log(this.referForm.value);
-    console.log(JSON.stringify(this.referForm.value));
     this.employeeService.addReferral(JSON.stringify(this.referForm.value), this.resume).subscribe(resp => {
       console.log(resp);
       if(resp.referred) {

@@ -4,7 +4,7 @@ import { Referrals } from '../utilities/referrals-class';
 import { TableDataService } from '../services/shared-service/table-data.service';
 import { ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-
+declare var $: any;
 @Component({
   selector: 'app-hm-referrals',
   templateUrl: './hm-referrals.component.html',
@@ -45,11 +45,7 @@ referralId: "5e42303aa6d2750004d6cce6"
       console.log(param['jobId']);
     });
 
-    this.hmService.getReferralsOfJobId(this.jobId).subscribe((resp: Array<Referrals>) => {
-      this.isLoading = false;
-      this.tableDataService.changeDataSource(resp);
-      this.tableDataService.changeDisplayedColumns(['Job Id', 'Referral Name', 'Resume', 'Current Level', 'Current Status', 'See Details', 'Update Status']);
-    });
+    this.loadData();
     this.updateForm = new FormGroup({
       referralEmailId: new FormControl(null,[Validators.required]),
       currentLevel: new FormControl(null, [Validators.required]),
@@ -61,6 +57,14 @@ referralId: "5e42303aa6d2750004d6cce6"
 
   ngOnDestroy() {
     this.tableDataService.clearData();
+  }
+
+  loadData() {
+    this.hmService.getReferralsOfJobId(this.jobId).subscribe((resp: Array<Referrals>) => {
+      this.isLoading = false;
+      this.tableDataService.changeDataSource(resp);
+      this.tableDataService.changeDisplayedColumns(['Job Id', 'Referral Name', 'Resume', 'Current Level', 'Current Status', 'See Details', 'Update Status']);
+    });
   }
 
   onClicked(data: any) {
@@ -79,6 +83,9 @@ referralId: "5e42303aa6d2750004d6cce6"
     this.hmService.updateReferral(this.updateForm.value).subscribe((resp: any)=>{
       console.log(resp);
       this.isLoadingUpdate = false;
+      this.loadData();
+      this.updateForm.reset();
+      $("#updateModal").modal('hide');
     },
     (err) => {
       console.log(err);
