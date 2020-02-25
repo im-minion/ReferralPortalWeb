@@ -68,7 +68,8 @@ referralId: "5e42303aa6d2750004d6cce6"
   }
 
   onClicked(data: any) {
-    this.detailsData = JSON.stringify(data);
+    console.log(data);
+    this.detailsData = data;
     this.updateData = data;
   }
   updateReferral(data:any) {

@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, EventEmitter, Output } from '@angular/core';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { isNullOrUndefined } from 'util';
-import { ReferralLevels } from 'src/app/app.constants';
+import { ReferralLevels, ReferralStatus } from 'src/app/app.constants';
 import { TableDataService } from 'src/app/services/shared-service/table-data.service';
 import { EmployeeService } from 'src/app/services/employee-services/employee.service';
 
@@ -16,6 +16,8 @@ export class RpTableComponent implements OnInit {
   dataSource: MatTableDataSource<any> = null;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+
+  _status: ReferralStatus = ReferralStatus;
 
   @Output()
   clicked = new EventEmitter<any>();
