@@ -26,10 +26,8 @@ export class EmployeeService {
   addReferral(data: string, resume: any): Observable<any> {
     let hp = new HttpParams();
     hp = hp.append('myjson', data);
-    console.log(hp);
     const fd = new FormData();
     fd.append('file', resume);
-    console.log('FD', fd);
     return this.commonService.postFormDataMethod(environment.BASE_URL + environment.EMPLOYEE_END_POINT + 'addReferral', hp, fd);
   }
 

@@ -54,12 +54,12 @@ export class ReferFormComponent implements OnInit {
   ngOnDestroy() {
     //unsubscribe;
   }
-  
+
   submit() {
     this.isLoadingSubmit = true;
     this.employeeService.addReferral(JSON.stringify(this.referForm.value), this.resume).subscribe(resp => {
       console.log(resp);
-      if(resp.referred) {
+      if (resp.referred) {
         this.referForm.reset();
       }
       alert(resp.message);
@@ -69,7 +69,6 @@ export class ReferFormComponent implements OnInit {
 
   onFileChange(event) {
     if (event.target.files && event.target.files.length) {
-      console.log(event.target.files[0]);
       this.resume = event.target.files[0]
       this.resumeAdded = true;
     }

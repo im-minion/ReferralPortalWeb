@@ -52,7 +52,6 @@ export class HmJobsComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   onClicked(data: any) {
-    console.log("HM_JOB_DATA", data);
     this.openJob = data;
     this.updateJobForm.patchValue({
       jobDescription: this.openJob.jobDescription,

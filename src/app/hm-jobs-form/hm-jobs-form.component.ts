@@ -40,8 +40,6 @@ export class HmJobsFormComponent implements OnInit {
   submit() {
     let newJob: OpenJob;
     newJob = this.createJobForm.value;
-    console.log("newJob" ,newJob);
-    console.log(this.createJobForm.value);
     this.hmService.insertJob(newJob).subscribe((resp)=>{
       console.log(resp);
     });

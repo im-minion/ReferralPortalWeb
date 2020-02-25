@@ -71,4 +71,11 @@ export class RpTableComponent implements OnInit {
     }
   }
 
+  isDataAvailable(): boolean {
+    if (!isNullOrUndefined(this.dataSource.data) && this.dataSource.data.length > 0)
+      return true;
+    else
+      return false;
+  }
+
 }

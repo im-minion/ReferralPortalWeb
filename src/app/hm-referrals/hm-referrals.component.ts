@@ -11,24 +11,6 @@ declare var $: any;
   styleUrls: ['./hm-referrals.component.scss']
 })
 export class HmReferralsComponent implements OnInit, OnDestroy {
-/*
-referralEmailId: "Merry@chris.com"
-referralName: "Merry Chris"
-jobId: "153"
-referDate: "2020-02-11T04:39:27.030Z"
-panNumber: "PMFPM5728T"
-dob: "1993-05-06"
-yoe: null
-primarySkill: "Mule"
-secondarySkill: "Java"
-resumeV2: "5e42303aa6d2750004d6cce4"
-referralCurrentLevel: "RESUME_SCREENING"
-referralCurrentStatus: "PENDING"
-referredBy: "40801"
-referralStatusReasonsList: null
-referralId: "5e42303aa6d2750004d6cce6"
-*/
-  // displayedColumns: string[] = ['Job Id', 'Referral Name', 'Resume', 'Current Level', 'Current Status', 'Details'];
   jobId: string;
   isLoading: boolean = true;
   detailsData: any;
@@ -42,7 +24,6 @@ referralId: "5e42303aa6d2750004d6cce6"
   ngOnInit() {
     this.route.params.subscribe(param => {
       this.jobId = param['jobId'];
-      console.log(param['jobId']);
     });
 
     this.loadData();
@@ -80,9 +61,7 @@ referralId: "5e42303aa6d2750004d6cce6"
     });
     //remove referralCurrentStatus from updateForm as I don't want to send it to api call
     delete this.updateForm.value.referralCurrentStatus;
-    console.log(this.updateForm.value);
     this.hmService.updateReferral(this.updateForm.value).subscribe((resp: any)=>{
-      console.log(resp);
       this.isLoadingUpdate = false;
       this.loadData();
       this.updateForm.reset();

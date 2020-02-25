@@ -12,8 +12,6 @@ export class EmployeeGuard implements CanActivate {
   }
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | import("rxjs").Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
     if (this.authService.isLoggedIn()) {
-      console.log(state.url);
-
       let userRole: string;
       this.authService.userRole$.subscribe(role => {
         userRole = role;
