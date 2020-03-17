@@ -20,6 +20,7 @@ import { TokenInterceptorService } from './services/interceptor/token-intercepto
 import { ReferFormComponent } from './refer-form/refer-form.component';
 import { HmJobsFormComponent } from './hm-jobs-form/hm-jobs-form.component';
 import { HrReferralsComponent } from './hr-referrals/hr-referrals.component';
+import { HrAllReferralsComponent } from './hr-all-referrals/hr-all-referrals.component';
 
 // import { ReactiveFormsModule } from '@angular/forms';
 
@@ -39,6 +40,7 @@ import { HrReferralsComponent } from './hr-referrals/hr-referrals.component';
     ReferFormComponent,
     HmJobsFormComponent,
     HrReferralsComponent,
+    HrAllReferralsComponent,
     // ReactiveFormsModule
   ],
   imports: [
