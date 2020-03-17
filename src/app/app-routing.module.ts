@@ -11,6 +11,7 @@ import { HmReferralsStatusComponent } from './hm-referrals-status/hm-referrals-s
 import { EmployeeGuard } from './employee.guard';
 import { ReferFormComponent } from './refer-form/refer-form.component';
 import { HmJobsFormComponent } from './hm-jobs-form/hm-jobs-form.component';
+import { HrReferralsComponent } from './hr-referrals/hr-referrals.component';
 
 const routes: Routes = [
   {
@@ -63,6 +64,11 @@ const routes: Routes = [
   {
     path: 'hm/referralsStatus',
     component: HmReferralsStatusComponent,
+    canActivate: [EmployeeGuard]
+  },
+  {
+    path: 'hr/referrals',
+    component: HrReferralsComponent,
     canActivate: [EmployeeGuard]
   },
   {

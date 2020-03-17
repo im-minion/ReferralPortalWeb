@@ -71,6 +71,10 @@ export class RpTableComponent implements OnInit {
     }
   }
 
+  shouldDisable(row: any) {
+    return (row.referralCurrentStatus === ReferralStatus.REJECTED) || (row.referralCurrentLevel === ReferralLevels.HR);
+  }
+
   isDataAvailable(): boolean {
     if (!isNullOrUndefined(this.dataSource.data) && this.dataSource.data.length > 0)
       return true;
