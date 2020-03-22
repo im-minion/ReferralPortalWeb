@@ -9,17 +9,51 @@
         <div class="item"> {{ employee.employeeId }}</div>
     </div>
     <div class="box-2">
-        <div class="card  bg-warning text-white item-2">
-            <h4>Your Referrals</h4>
-            <h5>19</h5>
+        <div class="row">
+            <div class="card  bg-warning text-white item-2">
+                <h4>Your Referrals</h4>
+                <h5 *ngIf="analyticalInfo != null">{{ analyticalInfo.employeeAnalyticalInfo.allReferralsCount }}</h5>
+            </div>
+            <div class="card bg-info text-white item-2">
+                <h4>Open Jobs</h4>
+                <h5 *ngIf="analyticalInfo != null">{{ analyticalInfo.employeeAnalyticalInfo.openJobsCount }}</h5>
+            </div>
+            <div class="card bg-success text-white item-2">
+                <h4>Successful Referrals</h4>
+                <h5 *ngIf="analyticalInfo != null">{{ analyticalInfo.employeeAnalyticalInfo.hiredReferralsCount }}</h5>
+            </div>
+            <div class="card bg-success text-white item-2">
+                <h4>Pending Referrals</h4>
+                <h5 *ngIf="analyticalInfo != null">{{ analyticalInfo.employeeAnalyticalInfo.pendingReferralsCount }}</h5>
+            </div>
         </div>
-        <div class="card bg-info text-white item-2">
-            <h4>Open Jobs</h4>
-            <h5>10</h5>
+        <div *ngIf="employee.employeeRole === userRoleConstants.HM" class="row">
+            <div class="card  bg-warning text-white item-2">
+                <h4>Jobs Created</h4>
+                <h5 *ngIf="analyticalInfo != null">{{ analyticalInfo.hmAnalyticalInfo.jobCreatedCount }}</h5>
+            </div>
+            <div class="card bg-info text-white item-2">
+                <h4>Hired</h4>
+                <h5 *ngIf="analyticalInfo != null">{{ analyticalInfo.hmAnalyticalInfo.hiredCount }}</h5>
+            </div>
+            <div class="card bg-success text-white item-2">
+                <h4>All Referrals</h4>
+                <h5 *ngIf="analyticalInfo != null">{{ analyticalInfo.hmAnalyticalInfo.referralsCount }}</h5>
+            </div>
         </div>
-        <div class="card bg-success text-white item-2">
-            <h4>Successful Referrals</h4>
-            <h5>20</h5>
+        <div *ngIf="employee.employeeRole === userRoleConstants.HR" class="row">
+            <div class="card  bg-warning text-white item-2">
+                <h4>All Referral</h4>
+                <h5 *ngIf="analyticalInfo != null">{{ analyticalInfo.hrAnalyticalInfo.allReferralsCount }}</h5>
+            </div>
+            <div class="card bg-info text-white item-2">
+                <h4>All Jobs</h4>
+                <h5 *ngIf="analyticalInfo != null">{{ analyticalInfo.hrAnalyticalInfo.allJobsCount }}</h5>
+            </div>
+            <div class="card bg-success text-white item-2">
+                <h4>All Hired</h4>
+                <h5 *ngIf="analyticalInfo != null">{{ analyticalInfo.hrAnalyticalInfo.allHiredCount }}</h5>
+            </div>
         </div>
     </div>
 </div>

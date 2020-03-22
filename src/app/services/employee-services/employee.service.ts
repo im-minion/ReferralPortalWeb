@@ -43,4 +43,11 @@ export class EmployeeService {
     return this.commonService.getMethodWithQueryParamPDF(environment.BASE_URL + environment.EMPLOYEE_END_POINT + 'getFileById', hp);
   }
 
+  getAnalyticalInfo(employeeId: string, employeeRole: string): Observable<any> {
+    let hp = new HttpParams();
+    hp = hp.append('employeeId', employeeId);
+    hp = hp.append('employeeRole',employeeRole);
+    return this.commonService.getMethodWithQueryParam(environment.BASE_URL + environment.EMPLOYEE_END_POINT + 'getAnalyticalInfo', hp);
+  }
+
 }
