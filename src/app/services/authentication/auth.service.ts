@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { CommonService } from '../common.service';
-import { Employee } from 'src/app/employee';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
@@ -28,8 +27,8 @@ export class AuthService {
   setAuthToken(e: any) {
     sessionStorage.setItem('employeeRole', e.employeeRole);
     sessionStorage.setItem('employeeId', e.employeeId);
-    sessionStorage.setItem('token',e.accessToken);
-    this.updateUserRole( e.employeeRole);
+    sessionStorage.setItem('token', e.accessToken);
+    this.updateUserRole(e.employeeRole);
   }
 
   updateUserRole(employeeRole: string) {
@@ -38,7 +37,7 @@ export class AuthService {
 
   setUserRoleUsingSessionStorage() {
     const userRoleFromSessionStorage: string = sessionStorage.getItem('employeeRole');
-    if(userRoleFromSessionStorage) {
+    if (userRoleFromSessionStorage) {
       this.updateUserRole(userRoleFromSessionStorage);
     }
   }
