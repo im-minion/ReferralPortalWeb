@@ -12,12 +12,12 @@ declare var $: any;
   styleUrls: ['./rp-table.component.scss']
 })
 export class RpTableComponent implements OnInit {
-  displayedColumns: string[];
-  dataSource: MatTableDataSource<any> = null;
+  public displayedColumns: string[];
+  public dataSource: MatTableDataSource<any> = null;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  _status: ReferralStatus = ReferralStatus;
+  public _status =  ReferralStatus;
 
   @Output()
   clicked = new EventEmitter<any>();
@@ -25,9 +25,6 @@ export class RpTableComponent implements OnInit {
   constructor(private tableDataService: TableDataService, private employeeService: EmployeeService) { }
 
   ngOnInit() {
-    // this.displayedColumns = this.columns;
-    // this.dataSource = new MatTableDataSource(this.source);
-
     this.tableDataService.dataSource$.subscribe((data) => {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;

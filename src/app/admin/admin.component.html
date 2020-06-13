@@ -1,0 +1,15 @@
+<h3 class="heading-tag">
+    All Employees In System
+</h3>
+<div *ngIf="isLoading" class="loader-align">
+    <app-loader></app-loader>
+</div>
+<div *ngIf="!isLoading">
+    <div class="row">
+        <div class="col-md-10"></div>
+        <!-- <div class="col-md-2"><a [routerLink]="['/hm/jobsForm']" class="btn btn-primary">Create New Job</a></div> -->
+    </div>
+    <div>
+        <app-rp-table (clicked)="onClicked($event)"></app-rp-table>
+    </div>
+</div>

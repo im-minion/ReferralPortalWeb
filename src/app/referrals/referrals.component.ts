@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { EmployeeService } from '../services/employee-services/employee.service';
 import { Referrals } from '../utilities/referrals-class';
 import { TableDataService } from '../services/shared-service/table-data.service';
@@ -8,9 +8,8 @@ import { TableDataService } from '../services/shared-service/table-data.service'
   styleUrls: ['./referrals.component.scss']
 })
 export class ReferralsComponent implements OnInit, OnDestroy {
-  isLoading: boolean = true;
-  displayedColumns: string[] = ['Referral Name', 'Job Id', 'Current Level', 'Current Status', 'Progress'];
-  dataSource: Array<Referrals> = null;
+  public isLoading: boolean = true;
+  private displayedColumns: string[] = ['Referral Name', 'Job Id', 'Current Level', 'Current Status', 'Progress'];
 
   constructor(private employeeService: EmployeeService, private tableDataService: TableDataService) { }
 

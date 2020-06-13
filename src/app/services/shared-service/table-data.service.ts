@@ -1,27 +1,31 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TableDataService {
 
-  dataSource$: BehaviorSubject<Array<any>> = new BehaviorSubject<Array<any>>(null);
+  private dataSource: BehaviorSubject<Array<any>> = new BehaviorSubject<Array<any>>(null);
 
-  displayedColumns$: BehaviorSubject<Array<any>> = new BehaviorSubject<Array<any>>(null);
+  private displayedColumns: BehaviorSubject<Array<any>> = new BehaviorSubject<Array<any>>(null);
 
   constructor() { }
-  
-  changeDataSource(data: Array<any>) {
-    this.dataSource$.next(data);
+
+  public dataSource$: Observable<Array<any>> = this.dataSource.asObservable();
+
+  public displayedColumns$: Observable<Array<any>> = this.displayedColumns.asObservable();
+
+  public changeDataSource(data: Array<any>) {
+    this.dataSource.next(data);
   }
 
-  changeDisplayedColumns(data: Array<any>) {
-    this.displayedColumns$.next(data);
+  public changeDisplayedColumns(data: Array<any>) {
+    this.displayedColumns.next(data);
   }
 
-  clearData() {
-    this.dataSource$.next([]);
-    this.displayedColumns$.next([]);
+  public clearData() {
+    this.dataSource.next([]);
+    this.displayedColumns.next([]);
   }
 }

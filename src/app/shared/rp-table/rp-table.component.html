@@ -15,6 +15,16 @@
                 <td mat-cell *matCellDef="let row"> {{row.jobId}} </td>
             </ng-container>
 
+            <ng-container matColumnDef="Employee Id">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Employee Id </th>
+                <td mat-cell *matCellDef="let row"> {{row.employeeId}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Employee Role">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Employee Role </th>
+                <td mat-cell *matCellDef="let row"> {{row.employeeRole}} </td>
+            </ng-container>
+
             <ng-container matColumnDef="Current Level">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Current Level </th>
                 <td mat-cell *matCellDef="let row"> {{row.referralCurrentLevel}} </td>

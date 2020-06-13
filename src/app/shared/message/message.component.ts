@@ -10,7 +10,7 @@ export class MessageComponent implements OnInit {
   @Input() messageBool: boolean = false;
   @Input() messageType: string;
   @Input() message: string;
-  responses: ResponseTypes;
+  public responses = ResponseTypes;
   constructor() {
   }
 

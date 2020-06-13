@@ -10,8 +10,8 @@ import { OpenJob } from '../utilities/open-job-class';
 export class ReferComponent implements OnInit {
 
   constructor(private employeeService: EmployeeService) { }
-  isLoading: boolean = true;
-  openJobs: Array<OpenJob> = [];
+  public isLoading: boolean = true;
+  public openJobs: Array<OpenJob> = [];
 
   ngOnInit() {
     this.employeeService.getOpenJobs().subscribe((response: Array<OpenJob>) => {

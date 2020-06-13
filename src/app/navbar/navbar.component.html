@@ -6,8 +6,6 @@
 
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul *ngIf="valid()" class="navbar-nav">
-            <!-- <a routerLink="register" routerLinkActive="" [routerActiveOption]="{exact: true}" routerActive="active">Sign Up</a> -->
-            <!-- <a routerLink="/hm/jobs" routerLinkActive="active">Jobs</a> -->
             <li class="nav-item">
                 <a class="nav-link" routerLink="/dashboard" routerLinkActive="active">Home</a>
             </li>
@@ -22,9 +20,7 @@
                     Hiring Manager Section 
                 </a>
                 <div class="dropdown-menu" aria-labelledby="hmDropDownTabs">
-                    <!-- <a class="dropdown-item" routerLink="/hm/referrals" routerLinkActive="active">See Referrals</a> -->
                     <a class="dropdown-item" routerLink="/hm/jobs" routerLinkActive="active">Jobs Status</a>
-                    <!-- <a class="dropdown-item" routerLink="/hm/referralsStatus" routerLinkActive="active">Referrals Status</a> -->
                 </div>
             </li>
 
@@ -35,7 +31,14 @@
                 <div class="dropdown-menu" aria-labelledby="hrDropDownTabs">
                     <a class="dropdown-item" routerLink="/hr/referrals" routerLinkActive="active">Referrals at HR Round</a>
                     <a class="dropdown-item" routerLink="/hr/allReferrals" routerLinkActive="active">All Referrals</a>
-                    <!-- <a class="dropdown-item" href="#">Referrals Status</a> -->
+                </div>
+            </li>
+            <li *ngIf="employeeRole === userRoleConstants.ADMIN" class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="hrDropDownTabs" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Admin Section 
+                    </a>
+                <div class="dropdown-menu" aria-labelledby="hrDropDownTabs">
+                    <a class="dropdown-item" routerLink="/admin" routerLinkActive="active">Update Users</a>
                 </div>
             </li>
         </ul>

@@ -8,7 +8,8 @@ export const environment = {
   AUTH_END_POINT: 'rp/auth/',
   EMPLOYEE_END_POINT: 'rp/employee/',
   HM_END_POINT: 'rp/hm/',
-  HR_END_POINT: 'rp/hr/'
+  HR_END_POINT: 'rp/hr/',
+  ADMIN_END_POINT: 'rp/admin/'
 };
 // https://referral-portal-ws.herokuapp.com/
 // ng build --prod --base-href https://im-minion.github.io/ReferralPortalWeb/

@@ -1,33 +1,33 @@
-export class ResponseTypes {
-    static SUCCESS = 'SUCCESS';
-    static FAILED = 'FAILED';
-}
+export const ResponseTypes = {
+  SUCCESS: "SUCCESS",
+  FAILED: "FAILED",
+};
 
-export class UserRoles {
-    static EMPLOYEE = 'EMPLOYEE';
-    static HM = 'HM';
-    static HR = 'HR';
-    static ADMIN = 'ADMIN';
-}
-export class ReferralLevels {
-    static RESUME_SCREENING = 'RESUME_SCREENING';
-    static L1 = 'L1';
-    static L2 = 'L2';
-    static HR = 'HR';
-}
+export const UserRoles = {
+  EMPLOYEE: "EMPLOYEE",
+  HM: "HM",
+  HR: "HR",
+  ADMIN: "ADMIN",
+};
+export const ReferralLevels = {
+  RESUME_SCREENING: "RESUME_SCREENING",
+  L1: "L1",
+  L2: "L2",
+  HR: "HR",
+};
 
-export class ReferralStatus {
-    static ACCEPTED = 'ACCEPTED';
-    static REJECTED = 'REJECTED';
-}
+export const ReferralStatus = {
+  ACCEPTED: "ACCEPTED",
+  REJECTED: "REJECTED",
+};
 
-export class JobStatus {
-    static OPEN = 'OPEN';
-    static CLOSED = 'CLOSED';
-    static ONHOLD = 'ONHOLD';
-}
+export const JobStatus = {
+  OPEN: "OPEN",
+  CLOSED: "CLOSED",
+  ONHOLD: "ONHOLD",
+};
 
-export class PURPOSE {
-    static UPDATE = 'UPDATE';
-    static CHECK_REFERRAL = 'CHECK_REFERRAL'
-}
+export const PURPOSE = {
+  UPDATE: "UPDATE",
+  CHECK_REFERRAL: "CHECK_REFERRAL",
+};

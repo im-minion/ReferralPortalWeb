@@ -1,8 +1,8 @@
-import { Component, OnInit, Output, ChangeDetectorRef, OnChanges, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnChanges, OnDestroy } from '@angular/core';
 import { HmService } from '../services/hm-services/hm.service';
 import { OpenJob } from '../utilities/open-job-class';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { JobStatus, PURPOSE } from '../app.constants';
+import { JobStatus} from '../app.constants';
 import { TableDataService } from '../services/shared-service/table-data.service';
 declare var $: any;
 @Component({
@@ -11,14 +11,16 @@ declare var $: any;
   styleUrls: ['./hm-jobs.component.scss']
 })
 export class HmJobsComponent implements OnInit, OnChanges, OnDestroy {
-  isLoading: boolean = true;
-  displayedColumns: string[] = ['Job Id', 'Title', 'Visibility', 'Job Status', 'Update', 'Check Referrals'];
-  dataSource: Array<OpenJob>;
-  openJob: OpenJob = null;
-  updateJobForm: FormGroup;
-  _JobStatus: JobStatus = JobStatus;
-  employeeId: string;
-  isLoadingUpdate: boolean = false;
+  public readonly _JobStatus = JobStatus;
+
+  public isLoading: boolean = true;
+  public openJob: OpenJob = null;
+  public updateJobForm: FormGroup;
+  public isLoadingUpdate: boolean = false;
+
+  private employeeId: string;
+  private displayedColumns: string[] = ['Job Id', 'Title', 'Visibility', 'Job Status', 'Update', 'Check Referrals'];
+
   constructor(private hmService: HmService, private tableDataService: TableDataService) {
   }
 

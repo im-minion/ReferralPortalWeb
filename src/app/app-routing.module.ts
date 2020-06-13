@@ -13,6 +13,7 @@ import { ReferFormComponent } from './refer-form/refer-form.component';
 import { HmJobsFormComponent } from './hm-jobs-form/hm-jobs-form.component';
 import { HrReferralsComponent } from './hr-referrals/hr-referrals.component';
 import { HrAllReferralsComponent } from './hr-all-referrals/hr-all-referrals.component';
+import { AdminComponent } from './admin/admin.component';
 
 const routes: Routes = [
   {
@@ -75,6 +76,11 @@ const routes: Routes = [
   {
     path: 'hr/allReferrals',
     component: HrAllReferralsComponent,
+    canActivate: [EmployeeGuard]
+  },
+  {
+    path: 'admin',
+    component: AdminComponent,
     canActivate: [EmployeeGuard]
   },
   {

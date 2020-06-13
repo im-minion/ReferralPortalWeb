@@ -11,13 +11,13 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class ReferFormComponent implements OnInit {
   // sub$: Observable<string>;
-  referForm: FormGroup;
-  jobId: string;
-  job: OpenJob = null;
-  isLoading: boolean = true;
-  resumeAdded: boolean = false;
-  isLoadingSubmit: boolean = false;
-  resume: any = null;
+  public referForm: FormGroup;
+  public jobId: string;
+  public job: OpenJob = null;
+  public isLoading: boolean = true;
+  public resumeAdded: boolean = false;
+  public isLoadingSubmit: boolean = false;
+  public resume: any = null;
   constructor(private route: ActivatedRoute,
     private employeeService: EmployeeService) { }
 
