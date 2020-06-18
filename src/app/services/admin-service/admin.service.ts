@@ -14,4 +14,8 @@ export class AdminService {
   getAllEmployees(): Observable<Array<Employee>> {
     return this.commonService.getMethod(environment.BASE_URL + environment.ADMIN_END_POINT + 'getAllEmployees');
   }
+
+  changeRole(payload): Observable<any> {
+    return this.commonService.postMethod(environment.BASE_URL + environment.ADMIN_END_POINT + 'changeRole', payload);
+  }
 }
