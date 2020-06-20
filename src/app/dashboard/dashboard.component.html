@@ -8,7 +8,7 @@
         </div>
         <div class="item"> {{ employee.employeeId }}</div>
     </div>
-    <div class="box-2">
+    <div *ngIf="employee != null && employee.employeeRole != userRoleConstants.ADMIN" class="box-2">
         <div class="row">
             <div class="card  bg-warning text-white item-2">
                 <h4>Your Referrals</h4>

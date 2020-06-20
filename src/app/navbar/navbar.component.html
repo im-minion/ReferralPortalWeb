@@ -6,18 +6,18 @@
 
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul *ngIf="valid()" class="navbar-nav">
-            <li class="nav-item">
+            <li>
                 <a class="nav-link" routerLink="/dashboard" routerLinkActive="active">Home</a>
             </li>
-            <li class="nav-item">
+            <li *ngIf="employeeRole != userRoleConstants.ADMIN" class="nav-item">
                 <a class="nav-link" routerLink="/refer">Refer a friend</a>
             </li>
-            <li class="nav-item">
+            <li *ngIf="employeeRole != userRoleConstants.ADMIN" class="nav-item">
                 <a class="nav-link" routerLink="/status">Status</a>
             </li>
             <li *ngIf="employeeRole === userRoleConstants.HM" class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="hmDropDownTabs" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Hiring Manager Section 
+                    Hiring Manager Section
                 </a>
                 <div class="dropdown-menu" aria-labelledby="hmDropDownTabs">
                     <a class="dropdown-item" routerLink="/hm/jobs" routerLinkActive="active">Jobs Status</a>
@@ -26,7 +26,7 @@
 
             <li *ngIf="employeeRole === userRoleConstants.HR" class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="hrDropDownTabs" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        HR Section 
+                        HR Section
                     </a>
                 <div class="dropdown-menu" aria-labelledby="hrDropDownTabs">
                     <a class="dropdown-item" routerLink="/hr/referrals" routerLinkActive="active">Referrals at HR Round</a>
@@ -35,7 +35,7 @@
             </li>
             <li *ngIf="employeeRole === userRoleConstants.ADMIN" class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="hrDropDownTabs" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Admin Section 
+                        Admin Section
                     </a>
                 <div class="dropdown-menu" aria-labelledby="hrDropDownTabs">
                     <a class="dropdown-item" routerLink="/admin" routerLinkActive="active">Update Users</a>

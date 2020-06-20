@@ -17,6 +17,7 @@ export class AdminComponent implements OnInit, OnDestroy {
   public selectedEmployee: Employee = null;
   public isLoadingUpdate: boolean = false;
   public userRoles = [];
+  public isDataAvailable: boolean = false;
   public updateEmployeeForm: FormGroup;
   private displayedColumns: string[] = [
     "Employee Id",
@@ -75,6 +76,7 @@ export class AdminComponent implements OnInit, OnDestroy {
       employeeNewRole: this.updateEmployeeForm.get("employeeRole").value,
     };
     this.isLoadingUpdate = true;
+    this.isLoading = true;
     const changeRole$ = this.adminService.changeRole(payload).subscribe(
       () => {
         this.loadEmployees();
