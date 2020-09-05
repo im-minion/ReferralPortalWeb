@@ -69,11 +69,12 @@
           </button>
             </div>
             <div class="modal-body">
-                <!-- <p>{{detailsData}}</p> -->
                 <h6>Email : {{detailsData.referralEmailId}}</h6>
                 <h6>Current Level : {{detailsData.referralCurrentLevel}}</h6>
                 <h6>Current Status : {{detailsData.referralCurrentStatus}}</h6>
-                <h6>Resume :(fileId) {{detailsData.resumeV2}}</h6>
+                <h6>Resume :
+                    <span [ngClass]="{'link': true, 'loadingCursor': isLoadingResume}" (click)="getFile(detailsData.resumeV2)">click to open in new tab</span>
+                </h6>
                 <h6>Referred By : {{detailsData.referredBy}}</h6>
                 <table class="table">
                     <thead>
@@ -103,34 +104,9 @@
                         </tr>
                     </tbody>
                 </table>
-                <!-- <form [formGroup]="updateJobForm">
-                    <div class="form-group">
-                        <label for="jobDescription">Job Description:</label>
-                        <textarea formControlName="jobDescription" type="text" name="jobDescription" class="form-control" id="jobDescription">
-                        </textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="jobVisibility">Visible:</label>
-                        <div class="custom-control custom-switch">
-                            <input type="checkbox" name="jobVisibility" formControlName="jobVisibility" [checked]="openJob.jobVisibility" class="checkbox form-control" id="jobVisibility">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="jobStatus">Job Status:</label>
-                        <select formControlName="jobStatus" name="jobStatus" class="form-control" id="jobStatus">
-                          <option [selected]="openJob.jobStatus == _JobStatus.OPEN">OPEN</option>
-                          <option [selected]="openJob.jobStatus == _JobStatus.ONHOLD">ONHOLD</option>
-                          <option [selected]="openJob.jobStatus == _JobStatus.CLOSED">CLOSED</option>
-                        </select>
-                    </div>
-                </form> -->
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <!-- <div *ngIf="isLoadingUpdate">
-                    <app-loader></app-loader>
-                </div> -->
-                <!-- <button *ngIf="!isLoadingUpdate" type="button" class="btn btn-primary" (click)="updateJob()">Update</button> -->
+                <button type="button" class="btn" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>

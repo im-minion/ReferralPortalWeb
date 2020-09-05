@@ -40,4 +40,9 @@ export class HmService {
     return this.commonService.postMethod(environment.BASE_URL + environment.HM_END_POINT + 'updateReferralsStatus', data)
   }
 
+  getFileByID(id: string): Observable<any> {
+    let hp = new HttpParams();
+    hp = hp.append("fileId", id);
+    return this.commonService.getFileByID(environment.BASE_URL + environment.EMPLOYEE_END_POINT  + "getFileById", hp);
+  }
 }

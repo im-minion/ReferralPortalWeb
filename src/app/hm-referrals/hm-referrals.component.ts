@@ -18,6 +18,7 @@ export class HmReferralsComponent implements OnInit, OnDestroy {
   updateForm: FormGroup;
 
   isLoadingUpdate: boolean = false;
+  isLoadingResume: boolean = false;
 
   constructor(private route: ActivatedRoute, private hmService: HmService, private tableDataService: TableDataService) { }
 
@@ -74,4 +75,26 @@ export class HmReferralsComponent implements OnInit, OnDestroy {
     );
   }
 
+  getFile(id: string) {
+    this.isLoadingResume = true;
+    this.hmService.getFileByID(id).subscribe(
+      (response: any) => {
+        this.downLoadFile(response, 'application/pdf');
+      },
+      (err) => {
+        console.log(err);
+        this.isLoadingResume = false;
+      }
+    );
+  }
+
+  downLoadFile(data: any, type: string) {
+    let blob = new Blob([data], { type: type });
+    let url = window.URL.createObjectURL(blob);
+    let pwa = window.open(url);
+    this.isLoadingResume = false;
+    if (!pwa || pwa.closed || typeof pwa.closed == 'undefined') {
+      alert('Please disable your Pop-up blocker and try again.');
+    }
+  }
 }

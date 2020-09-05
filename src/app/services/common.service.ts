@@ -29,14 +29,14 @@ export class CommonService {
     return this.httpClient.put(url, requestBody).pipe();
   }
 
-  getMethodWithQueryParamPDF(url: string, param: HttpParams) {
-    return this.httpClient.get(url,{params: param}).subscribe((data: Blob)=> {
-      var file = new Blob([data], {type: 'application/pdf'});
-      var fileURL = URL.createObjectURL(file);
-      window.open(fileURL);
-    },
-    err => console.log('error',err)
-    );
+  public getFileByID(url: string, param: HttpParams): Observable<any> {
+    return this.httpClient.get(url, {
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/pdf"
+      },
+      responseType: "blob",
+      params: param,
+    });
   }
-
 }
