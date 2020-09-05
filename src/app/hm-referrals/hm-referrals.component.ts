@@ -91,6 +91,7 @@ export class HmReferralsComponent implements OnInit, OnDestroy {
   downLoadFile(data: any, type: string) {
     let blob = new Blob([data], { type: type });
     let url = window.URL.createObjectURL(blob);
+    console.log(url);
     let pwa = window.open(url);
     this.isLoadingResume = false;
     if (!pwa || pwa.closed || typeof pwa.closed == 'undefined') {
