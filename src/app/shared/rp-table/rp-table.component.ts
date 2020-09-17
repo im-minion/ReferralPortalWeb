@@ -53,20 +53,20 @@ export class RpTableComponent implements OnInit {
     // this.employeeService.getFileByID(fileId);
   }
 
-  getProgress(currentLevel: string) {
-    switch (currentLevel) {
-      case ReferralLevels.RESUME_SCREENING:
-        return '25%';
-      case ReferralLevels.L1:
-        return '50%';
-      case ReferralLevels.L2:
-        return '75%';
-      case ReferralLevels.HR:
-        return '100%';
-      default:
-        return 'NONE'
-    }
-  }
+  // getProgress(currentLevel: string) {
+  //   switch (currentLevel) {
+  //     case ReferralLevels.RESUME_SCREENING:
+  //       return '25%';
+  //     case ReferralLevels.L1:
+  //       return '50%';
+  //     case ReferralLevels.L2:
+  //       return '75%';
+  //     case ReferralLevels.HR:
+  //       return '100%';
+  //     default:
+  //       return 'NONE'
+  //   }
+  // }
 
   shouldDisable(row: any) {
     return (row.referralCurrentStatus === ReferralStatus.REJECTED) || (row.referralCurrentLevel === ReferralLevels.HR);

@@ -10,9 +10,10 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from '../app-routing.module';
+import { PercentProgressPipe } from './percent-progress.pipe';
 
 @NgModule({
-  declarations: [MessageComponent, LoaderComponent, RpTableComponent],
+  declarations: [MessageComponent, LoaderComponent, RpTableComponent, PercentProgressPipe],
   imports: [
     CommonModule,
     BrowserAnimationsModule,
