@@ -8,6 +8,10 @@ table {
     margin-left: 65%;
 }
 
+.table-responsive {
+    display: inline-table;
+}
+
 td,
 th {
     width: 25%;
@@ -22,4 +26,15 @@ th {
 
 .col-btn {
     width: max-content;
+}
+
+.link {
+    color: #007bff;
+    text-decoration: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.loadingCursor {
+    cursor: wait;
 }

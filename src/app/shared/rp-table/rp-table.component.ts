@@ -3,9 +3,8 @@ import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { isNullOrUndefined } from 'util';
 import { ReferralLevels, ReferralStatus } from 'src/app/app.constants';
 import { TableDataService } from 'src/app/services/shared-service/table-data.service';
-import { EmployeeService } from 'src/app/services/employee-services/employee.service';
+import { HmService } from 'src/app/services/hm-services/hm.service';
 
-declare var $: any;
 @Component({
   selector: 'app-rp-table',
   templateUrl: './rp-table.component.html',
@@ -14,6 +13,7 @@ declare var $: any;
 export class RpTableComponent implements OnInit {
   public displayedColumns: string[];
   public dataSource: MatTableDataSource<any> = null;
+  public isLoadingResume: boolean = false;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
@@ -22,7 +22,7 @@ export class RpTableComponent implements OnInit {
   @Output()
   clicked = new EventEmitter<any>();
 
-  constructor(private tableDataService: TableDataService, private employeeService: EmployeeService) { }
+  constructor(private tableDataService: TableDataService, private hmService: HmService) { }
 
   ngOnInit() {
     this.tableDataService.dataSource$.subscribe((data) => {
@@ -49,7 +49,7 @@ export class RpTableComponent implements OnInit {
     this.clicked.emit(data);
   }
 
-  resume(fileId: string) {
+  resume() {
     // this.employeeService.getFileByID(fileId);
   }
 
@@ -77,6 +77,30 @@ export class RpTableComponent implements OnInit {
       return true;
     else
       return false;
+  }
+
+  getFile(id: string) {
+    this.isLoadingResume = true;
+    this.hmService.getFileByID(id).subscribe(
+      (response: any) => {
+        this.downLoadFile(response, 'application/pdf');
+      },
+      (err) => {
+        console.log(err);
+        this.isLoadingResume = false;
+      }
+    );
+  }
+
+  downLoadFile(data: any, type: string) {
+    let blob = new Blob([data], { type: type });
+    let url = window.URL.createObjectURL(blob);
+    console.log(url);
+    let pwa = window.open(url);
+    this.isLoadingResume = false;
+    if (!pwa || pwa.closed || typeof pwa.closed == 'undefined') {
+      alert('Please disable your Pop-up blocker and try again.');
+    }
   }
 
 }

@@ -25,9 +25,9 @@
             </div>
             <div class="modal-body">
                 <form [formGroup]="updateEmployeeForm">
-                    <div class="form-group">
-                        <label for="employeeRole">Select Role:</label>
-                        <select class="form-control" formControlName="employeeRole" name="employeeRole" id="employeeRole">
+                    <div class="form-group fg">
+                        <label for="employeeRole" class="label">Select New Role:</label>
+                        <select class="form-control options" formControlName="employeeRole" name="employeeRole" id="employeeRole">
                         <option *ngFor="let userRole of userRoles" [ngValue]="userRole">
                           {{ userRole }}
                         </option>

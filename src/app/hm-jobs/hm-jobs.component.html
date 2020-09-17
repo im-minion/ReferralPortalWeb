@@ -16,7 +16,7 @@
 
 
 <div *ngIf="(openJob != null) || (openJob != undefined)" class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="updateModalLabel">{{ openJob.jobTitle }} - # {{ openJob.jobId }}</h5>
@@ -28,18 +28,22 @@
                 <form [formGroup]="updateJobForm">
                     <div class="form-group">
                         <label for="jobDescription">Job Description:</label>
-                        <textarea formControlName="jobDescription" type="text" name="jobDescription" class="form-control" id="jobDescription">
+                        <textarea formControlName="jobDescription" type="text" name="jobDescription" class="form-control jd-area" id="jobDescription">
                         </textarea>
                     </div>
-                    <div class="form-group">
-                        <label for="jobVisibility">Visible:</label>
-                        <div class="custom-control custom-switch">
+                    <div class="form-group fg">
+                        <label class="label" for="jobVisibility">Visible:</label>
+                        <!-- <div class="custom-control custom-switch">
                             <input type="checkbox" name="jobVisibility" formControlName="jobVisibility" [checked]="openJob.jobVisibility" class="checkbox form-control" id="jobVisibility">
+                        </div> -->
+                        <div class="custom-control custom-switch">
+                            <input type="checkbox" name="jobVisibility" formControlName="jobVisibility" [checked]="openJob.jobVisibility" class="custom-control-input" id="jobVisibility">
+                            <label class="custom-control-label" for="jobVisibility"></label>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="jobStatus">Job Status:</label>
-                        <select formControlName="jobStatus" name="jobStatus" class="form-control" id="jobStatus">
+                    <div class="form-group fg">
+                        <label class="label" for="jobStatus">Job Status:</label>
+                        <select formControlName="jobStatus" name="jobStatus" class="form-control options" id="jobStatus">
                           <option [selected]="openJob.jobStatus == _JobStatus.OPEN">OPEN</option>
                           <option [selected]="openJob.jobStatus == _JobStatus.ONHOLD">ONHOLD</option>
                           <option [selected]="openJob.jobStatus == _JobStatus.CLOSED">CLOSED</option>

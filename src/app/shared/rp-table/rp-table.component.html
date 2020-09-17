@@ -82,7 +82,7 @@
             <ng-container matColumnDef="Resume">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Resume </th>
                 <td mat-cell *matCellDef="let row">
-                    <!-- <button (click)="resume(row.resumeV2)">Resume</button> -->
+                    <span [ngClass]="{'link': true, 'loadingCursor': isLoadingResume}" (click)="getFile(row.resumeV2)">open</span>
                 </td>
             </ng-container>
 
