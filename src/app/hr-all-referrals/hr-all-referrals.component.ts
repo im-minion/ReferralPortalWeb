@@ -9,6 +9,7 @@ import { TableDataService } from '../services/shared-service/table-data.service'
 })
 export class HrAllReferralsComponent implements OnInit {
   detailsData: any;
+  public isLoading: boolean = true;
   constructor(private hrService: HrService, private tableDataService: TableDataService) { }
 
   ngOnInit() {
@@ -16,7 +17,9 @@ export class HrAllReferralsComponent implements OnInit {
   }
 
   loadData() {
+    this.isLoading = true;
     this.hrService.getAllReferralsForHr().subscribe((resp)=> {
+      this.isLoading = false;
       this.tableDataService.changeDataSource(resp);
       this.tableDataService.changeDisplayedColumns(['Job Id', 'Referral Name', 'Resume', 'Current Level', 'Current Status', 'See Details']);
     });

@@ -12,6 +12,8 @@ export class HrReferralsComponent implements OnInit {
   detailsData: any;
   updateData: any;
   updateForm: FormGroup;
+  public isLoading: boolean = true;
+  public isLoadingUpdate: boolean = false;
   constructor(private hrService: HrService, private tableDataService: TableDataService) { }
 
   ngOnInit() {
@@ -27,7 +29,9 @@ export class HrReferralsComponent implements OnInit {
   }
 
   loadData() {
+    this.isLoading = true;
     this.hrService.getReferralsAtHr().subscribe((resp)=> {
+      this.isLoading = false;
       this.tableDataService.changeDataSource(resp);
       this.tableDataService.changeDisplayedColumns(['Job Id', 'Referral Name', 'Resume', 'Current Level', 'Current Status', 'See Details', 'Hire or Reject']);
     });
@@ -38,23 +42,23 @@ export class HrReferralsComponent implements OnInit {
     this.updateData = data;
   }
 
-  updateReferral(data:any) {
-    // this.isLoadingUpdate = true;
+  public updateReferral(data:any): void {
+    this.isLoadingUpdate = true;
     this.updateForm.patchValue({
       referralEmailId: this.updateData.referralEmailId,
       currentLevel: this.updateData.referralCurrentLevel
     });
-    //remove referralCurrentStatus from updateForm as I don't want to send it to api call
+    // remove referralCurrentStatus from updateForm as I don't want to send it to api call
     delete this.updateForm.value.referralCurrentStatus;
     this.hrService.updateReferral(this.updateForm.value).subscribe((resp: any)=>{
-      // this.isLoadingUpdate = false;
+      this.isLoadingUpdate = false;
       this.loadData();
       this.updateForm.reset();
       $("#updateModal").modal('hide');
     },
     (err) => {
       console.log(err);
-      // this.isLoadingUpdate = false;
+      this.isLoadingUpdate = false;
     }
     );
   }

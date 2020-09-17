@@ -1,7 +1,13 @@
 <h3 class="heading-tag">
     All Referral In the System
 </h3>
-<app-rp-table (clicked)="onClicked($event)"></app-rp-table>
+
+<div *ngIf="isLoading" class="loader-align">
+    <app-loader></app-loader>
+</div>
+<div *ngIf="!isLoading" class="loader-align">
+    <app-rp-table (clicked)="onClicked($event)"></app-rp-table>
+</div>
 
 <div *ngIf="(detailsData != null) || (detailsData != undefined)" class="modal fade" id="seeDetails" tabindex="-1" role="dialog" aria-labelledby="seeDetails" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">

@@ -7,6 +7,9 @@
 <h3 class="heading-tag">
     Referrals for the Job - #{{jobId}}
 </h3>
+<div *ngIf="isLoading" class="loader-align">
+    <app-loader></app-loader>
+</div>
 <div *ngIf="!isLoading">
     <app-rp-table (clicked)="onClicked($event)"></app-rp-table>
 </div>
