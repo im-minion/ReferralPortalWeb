@@ -1,18 +1,18 @@
 .flex-container {
     display: flex;
+    width: 100%;
     flex-direction: column;
+    height: 100%;
 }
 
-.flex-nav {
-    flex: 2;
-}
-
-.flex-body {
-    flex: 7;
-}
-
+// .flex-nav {
+//     flex: 2;
+// }
+// .flex-body {
+//     flex: 7;
+// }
 .flex-footer {
-    flex: 1;
+    // flex: 1;
     align-self: baseline;
     margin-top: 40px;
 }

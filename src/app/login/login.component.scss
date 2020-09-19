@@ -1,6 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Numans');
+:host {
+    height: 100%;
+    width: 100%;
+}
+
 .container {
-    margin-top: 10%;
     height: 100%;
     align-content: center;
 }
