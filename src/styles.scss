@@ -3,7 +3,8 @@ $color-black:#000000;
 $color-light-blue:#609DE6;
 $color-dark-blue:#8CA7BA;
 $color-light-green:#61C06E;
-@import '~bootstrap/dist/css/bootstrap.min.css';
+// @import '~bootstrap/dist/css/bootstrap.min.css';
+@import '~@clr/ui/clr-ui.min.css';
 .custom-background-color {
     background-color: $color-white;
     color: $color-black;

@@ -22,6 +22,7 @@ import { HmJobsFormComponent } from './hm-jobs-form/hm-jobs-form.component';
 import { HrReferralsComponent } from './hr-referrals/hr-referrals.component';
 import { HrAllReferralsComponent } from './hr-all-referrals/hr-all-referrals.component';
 import { AdminComponent } from './admin/admin.component';
+import { ClarityModule } from '@clr/angular';
 
 
 @NgModule({
@@ -45,6 +46,7 @@ import { AdminComponent } from './admin/admin.component';
   ],
   imports: [
     BrowserModule,
+    ClarityModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
