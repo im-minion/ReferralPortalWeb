@@ -5,8 +5,8 @@
     <div *ngIf="valid()" class="header-nav">
         <a class="nav-link" routerLink="/dashboard" routerLinkActive="active">Home</a>
 
-        <a *ngIf="employeeRole != userRoleConstants.ADMIN" class="nav-link" routerLink="/refer">Refer a friend</a>
-        <a *ngIf="employeeRole != userRoleConstants.ADMIN" class="nav-link" routerLink="/status">Status</a>
+        <a *ngIf="employeeRole != userRoleConstants.ADMIN" class="nav-link" routerLink="/refer" routerLinkActive="active">Refer a friend</a>
+        <a *ngIf="employeeRole != userRoleConstants.ADMIN" class="nav-link" routerLink="/status" routerLinkActive="active">Status</a>
 
         <a *ngIf="employeeRole === userRoleConstants.HM" class="nav-link" routerLink="/hm/jobs" routerLinkActive="active">Jobs Status</a>
 
