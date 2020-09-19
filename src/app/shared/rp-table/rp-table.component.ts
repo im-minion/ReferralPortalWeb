@@ -14,8 +14,8 @@ export class RpTableComponent implements OnInit {
   public displayedColumns: string[];
   public dataSource: MatTableDataSource<any> = null;
   public isLoadingResume: boolean = false;
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: false }) sort: MatSort;
 
   public _status =  ReferralStatus;
 
