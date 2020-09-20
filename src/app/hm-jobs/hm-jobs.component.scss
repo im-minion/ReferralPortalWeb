@@ -1,8 +1,22 @@
-.fg {
+:host {
+    width: 100%;
+    height: 100%;
+}
+
+.fg-textarea {
     display: flex;
-    align-items: center;
-    align-self: center;
-    min-width: max-content;
+    flex-direction: column;
+}
+
+// clr-input-container {
+//     margin: 0;
+// }
+// clr-textarea-container {
+//     margin: 0;
+// }
+textarea {
+    width: 100%;
+    min-height: 8rem;
 }
 
 .label {
@@ -16,4 +30,16 @@
 
 .jd-area {
     height: 14rem;
+    width: 24rem;
+}
+
+// clr-datagrid {
+//     width: 80%;
+//     display: flex;
+//     align-self: center;
+// }
+.wrapper-wh {
+    height: 86%;
+    margin-left: 1rem;
+    margin-right: 1rem;
 }

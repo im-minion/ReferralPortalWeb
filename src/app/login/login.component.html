@@ -11,16 +11,12 @@
                             <label>UserID</label>
                         </clr-input-container>
                         <input placeholder="User ID" clrInput [(ngModel)]="employeeId" name="employeeId" required />
-                        <!-- <clr-control-error>This field is required!</clr-control-error> -->
-                        <!-- </clr-input-container> -->
                     </div>
                     <div class="form-group">
                         <clr-input-container>
                             <label>Password</label>
                         </clr-input-container>
                         <input placeholder="Password" clrInput [(ngModel)]="password" name="password" type="password" required />
-                        <!-- <clr-control-error>This field is required!</clr-control-error> -->
-                        <!-- </clr-input-container> -->
                     </div>
                     <button *ngIf="!loader" [disabled]="!password || !employeeId" class="btn btn-primary mt-2" type="submit" (click)="login()">Login</button>
                     <div *ngIf="loader">

@@ -1,9 +1,10 @@
-import { Component, OnInit, OnChanges, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnChanges, OnDestroy, ViewChild } from '@angular/core';
 import { HmService } from '../services/hm-services/hm.service';
 import { OpenJob } from '../utilities/open-job-class';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { JobStatus} from '../app.constants';
+import { COLUMNS, JobStatus} from '../app.constants';
 import { TableDataService } from '../services/shared-service/table-data.service';
+import { ClrForm } from '@clr/angular';
 declare var $: any;
 @Component({
   selector: 'app-hm-jobs',
@@ -17,11 +18,14 @@ export class HmJobsComponent implements OnInit, OnChanges, OnDestroy {
   public openJob: OpenJob = null;
   public updateJobForm: FormGroup;
   public isLoadingUpdate: boolean = false;
-
+  @ViewChild(ClrForm, {static: true}) clrForm;
   private employeeId: string;
-  private displayedColumns: string[] = ['Job Id', 'Title', 'Visibility', 'Job Status', 'Update', 'Check Referrals'];
+  public data:Array<OpenJob> = [];
+  public selectedJob: OpenJob = null;
+  public isJobModalOpen: boolean = false;
+  public displayedColumns: string[] = [COLUMNS.JOB_ID, COLUMNS.JOB_TITLE, COLUMNS.JOB_VISIBILITY, COLUMNS.JOB_STATUS];
 
-  constructor(private hmService: HmService, private tableDataService: TableDataService) {
+  constructor(private hmService: HmService) {
   }
 
   ngOnInit() {
@@ -40,38 +44,40 @@ export class HmJobsComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.tableDataService.clearData();
   }
 
   loadOpenJobs() {
+    this.isLoading= true;
     this.hmService.getOpenJobsByEmployeeId(this.employeeId).subscribe((resp: Array<OpenJob>) => {
-      // this.dataSource = resp;
-      this.tableDataService.changeDataSource(resp);
-      this.tableDataService.changeDisplayedColumns(this.displayedColumns);
+      this.data = resp;
       this.isLoading = false;
     });
 
   }
 
   onClicked(data: any) {
-    this.openJob = data;
-    this.updateJobForm.patchValue({
+    this.selectedJob = data;
+  }
+
+  openUpdateJobModal() {
+    console.log(this.selectedJob);
+    this.isJobModalOpen = true;
+    this.openJob = this.selectedJob;
+      this.updateJobForm.patchValue({
       jobDescription: this.openJob.jobDescription,
       jobStatus: this.openJob.jobStatus,
       jobVisibility: this.openJob.jobVisibility,
       jobId: this.openJob.jobId
     });
-    //  $("#updateModal").modal('show');
   }
 
-  updateJob() {
+  update() {
     this.isLoadingUpdate = true;
     this.hmService.updateJobStatus(this.updateJobForm.value).subscribe(
       (resp: any) => {
-        console.log(resp);
+        this.isJobModalOpen = false;
         this.isLoadingUpdate = false;
         this.loadOpenJobs();
-        $("#updateModal").modal('hide');
       },
       (err: any) => {
         console.log(err);

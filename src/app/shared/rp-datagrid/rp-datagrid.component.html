@@ -1,0 +1,33 @@
+<clr-datagrid [(clrDgSingleSelected)]="selected" [clrDgRowSelection]="true" (clrDgSingleSelectedChange)="selectionChanged($event)">
+
+    <clr-dg-column *ngIf="columnsToDisplay.includes(columns.JOB_ID)" [clrDgField]="'jobId'">Job Id</clr-dg-column>
+    <clr-dg-column *ngIf="columnsToDisplay.includes(columns.JOB_TITLE)" [clrDgField]="'jobTitle'">Job Title</clr-dg-column>
+    <clr-dg-column *ngIf="columnsToDisplay.includes(columns.JOB_STATUS)" [clrDgField]="'jobStatus'">Job Status</clr-dg-column>
+    <clr-dg-column *ngIf="columnsToDisplay.includes(columns.JOB_VISIBILITY)" [clrDgField]="'jobVisibility'">Job Visibility </clr-dg-column>
+    <clr-dg-column *ngIf="columnsToDisplay.includes(columns.REFERRAL_NAME)" [clrDgField]="'referralName'">Referral Name</clr-dg-column>
+    <clr-dg-column *ngIf="columnsToDisplay.includes(columns.EMPLOYEE_ID)" [clrDgField]="'employeeId'">Employee ID</clr-dg-column>
+    <clr-dg-column *ngIf="columnsToDisplay.includes(columns.EMPLOYEE_ROLE)" [clrDgField]="'employeeRole'">Employee Role</clr-dg-column>
+    <clr-dg-column *ngIf="columnsToDisplay.includes(columns.CURRENT_LEVEL)" [clrDgField]="'referralCurrentLevel'">Current Level</clr-dg-column>
+    <clr-dg-column *ngIf="columnsToDisplay.includes(columns.CURRENT_STATUS)" [clrDgField]="'referralCurrentStatus'">Current Status</clr-dg-column>
+    <clr-dg-column *ngIf="columnsToDisplay.includes(columns.PROGRESS)">Progress</clr-dg-column>
+    <clr-dg-column *ngIf="columnsToDisplay.includes(columns.RESUME)">RESUME</clr-dg-column>
+
+    <clr-dg-row *clrDgItems="let row of allRows" [clrDgItem]="row">
+        <clr-dg-cell *ngIf="columnsToDisplay.includes(columns.JOB_ID)">{{row.jobId}}</clr-dg-cell>
+        <clr-dg-cell *ngIf="columnsToDisplay.includes(columns.JOB_TITLE)">{{row.jobTitle}}</clr-dg-cell>
+        <clr-dg-cell *ngIf="columnsToDisplay.includes(columns.JOB_STATUS)">{{row.jobStatus}}</clr-dg-cell>
+        <clr-dg-cell *ngIf="columnsToDisplay.includes(columns.JOB_VISIBILITY)">{{row.jobVisibility}}</clr-dg-cell>
+        <clr-dg-cell *ngIf="columnsToDisplay.includes(columns.REFERRAL_NAME)">{{row.referralName}}</clr-dg-cell>
+        <clr-dg-cell *ngIf="columnsToDisplay.includes(columns.EMPLOYEE_ID)">{{row.employeeId}}</clr-dg-cell>
+        <clr-dg-cell *ngIf="columnsToDisplay.includes(columns.EMPLOYEE_ROLE)">{{row.employeeRole}}</clr-dg-cell>
+        <clr-dg-cell *ngIf="columnsToDisplay.includes(columns.CURRENT_LEVEL)">{{row.referralCurrentLevel}}</clr-dg-cell>
+        <clr-dg-cell *ngIf="columnsToDisplay.includes(columns.CURRENT_STATUS)">{{row.referralCurrentStatus}}</clr-dg-cell>
+        <clr-dg-cell *ngIf="columnsToDisplay.includes(columns.PROGRESS)">{{(row.referralCurrentLevel) | percentProgress }}</clr-dg-cell>
+        <clr-dg-cell *ngIf="columnsToDisplay.includes(columns.CURRENT_STATUS)">{{row.referralCurrentStatus}}</clr-dg-cell>
+        <clr-dg-cell *ngIf="columnsToDisplay.includes(columns.RESUME)">
+            <span [ngClass]="{'link': true, 'loadingCursor': isLoadingResume}" (click)="getFile(row.resumeV2)">open</span>
+        </clr-dg-cell>
+
+    </clr-dg-row>
+    <clr-dg-footer>{{allRows.length}} Jobs</clr-dg-footer>
+</clr-datagrid>

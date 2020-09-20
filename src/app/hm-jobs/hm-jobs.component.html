@@ -1,63 +1,63 @@
-<h3 class="heading-tag">
-    Jobs You have created
-</h3>
-<div *ngIf="isLoading" class="loader-align">
-    <app-loader></app-loader>
-</div>
-<div *ngIf="!isLoading">
-    <div class="row">
-        <div class="col-md-10"></div>
-        <div class="col-md-2"><a [routerLink]="['/hm/jobsForm']" class="btn btn-primary">Create New Job</a></div>
+<div class="wrapper-wh">
+    <h3>
+        Jobs You have created
+    </h3>
+    <div *ngIf="isLoading" class="loader-align">
+        <app-loader></app-loader>
     </div>
-    <div>
-        <app-rp-table (clicked)="onClicked($event)"></app-rp-table>
+    <div *ngIf="!isLoading">
+        <div>
+            <button type="button" class="btn btn-sm col-btn btn-primary" [routerLink]="['/hm/jobsForm']">
+              Create New Job
+            </button>
+            <button [disabled]="!selectedJob" class="btn btn-sm col-btn btn-secondary" (click)="openUpdateJobModal()">
+              Update Job
+            </button>
+            <button [disabled]="!selectedJob" class="btn btn-sm col-btn btn-secondary" [routerLink]="['/hm/referrals', selectedJob?.jobId]">
+                Check Referrals
+            </button>
+        </div>
+        <div>
+            <app-rp-datagrid [columnsToDisplay]="displayedColumns" [allRows]="data" (clicked)="onClicked($event)"></app-rp-datagrid>
+        </div>
     </div>
-</div>
+    <clr-modal [(clrModalOpen)]="isJobModalOpen" *ngIf="openJob">
+        <h3 class="modal-title">{{ openJob.jobTitle }} - # {{ openJob.jobId }}</h3>
+        <div class="modal-body">
 
+            <form clrForm [formGroup]="updateJobForm" clrLayout="horizontal">
+                <div class="fg-textarea">
+                    <clr-textarea-container>
+                        <label>Job Description</label>
+                        <textarea clrTextarea formControlName="jobDescription" name="description" required></textarea>
+                    </clr-textarea-container>
+                </div>
 
-<div *ngIf="(openJob != null) || (openJob != undefined)" class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="updateModalLabel">{{ openJob.jobTitle }} - # {{ openJob.jobId }}</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-            </div>
-            <div class="modal-body">
-                <form [formGroup]="updateJobForm">
-                    <div class="form-group">
-                        <label for="jobDescription">Job Description:</label>
-                        <textarea formControlName="jobDescription" type="text" name="jobDescription" class="form-control jd-area" id="jobDescription">
-                        </textarea>
-                    </div>
-                    <div class="form-group fg">
-                        <label class="label" for="jobVisibility">Visible:</label>
-                        <!-- <div class="custom-control custom-switch">
-                            <input type="checkbox" name="jobVisibility" formControlName="jobVisibility" [checked]="openJob.jobVisibility" class="checkbox form-control" id="jobVisibility">
-                        </div> -->
-                        <div class="custom-control custom-switch">
-                            <input type="checkbox" name="jobVisibility" formControlName="jobVisibility" [checked]="openJob.jobVisibility" class="custom-control-input" id="jobVisibility">
-                            <label class="custom-control-label" for="jobVisibility"></label>
-                        </div>
-                    </div>
-                    <div class="form-group fg">
-                        <label class="label" for="jobStatus">Job Status:</label>
-                        <select formControlName="jobStatus" name="jobStatus" class="form-control options" id="jobStatus">
+                <div>
+                    <clr-toggle-container>
+                        <label>Visibility</label>
+                        <clr-toggle-wrapper>
+                            <input type="checkbox" formControlName="jobVisibility" clrToggle name="jobVisibility" />
+                            <label></label>
+                        </clr-toggle-wrapper>
+                    </clr-toggle-container>
+                </div>
+
+                <div>
+                    <clr-select-container>
+                        <label>Job Status</label>
+                        <select formControlName="jobStatus" clrSelect name="jobStatus" required>
                           <option [selected]="openJob.jobStatus == _JobStatus.OPEN">OPEN</option>
                           <option [selected]="openJob.jobStatus == _JobStatus.ONHOLD">ONHOLD</option>
                           <option [selected]="openJob.jobStatus == _JobStatus.CLOSED">CLOSED</option>
                         </select>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <div *ngIf="isLoadingUpdate">
-                    <app-loader></app-loader>
+                    </clr-select-container>
                 </div>
-                <button *ngIf="!isLoadingUpdate" type="button" class="btn btn-primary" (click)="updateJob()">Update</button>
-            </div>
+            </form>
         </div>
-    </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline" (click)="isJobModalOpen = false">Cancel</button>
+            <button [disabled]="isLoadingUpdate" type="button" class="btn btn-primary" (click)="update()">Update</button>
+        </div>
+    </clr-modal>
 </div>
