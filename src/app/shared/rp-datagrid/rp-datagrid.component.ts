@@ -27,7 +27,7 @@ export class RpDatagridComponent implements OnInit {
     if(event) this.clicked.emit(this.selected);
   }
 
-  public refresh(event) {
+  public refresh(): void {
     this.refreshed.emit(true);
   }
 

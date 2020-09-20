@@ -1,7 +1,23 @@
-<h3 class="heading-tag"> Your Referrals</h3>
-<div *ngIf="isLoading" class="loader-align">
-    <app-loader></app-loader>
-</div>
-<div *ngIf="!isLoading">
-    <app-rp-table></app-rp-table>
+<div class="wrapper-wh">
+
+    <h3 class="heading-tag">
+        Your Referrals
+    </h3>
+    <div>
+        <div>
+            <button type="button" class="btn btn-sm col-btn btn-primary" [routerLink]="['/hm/jobsForm']">
+        See Details
+        <!-- yet to implement above -->
+      </button>
+            <!-- <button [disabled]="!selectedJob" class="btn btn-sm col-btn btn-secondary" (click)="openUpdateJobModal()">
+        Update Job
+      </button>
+      <button [disabled]="!selectedJob" class="btn btn-sm col-btn btn-secondary" [routerLink]="['/hm/referrals', selectedJob?.jobId]">
+          Check Referrals
+      </button> -->
+        </div>
+        <div>
+            <app-rp-datagrid [isDataLoading]="isLoading" [columnsToDisplay]="displayedColumns" [allRows]="data" (clicked)="onClicked($event)" (refreshed)="onRefreshed(data)"></app-rp-datagrid>
+        </div>
+    </div>
 </div>

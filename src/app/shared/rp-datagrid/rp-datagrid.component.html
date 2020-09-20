@@ -1,5 +1,5 @@
 <div class="datagrid-actions">
-    <clr-icon (click)="refresh()" shape="sync"></clr-icon>
+    <button (click)="refresh()" class="btn btn-sm btn-icon"><clr-icon shape="sync"></clr-icon></button>
 </div>
 <clr-datagrid [clrDgLoading]="isDataLoading" [(clrDgSingleSelected)]="selected" [clrDgRowSelection]="true" (clrDgSingleSelectedChange)="selectionChanged($event)">
 
@@ -28,7 +28,6 @@
         <clr-dg-cell *ngIf="columnsToDisplay.includes(columns.CURRENT_LEVEL)">{{row.referralCurrentLevel}}</clr-dg-cell>
         <clr-dg-cell *ngIf="columnsToDisplay.includes(columns.CURRENT_STATUS)">{{row.referralCurrentStatus}}</clr-dg-cell>
         <clr-dg-cell *ngIf="columnsToDisplay.includes(columns.PROGRESS)">{{(row.referralCurrentLevel) | percentProgress }}</clr-dg-cell>
-        <clr-dg-cell *ngIf="columnsToDisplay.includes(columns.CURRENT_STATUS)">{{row.referralCurrentStatus}}</clr-dg-cell>
         <clr-dg-cell *ngIf="columnsToDisplay.includes(columns.RESUME)">
             <span [ngClass]="{'link': true, 'loadingCursor': isLoadingResume}" (click)="getFile(row.resumeV2)">open</span>
         </clr-dg-cell>
