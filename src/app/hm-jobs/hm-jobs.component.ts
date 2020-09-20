@@ -86,4 +86,10 @@ export class HmJobsComponent implements OnInit, OnChanges, OnDestroy {
     );
   }
 
+  public onRefreshed(data): void {
+    if(data) {
+      this.loadOpenJobs();
+    }
+  }
+
 }

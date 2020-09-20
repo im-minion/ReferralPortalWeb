@@ -1,4 +1,9 @@
-<clr-datagrid [(clrDgSingleSelected)]="selected" [clrDgRowSelection]="true" (clrDgSingleSelectedChange)="selectionChanged($event)">
+<div class="datagrid-actions">
+    <clr-icon (click)="refresh()" shape="sync"></clr-icon>
+</div>
+<clr-datagrid [clrDgLoading]="isDataLoading" [(clrDgSingleSelected)]="selected" [clrDgRowSelection]="true" (clrDgSingleSelectedChange)="selectionChanged($event)">
+
+    <clr-dg-placeholder>No Data</clr-dg-placeholder>
 
     <clr-dg-column *ngIf="columnsToDisplay.includes(columns.JOB_ID)" [clrDgField]="'jobId'">Job Id</clr-dg-column>
     <clr-dg-column *ngIf="columnsToDisplay.includes(columns.JOB_TITLE)" [clrDgField]="'jobTitle'">Job Title</clr-dg-column>

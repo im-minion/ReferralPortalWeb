@@ -8,3 +8,15 @@
 .loadingCursor {
     cursor: wait;
 }
+
+clr-datagrid {
+    min-height: 10rem;
+}
+
+.datagrid-actions {
+    display: flex;
+    justify-content: flex-end;
+    color: #007bff;
+    padding-right: 0.2rem;
+    cursor: pointer;
+}

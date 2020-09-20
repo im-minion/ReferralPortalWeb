@@ -1,11 +1,8 @@
 <div class="wrapper-wh">
-    <h3>
-        Jobs You have created
+    <h3 class="heading-tag">
+        HM - Jobs you have created
     </h3>
-    <div *ngIf="isLoading" class="loader-align">
-        <app-loader></app-loader>
-    </div>
-    <div *ngIf="!isLoading">
+    <div>
         <div>
             <button type="button" class="btn btn-sm col-btn btn-primary" [routerLink]="['/hm/jobsForm']">
               Create New Job
@@ -18,7 +15,7 @@
             </button>
         </div>
         <div>
-            <app-rp-datagrid [columnsToDisplay]="displayedColumns" [allRows]="data" (clicked)="onClicked($event)"></app-rp-datagrid>
+            <app-rp-datagrid [isDataLoading]="isLoading" [columnsToDisplay]="displayedColumns" [allRows]="data" (clicked)="onClicked($event)" (refreshed)="onRefreshed(data)"></app-rp-datagrid>
         </div>
     </div>
     <clr-modal [(clrModalOpen)]="isJobModalOpen" *ngIf="openJob">

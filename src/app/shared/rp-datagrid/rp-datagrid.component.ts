@@ -9,11 +9,14 @@ import { HmService } from 'src/app/services/hm-services/hm.service';
 })
 export class RpDatagridComponent implements OnInit {
   public isLoadingResume: boolean = false;
-
+  @Input()
+  public isDataLoading: boolean = false;
   @Input() columnsToDisplay: string[];
   @Input() allRows: Array<any>;
   @Output()
   clicked = new EventEmitter<any>();
+  @Output()
+  refreshed = new EventEmitter<any>();
   public columns = COLUMNS;
   constructor(private hmService: HmService) {}
 
@@ -22,6 +25,10 @@ export class RpDatagridComponent implements OnInit {
 
   public selectionChanged(event) {
     if(event) this.clicked.emit(this.selected);
+  }
+
+  public refresh(event) {
+    this.refreshed.emit(true);
   }
 
   getFile(id: string) {

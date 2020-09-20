@@ -5,6 +5,7 @@ $color-dark-blue:#8CA7BA;
 $color-light-green:#61C06E;
 // @import '~bootstrap/dist/css/bootstrap.min.css';
 @import '~@clr/ui/clr-ui.min.css';
+@import '~@clr/icons/clr-icons.min.css';
 .custom-background-color {
     background-color: $color-white;
     color: $color-black;
@@ -31,8 +32,7 @@ body {
 }
 
 .heading-tag {
-    margin-left: 2%;
-    margin-top: 1%;
+    margin-bottom: 1rem;
 }
 
 .wh-100 {
