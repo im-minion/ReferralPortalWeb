@@ -60,10 +60,9 @@ export class HmJobsComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   openUpdateJobModal() {
-    console.log(this.selectedJob);
     this.isJobModalOpen = true;
     this.openJob = this.selectedJob;
-      this.updateJobForm.patchValue({
+    this.updateJobForm.patchValue({
       jobDescription: this.openJob.jobDescription,
       jobStatus: this.openJob.jobStatus,
       jobVisibility: this.openJob.jobVisibility,
