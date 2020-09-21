@@ -4,14 +4,32 @@
     flex-direction: column;
 }
 
-.heading {
-    align-self: flex-start;
-    margin: 8px;
-}
-
 .wrapper-wh {
     height: 86%;
-    margin-left: 1rem;
-    margin-right: 1rem;
+    margin-left: 8%;
+    margin-right: 8%;
     margin-top: 1rem;
+}
+
+.clr-form-control {
+    margin-top: 0.5rem !important;
+}
+
+.button-input {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.file-upload {
+    width: 14rem;
+}
+
+.file-fg {
+    display: flex;
+    flex-direction: row;
+    margin-top: 0.5rem;
 }
