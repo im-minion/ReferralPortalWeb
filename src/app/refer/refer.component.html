@@ -1,18 +1,34 @@
-<h3 class="heading-tag">Refer a Friend</h3>
-<div class="flex-container">
-    <div *ngIf="isLoading">
-        <app-loader></app-loader>
-    </div>
-    <div class="card flex-card custom-background-color" *ngIf="openJobs.length <= 0 && !isLoading">
-        <div class="card-body flex-body text-black">
-            <h6>No Data Available!</h6>
+<div class="wrapper-wh">
+    <h3 class="heading-tag">Refer a Friend</h3>
+    <div class="cards-container">
+        <div *ngIf="isLoading" class="display-center">
+            <span class="spinner spinner-md">
+          </span>
         </div>
-    </div>
-    <div *ngFor="let job of openJobs" class="card flex-card custom-background-color">
-        <div class="card-body flex-body text-black">
-            <h5 class="card-title flex-card-title">{{ job.jobTitle }} - #{{ job.jobId }}</h5>
-            <p class="card-text flex-card-text">{{ job.jobDescription }}</p>
-            <a [routerLink]="['/referForm', job.jobId]" class="btn btn-primary flex-card-button">See Details and Refer</a>
+        <div *ngIf="openJobs.length <= 0 && !isLoading" class="alert alert-info" role="alert">
+            <div class="alert-items">
+                <div class="alert-item static">
+                    <div class="alert-icon-wrapper">
+                        <clr-icon class="alert-icon" shape="info-circle"></clr-icon>
+                    </div>
+                    <span class="alert-text">
+                       No Jobs To Refer
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div *ngFor="let job of openJobs" class="card">
+            <div class="card-block">
+                <h3 class="card-title">{{ job.jobTitle }}, Job Id - #{{ job.jobId }}</h3>
+                <p class="card-text">
+                    {{ job.jobDescription }}
+                </p>
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-sm btn-primary" [routerLink]="['/referForm', job.jobId]">
+                See Details and Refer
+            </button>
+            </div>
         </div>
     </div>
 </div>

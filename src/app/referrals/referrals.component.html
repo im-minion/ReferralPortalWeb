@@ -5,16 +5,9 @@
     </h3>
     <div>
         <div>
-            <button type="button" class="btn btn-sm col-btn btn-primary" [routerLink]="['/hm/jobsForm']">
-        See Details
-        <!-- yet to implement above -->
-      </button>
-            <!-- <button [disabled]="!selectedJob" class="btn btn-sm col-btn btn-secondary" (click)="openUpdateJobModal()">
-        Update Job
-      </button>
-      <button [disabled]="!selectedJob" class="btn btn-sm col-btn btn-secondary" [routerLink]="['/hm/referrals', selectedJob?.jobId]">
-          Check Referrals
-      </button> -->
+            <button [disabled]="!selectedReferral" type="button" class="btn btn-sm col-btn btn-primary">
+              See Details
+            </button>
         </div>
         <div>
             <app-rp-datagrid [isDataLoading]="isLoading" [columnsToDisplay]="displayedColumns" [allRows]="data" (clicked)="onClicked($event)" (refreshed)="onRefreshed(data)"></app-rp-datagrid>

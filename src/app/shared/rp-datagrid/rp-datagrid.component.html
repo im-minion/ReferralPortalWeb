@@ -1,5 +1,7 @@
 <div class="datagrid-actions">
-    <button (click)="refresh()" class="btn btn-sm btn-icon"><clr-icon shape="sync"></clr-icon></button>
+    <button (click)="refresh()" class="btn btn-sm btn-link btn-icon" [disabled]="isDataLoading">
+      <clr-icon shape="sync" size="20"></clr-icon>
+    </button>
 </div>
 <clr-datagrid [clrDgLoading]="isDataLoading" [(clrDgSingleSelected)]="selected" [clrDgRowSelection]="true" (clrDgSingleSelectedChange)="selectionChanged($event)">
 
