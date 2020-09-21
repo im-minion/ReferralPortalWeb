@@ -1,71 +1,85 @@
-<nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a routerLink="/hm/jobs">HM Open Jobs</a></li>
-        <li class="breadcrumb-item">HM Create a New Job</li>
-    </ol>
-</nav>
-<div class="flex-container">
-    <h2 class="flex-title">Create a New Job</h2>
-    <hr width="100%">
-    <h5 class="heading">Please fill up the details : </h5>
-    <div class="col-md-8">
-        <form [formGroup]="createJobForm" (ngSubmit)="submit()">
-            <div class="form-group row">
-                <label for="jobId" class="col-sm-2 col-form-label">Job ID</label>
-                <div class="control col-sm-10">
-                    <input formControlName="jobId" name="referralEmailId" type="string" class="form-control" id="jobId" placeholder="Job ID(Prefer Number)">
+<div class="wrapper-wh">
+    <div class="btn-group btn-sm btn-primary btn-icon">
+        <button routerLink="/hm/jobs" class="btn">
+          <clr-icon shape="angle-double" style="transform: rotate(270deg);"></clr-icon>
+            Go back To Jobs you have created
+        </button>
+        <button disabled class="btn">
+          <clr-icon shape="form"></clr-icon>
+            Create a New Job
+        </button>
+    </div>
+    <div>
+        <h3>Create a New Job</h3>
+        <hr width="100%">
+        <h5 class="heading-tag">Please fill up the details : </h5>
+        <div>
+            <form [formGroup]="createJobForm" clrForm (ngSubmit)="submit()" clrLayout="horizontal">
+
+                <clr-input-container>
+                    <label>Job ID</label>
+                    <input clrInput formControlName="jobId" type="text" name="jobId" required/>
+                    <clr-control-helper>Job ID of referral</clr-control-helper>
+                    <clr-control-error>This is required Field.</clr-control-error>
+                </clr-input-container>
+
+                <clr-input-container>
+                    <label>Job Title</label>
+                    <input clrInput formControlName="jobTitle" type="text" name="jobTitle" required/>
+                    <clr-control-helper>Job Title of referral</clr-control-helper>
+                    <clr-control-error>This is required Field.</clr-control-error>
+                </clr-input-container>
+
+                <clr-input-container>
+                    <label>Created By</label>
+                    <input disabled clrInput formControlName="createdByEmployeeId" type="text" name="createdBy" required/>
+                    <clr-control-helper>Job ID</clr-control-helper>
+                </clr-input-container>
+
+                <div class="fg-textarea">
+                    <clr-textarea-container>
+                        <label>Job Description</label>
+                        <textarea clrTextarea formControlName="jobDescription" name="jobDescription" required></textarea>
+                    </clr-textarea-container>
                 </div>
-            </div>
-            <div class="form-group row">
-                <label for="jobTitle" class="col-sm-2 col-form-label">Job Title</label>
-                <div class="control col-sm-10">
-                    <input formControlName="jobTitle" name="jobTitle" type="text" class="form-control" id="jobTitle" placeholder="Job Title">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="createdBy" class="col-sm-2 col-form-label">Created By</label>
-                <div class="col-sm-10">
-                    <input type="text" readonly class="form-control" id="createdBy" value="{{employeeId}}">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="jobDescription" class="col-sm-2 col-form-label">Job Description</label>
-                <div class="control col-sm-10">
-                    <textarea formControlName="jobDescription" name="jobDescription" type="text" class="form-control" id="jobDescription" placeholder="Job Description"></textarea>
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="yoe" class="col-sm-2 col-form-label">Experience(years)</label>
-                <div class="control col-sm-10">
-                    <input formControlName="yoe" name="yoe" type="text" class="form-control" id="yoe" placeholder="Minium year of experience required.">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="primarySkill" class="col-sm-2 col-form-label">Primary Skill</label>
-                <div class="control col-sm-10">
-                    <input formControlName="primarySkill" name="primarySkill" type="text" class="form-control" id="primarySkill" placeholder="Primary Skill">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="secondarySkill" class="col-sm-2 col-form-label">Secondary Skill</label>
-                <div class="control col-sm-10">
-                    <input formControlName="secondarySkill" name="secondarySkill" type="text" class="form-control" id="secondarySkill" placeholder="Secondary Skill">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="prefLocation" class="col-sm-2 col-form-label">Preferred Loc.</label>
-                <div class="control col-sm-10">
-                    <input formControlName="prefLocation" name="prefLocation" type="text" class="form-control" id="prefLocation" placeholder="Preferred Location">
-                </div>
-            </div>
-            <div class="field is-grouped">
-                <div class="control btn-align-end">
-                    <div *ngIf="isLoadingSubmit">
-                        <app-loader></app-loader>
+
+                <clr-input-container>
+                    <label>Experience(years)</label>
+                    <input clrInput formControlName="yoe" value="0" min="0" max="99" type="number" name="yoe" required />
+                    <clr-control-helper>Minimum year of experience required for job.</clr-control-helper>
+                    <clr-control-error>This is required Field.</clr-control-error>
+                </clr-input-container>
+
+                <clr-input-container>
+                    <label>Primary Skill</label>
+                    <input clrInput formControlName="primarySkill" type="text" name="primarySkill" required/>
+                    <clr-control-helper>Enter Primary Skill required for job.</clr-control-helper>
+                    <clr-control-error>This is required Field.</clr-control-error>
+                </clr-input-container>
+
+                <clr-input-container>
+                    <label>Secondary Skill</label>
+                    <input clrInput formControlName="secondarySkill" type="text" name="secondarySkill" required/>
+                    <clr-control-helper>Enter Secondary Skill required for job.</clr-control-helper>
+                    <clr-control-error>This is required Field.</clr-control-error>
+                </clr-input-container>
+
+                <clr-input-container>
+                    <label>Preferred Location</label>
+                    <input clrInput formControlName="prefLocation" type="text" name="prefLocation" required/>
+                    <clr-control-helper>Enter Preferred Location for job.</clr-control-helper>
+                    <clr-control-error>This is required Field.</clr-control-error>
+                </clr-input-container>
+
+                <div>
+                    <div>
+                        <div *ngIf="isLoadingSubmit">
+                            <span class="spinner spinner-md"></span>
+                        </div>
+                        <button *ngIf="!isLoadingSubmit" type="button" class="btn btn-primary" [disabled]="!createJobForm.valid" (click)="submit()">Submit</button>
                     </div>
-                    <button *ngIf="!isLoadingSubmit" type="button" class="btn btn-primary" [disabled]="!createJobForm.valid" (click)="submit()">Submit</button>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
 </div>

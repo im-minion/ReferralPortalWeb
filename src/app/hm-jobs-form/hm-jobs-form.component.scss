@@ -1,15 +1,33 @@
-.flex-container {
+// .flex-container {
+//     display: flex;
+//     margin: 16px;
+//     flex-direction: column;
+//     align-items: center;
+// }
+// .heading {
+//     align-self: flex-start;
+//     margin: 8px;
+// }
+// .btn-align-end {
+//     text-align: end;
+// }
+.wrapper-wh {
+    height: 86%;
+    margin-left: 8%;
+    margin-right: 8%;
+    margin-top: 1rem;
+}
+
+.clr-form-control {
+    margin-top: 0.5rem !important;
+}
+
+.fg-textarea {
     display: flex;
-    margin: 16px;
     flex-direction: column;
-    align-items: center;
 }
 
-.heading {
-    align-self: flex-start;
-    margin: 8px;
-}
-
-.btn-align-end {
-    text-align: end;
+.clr-textarea {
+    min-width: 42rem !important;
+    min-height: 5rem !important;
 }

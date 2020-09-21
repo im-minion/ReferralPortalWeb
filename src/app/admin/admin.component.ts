@@ -3,7 +3,7 @@ import { Employee } from "../employee";
 import { AdminService } from "../services/admin-service/admin.service";
 import { Subscription } from "rxjs";
 import { TableDataService } from "../services/shared-service/table-data.service";
-import { UserRoles } from "../app.constants";
+import { COLUMNS, UserRoles } from "../app.constants";
 import { FormGroup, FormControl } from "@angular/forms";
 declare var $: any;
 
@@ -20,9 +20,7 @@ export class AdminComponent implements OnInit, OnDestroy {
   public isDataAvailable: boolean = false;
   public updateEmployeeForm: FormGroup;
   private displayedColumns: string[] = [
-    "Employee Id",
-    "Employee Role",
-    "Update",
+    COLUMNS.EMPLOYEE_ID, COLUMNS.EMPLOYEE_ROLE
   ];
   private dataSource: Array<Employee>;
   private subscriptions$: Subscription[] = [];

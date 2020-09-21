@@ -1,4 +1,4 @@
-<div class="wrapper-wh pl-8">
+<div class="wrapper-wh">
     <div class="btn-group btn-sm btn-primary btn-icon">
         <button routerLink="/refer" class="btn">
           <clr-icon shape="angle-double" style="transform: rotate(270deg);"></clr-icon>
@@ -27,14 +27,14 @@
         </div>
     </div>
 
-    <div class="" *ngIf="job != null && !isLoading">
+    <div *ngIf="job != null && !isLoading">
         <h3>
             Applying for Position: {{ job.jobTitle }} - #{{ jobId }}
         </h3>
         <p>{{job.jobDescription}}</p>
         <hr width="100%">
         <h5 class="heading-tag">Fill Up the Referral's Details : </h5>
-        <div class="col-md-8">
+        <div>
             <form [formGroup]="referForm" clrForm (ngSubmit)="submit()" clrLayout="horizontal">
                 <clr-input-container>
                     <label>Email ID</label>
@@ -42,6 +42,7 @@
                     <clr-control-helper>Email ID of referral</clr-control-helper>
                     <clr-control-error>This is required Field.</clr-control-error>
                 </clr-input-container>
+
                 <clr-input-container>
                     <label>Referral Name</label>
                     <input clrInput formControlName="referralName" type="text" name="referralName" required />
@@ -68,7 +69,7 @@
 
                 <clr-input-container>
                     <label>Experience(years)</label>
-                    <input clrInput formControlName="yoe" value="0" min="0" max="2" type="number" name="yoe" required />
+                    <input clrInput formControlName="yoe" value="0" min="0" max="99" type="number" name="yoe" required />
                     <clr-control-helper>Experience in years</clr-control-helper>
                     <clr-control-error>This is required Field.</clr-control-error>
                 </clr-input-container>
@@ -99,8 +100,8 @@
                   </label>
                 </div>
 
-                <div class="field is-grouped">
-                    <div class="control">
+                <div>
+                    <div>
                         <div *ngIf="isLoadingSubmit">
                             <app-loader></app-loader>
                         </div>

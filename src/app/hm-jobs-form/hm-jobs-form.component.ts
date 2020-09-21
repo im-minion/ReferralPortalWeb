@@ -17,7 +17,7 @@ export class HmJobsFormComponent implements OnInit {
   constructor(private hmService: HmService) { }
 
   ngOnInit() {
-    
+
     this.employeeId = sessionStorage.getItem('employeeId');
 
     this.createJobForm = new FormGroup({
@@ -31,17 +31,23 @@ export class HmJobsFormComponent implements OnInit {
       // following will not be inputs
       createdByEmployeeId: new FormControl(this.employeeId)
     });
-    
+
     this.createJobForm.patchValue({
       createdByEmployeeId: this.employeeId
     });
   }
 
   submit() {
+    this.isLoadingSubmit = true;
     let newJob: OpenJob;
     newJob = this.createJobForm.value;
     this.hmService.insertJob(newJob).subscribe((resp)=>{
       console.log(resp);
+      if (resp.inserted) {
+        this.createJobForm.reset();
+      }
+      alert(resp.message);
+      this.isLoadingSubmit = false
     });
   }
 
