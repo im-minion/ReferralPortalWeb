@@ -19,7 +19,6 @@ export class DashboardComponent implements OnInit {
     this.employee = new Employee(sessionStorage.getItem('employeeRole'), sessionStorage.getItem('employeeId'));
     this.employeeService.getAnalyticalInfo(this.employee.employeeId, this.employee.employeeRole).subscribe(
       (resp)=> {
-        console.log(resp);
         this.analyticalInfo = resp;
     },
     (err) => {

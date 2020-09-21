@@ -1,11 +1,17 @@
 .flex-container {
     display: flex;
-    margin: 16px;
+    margin-right: 8%;
     flex-direction: column;
-    align-items: center;
 }
 
 .heading {
     align-self: flex-start;
     margin: 8px;
+}
+
+.wrapper-wh {
+    height: 86%;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    margin-top: 1rem;
 }
