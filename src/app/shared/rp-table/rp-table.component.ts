@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild, EventEmitter, Output } from '@angular/core';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
-import { isNullOrUndefined } from 'util';
 import { ReferralLevels, ReferralStatus } from 'src/app/app.constants';
 import { TableDataService } from 'src/app/services/shared-service/table-data.service';
 import { HmService } from 'src/app/services/hm-services/hm.service';
@@ -36,7 +35,7 @@ export class RpTableComponent implements OnInit {
   }
 
   applyFilter(filterValue: string) {
-    if (!isNullOrUndefined(this.dataSource)) {
+    if ((this.dataSource)) {
       this.dataSource.filter = filterValue.trim().toLowerCase();
 
       if (this.dataSource.paginator) {
@@ -73,7 +72,7 @@ export class RpTableComponent implements OnInit {
   }
 
   isDataAvailable(): boolean {
-    if (!isNullOrUndefined(this.dataSource.data) && this.dataSource.data.length > 0)
+    if ((this.dataSource.data) && this.dataSource.data.length > 0)
       return true;
     else
       return false;

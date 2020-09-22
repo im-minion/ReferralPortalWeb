@@ -1,47 +1,38 @@
-<h3 class="heading-tag">
-    All Employees In System
-</h3>
-<div *ngIf="isLoading" class="loader-align">
-    <app-loader></app-loader>
-</div>
-<div *ngIf="!isLoading">
-    <div class="row">
-        <div class="col-md-10"></div>
-        <!-- <div class="col-md-2"><a [routerLink]="['/hm/jobsForm']" class="btn btn-primary">Create New Job</a></div> -->
-    </div>
+<div class="wrapper-wh">
+    <h3 class="heading-tag">
+        Admin - All Employees In System
+    </h3>
     <div>
-        <app-rp-table (clicked)="onClicked($event)"></app-rp-table>
+        <div>
+            <button [disabled]="!selectedEmployee" class="btn btn-sm col-btn btn-secondary" (click)="openUpdateEmployeeModal()">
+            Update Role
+          </button>
+        </div>
+        <div>
+            <app-rp-datagrid [isDataLoading]="isLoading" [columnsToDisplay]="displayedColumns" [allRows]="data" (clicked)="onClicked($event)" (refreshed)="onRefreshed(data)"></app-rp-datagrid>
+        </div>
     </div>
-</div>
 
-<div *ngIf="(selectedEmployee != null) || (selectedEmployee != undefined)" class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="updateModalLabel">{{ selectedEmployee.employeeId }} - Role {{ selectedEmployee.employeeRole }}</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-            </div>
-            <div class="modal-body">
-                <form [formGroup]="updateEmployeeForm">
-                    <div class="form-group fg">
-                        <label for="employeeRole" class="label">Select New Role:</label>
-                        <select class="form-control options" formControlName="employeeRole" name="employeeRole" id="employeeRole">
+
+    <clr-modal [(clrModalOpen)]="isEmployeeModalOpen" *ngIf="selectedEmployee">
+        <h3 class="modal-title">{{ selectedEmployee.employeeId }} - Role {{ selectedEmployee.employeeRole }}</h3>
+        <div class="modal-body">
+            <form clrForm [formGroup]="updateEmployeeForm" clrLayout="horizontal">
+                <div>
+                    <clr-select-container>
+                        <label>New Role:</label>
+                        <select formControlName="employeeRole" clrSelect name="employeeRole" required>
                         <option *ngFor="let userRole of userRoles" [ngValue]="userRole">
                           {{ userRole }}
                         </option>
-                  </select>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <div *ngIf="isLoadingUpdate">
-                    <app-loader></app-loader>
+                      </select>
+                    </clr-select-container>
                 </div>
-                <button *ngIf="!isLoadingUpdate" type="button" class="btn btn-primary" (click)="updateEmployee()">Update</button>
-            </div>
+            </form>
         </div>
-    </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline" (click)="isEmployeeModalOpen = false">Cancel</button>
+            <button [disabled]="isLoadingUpdate || !updateEmployeeForm.valid" type="button" class="btn btn-primary" (click)="updateEmployee()">Update</button>
+        </div>
+    </clr-modal>
 </div>

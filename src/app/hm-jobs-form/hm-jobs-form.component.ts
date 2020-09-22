@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { HmService } from '../services/hm-services/hm.service';
 import { OpenJob } from '../utilities/open-job-class';
 
@@ -13,11 +14,12 @@ export class HmJobsFormComponent implements OnInit {
   createJobForm: FormGroup;
   employeeId: string;
   isLoadingSubmit: boolean = false;
+  private subscriptions$: Subscription[] =[];
 
   constructor(private hmService: HmService) { }
 
-  ngOnInit() {
-    
+  ngOnInit(): void {
+
     this.employeeId = sessionStorage.getItem('employeeId');
 
     this.createJobForm = new FormGroup({
@@ -31,18 +33,29 @@ export class HmJobsFormComponent implements OnInit {
       // following will not be inputs
       createdByEmployeeId: new FormControl(this.employeeId)
     });
-    
+
     this.createJobForm.patchValue({
       createdByEmployeeId: this.employeeId
     });
   }
 
+  ngOnDestroy(): void {
+    this.subscriptions$.map(sub => sub && sub.unsubscribe());
+  }
+
   submit() {
+    this.isLoadingSubmit = true;
     let newJob: OpenJob;
     newJob = this.createJobForm.value;
-    this.hmService.insertJob(newJob).subscribe((resp)=>{
+    const addJob$ = this.hmService.insertJob(newJob).subscribe((resp)=>{
       console.log(resp);
+      if (resp.inserted) {
+        this.createJobForm.reset();
+      }
+      alert(resp.message);
+      this.isLoadingSubmit = false
     });
+    this.subscriptions$.push(addJob$);
   }
 
 }

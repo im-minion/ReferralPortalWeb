@@ -15,13 +15,15 @@ import { HttpClientModule, HTTP_INTERCEPTORS }    from '@angular/common/http';
 import { SharedModule } from './shared/shared.module';
 import { HmReferralsComponent } from './hm-referrals/hm-referrals.component';
 import { HmJobsComponent } from './hm-jobs/hm-jobs.component';
-import { HmReferralsStatusComponent } from './hm-referrals-status/hm-referrals-status.component';
 import { TokenInterceptorService } from './services/interceptor/token-interceptor.service';
 import { ReferFormComponent } from './refer-form/refer-form.component';
 import { HmJobsFormComponent } from './hm-jobs-form/hm-jobs-form.component';
 import { HrReferralsComponent } from './hr-referrals/hr-referrals.component';
 import { HrAllReferralsComponent } from './hr-all-referrals/hr-all-referrals.component';
 import { AdminComponent } from './admin/admin.component';
+import { ClarityModule } from '@clr/angular';
+import { SeeReferralDetailsComponent } from './see-referral-details/see-referral-details.component';
+import { UpdateReferralStatusComponent } from './update-referral-status/update-referral-status.component';
 
 
 @NgModule({
@@ -36,15 +38,17 @@ import { AdminComponent } from './admin/admin.component';
     RegisterComponent,
     HmReferralsComponent,
     HmJobsComponent,
-    HmReferralsStatusComponent,
     ReferFormComponent,
     HmJobsFormComponent,
     HrReferralsComponent,
     HrAllReferralsComponent,
-    AdminComponent
+    AdminComponent,
+    SeeReferralDetailsComponent,
+    UpdateReferralStatusComponent
   ],
   imports: [
     BrowserModule,
+    ClarityModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,

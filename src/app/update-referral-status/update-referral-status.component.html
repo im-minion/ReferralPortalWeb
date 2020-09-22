@@ -1,0 +1,49 @@
+<clr-modal [(clrModalOpen)]="isModalOpen && updateData" [clrModalSize]="'md'">
+    <h3 class="modal-title">Update Referral - {{updateData.referralName}}</h3>
+    <div class="modal-body">
+        <form clrForm [formGroup]="updateForm" clrLayout="horizontal">
+
+            <clr-input-container>
+                <label>Email ID</label>
+                <input clrInput formControlName="referralEmailId" type="text" name="referralEmailId" required/>
+                <clr-control-helper>Email ID of Referral</clr-control-helper>
+            </clr-input-container>
+
+            <clr-input-container>
+                <label>Level</label>
+                <input clrInput formControlName="currentLevel" type="text" name="currentLevel" required/>
+                <clr-control-helper>Current Level of Referral</clr-control-helper>
+            </clr-input-container>
+
+            <clr-input-container>
+                <label>Status</label>
+                <input clrInput formControlName="referralCurrentStatus" type="text" name="referralCurrentStatus" required/>
+                <clr-control-helper>Current Status of Referral</clr-control-helper>
+            </clr-input-container>
+
+            <clr-select-container>
+                <label>Update Status To</label>
+                <select formControlName="status" clrSelect name="status" required>
+                <option>ACCEPTED</option>
+                <option>REJECTED</option>
+              </select>
+                <clr-control-helper>Accept or Reject Referral</clr-control-helper>
+            </clr-select-container>
+
+            <div class="fg-textarea">
+                <clr-textarea-container>
+                    <label>Feedback</label>
+                    <textarea clrTextarea formControlName="reason" name="reason" required></textarea>
+                </clr-textarea-container>
+            </div>
+
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline" (click)="close()">Cancel</button>
+        <div *ngIf="isLoadingUpdate">
+            <span class="spinner spinner-md"></span>
+        </div>
+        <button *ngIf="!isLoadingUpdate" [disabled]="isLoadingUpdate || !updateForm.valid" type="button" class="btn btn-primary" (click)="updateReferral(updateData)">Update</button>
+    </div>
+</clr-modal>

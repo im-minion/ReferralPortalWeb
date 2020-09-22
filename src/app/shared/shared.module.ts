@@ -11,9 +11,11 @@ import { MatPaginatorModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from '../app-routing.module';
 import { PercentProgressPipe } from './percent-progress.pipe';
+import { RpDatagridComponent } from './rp-datagrid/rp-datagrid.component';
+import { ClarityModule } from '@clr/angular';
 
 @NgModule({
-  declarations: [MessageComponent, LoaderComponent, RpTableComponent, PercentProgressPipe],
+  declarations: [MessageComponent, LoaderComponent, RpTableComponent, PercentProgressPipe, RpDatagridComponent],
   imports: [
     CommonModule,
     BrowserAnimationsModule,
@@ -23,8 +25,9 @@ import { PercentProgressPipe } from './percent-progress.pipe';
     MatTableModule,
     FormsModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ClarityModule
   ],
-  exports: [ MessageComponent, LoaderComponent, RpTableComponent ]
+  exports: [ MessageComponent, LoaderComponent, RpTableComponent, RpDatagridComponent ]
 })
 export class SharedModule { }

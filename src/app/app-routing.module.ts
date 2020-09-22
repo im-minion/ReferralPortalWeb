@@ -7,7 +7,6 @@ import { ReferralsComponent } from './referrals/referrals.component';
 import { RegisterComponent } from './register/register.component';
 import { HmReferralsComponent } from './hm-referrals/hm-referrals.component';
 import { HmJobsComponent } from './hm-jobs/hm-jobs.component';
-import { HmReferralsStatusComponent } from './hm-referrals-status/hm-referrals-status.component';
 import { EmployeeGuard } from './employee.guard';
 import { ReferFormComponent } from './refer-form/refer-form.component';
 import { HmJobsFormComponent } from './hm-jobs-form/hm-jobs-form.component';
@@ -61,11 +60,6 @@ const routes: Routes = [
   {
     path: 'hm/referrals/:jobId',
     component: HmReferralsComponent,
-    canActivate: [EmployeeGuard]
-  },
-  {
-    path: 'hm/referralsStatus',
-    component: HmReferralsStatusComponent,
     canActivate: [EmployeeGuard]
   },
   {

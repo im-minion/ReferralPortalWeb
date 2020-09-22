@@ -1,10 +1,10 @@
-import { Component, OnInit, OnChanges, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnChanges, OnDestroy, ViewChild } from '@angular/core';
 import { HmService } from '../services/hm-services/hm.service';
 import { OpenJob } from '../utilities/open-job-class';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { JobStatus} from '../app.constants';
-import { TableDataService } from '../services/shared-service/table-data.service';
-declare var $: any;
+import { COLUMNS, JobStatus} from '../app.constants';
+import { ClrForm } from '@clr/angular';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-hm-jobs',
   templateUrl: './hm-jobs.component.html',
@@ -17,11 +17,15 @@ export class HmJobsComponent implements OnInit, OnChanges, OnDestroy {
   public openJob: OpenJob = null;
   public updateJobForm: FormGroup;
   public isLoadingUpdate: boolean = false;
-
+  @ViewChild(ClrForm, {static: true}) clrForm;
   private employeeId: string;
-  private displayedColumns: string[] = ['Job Id', 'Title', 'Visibility', 'Job Status', 'Update', 'Check Referrals'];
+  public data:Array<OpenJob> = [];
+  public selectedJob: OpenJob = null;
+  public isJobModalOpen: boolean = false;
+  public displayedColumns: string[] = [COLUMNS.JOB_ID, COLUMNS.JOB_TITLE, COLUMNS.JOB_VISIBILITY, COLUMNS.JOB_STATUS];
 
-  constructor(private hmService: HmService, private tableDataService: TableDataService) {
+  private subscriptions$: Subscription[] =[];
+  constructor(private hmService: HmService) {
   }
 
   ngOnInit() {
@@ -39,45 +43,54 @@ export class HmJobsComponent implements OnInit, OnChanges, OnDestroy {
     this.loadOpenJobs();
   }
 
-  ngOnDestroy() {
-    this.tableDataService.clearData();
+  ngOnDestroy(): void {
+    this.subscriptions$.map(sub => sub && sub.unsubscribe());
   }
 
   loadOpenJobs() {
-    this.hmService.getOpenJobsByEmployeeId(this.employeeId).subscribe((resp: Array<OpenJob>) => {
-      // this.dataSource = resp;
-      this.tableDataService.changeDataSource(resp);
-      this.tableDataService.changeDisplayedColumns(this.displayedColumns);
+    this.isLoading= true;
+    const jobsSub$= this.hmService.getOpenJobsByEmployeeId(this.employeeId).subscribe((resp: Array<OpenJob>) => {
+      this.data = resp;
       this.isLoading = false;
     });
-
+    this.subscriptions$.push(jobsSub$);
   }
 
   onClicked(data: any) {
-    this.openJob = data;
+    this.selectedJob = data;
+  }
+
+  openUpdateJobModal() {
+    this.isJobModalOpen = true;
+    this.openJob = this.selectedJob;
     this.updateJobForm.patchValue({
       jobDescription: this.openJob.jobDescription,
       jobStatus: this.openJob.jobStatus,
       jobVisibility: this.openJob.jobVisibility,
       jobId: this.openJob.jobId
     });
-    //  $("#updateModal").modal('show');
   }
 
-  updateJob() {
+  update() {
     this.isLoadingUpdate = true;
-    this.hmService.updateJobStatus(this.updateJobForm.value).subscribe(
-      (resp: any) => {
-        console.log(resp);
+    const updateJobSub$ = this.hmService.updateJobStatus(this.updateJobForm.value).subscribe(
+      () => {
+        this.isJobModalOpen = false;
         this.isLoadingUpdate = false;
         this.loadOpenJobs();
-        $("#updateModal").modal('hide');
       },
       (err: any) => {
         console.log(err);
         this.isLoadingUpdate = false;
       }
     );
+    this.subscriptions$.push(updateJobSub$);
+  }
+
+  public onRefreshed(data): void {
+    if(data) {
+      this.loadOpenJobs();
+    }
   }
 
 }

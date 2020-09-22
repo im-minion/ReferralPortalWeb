@@ -1,8 +1,16 @@
-.fg {
+:host {
+    width: 100%;
+    height: 100%;
+}
+
+.fg-textarea {
     display: flex;
-    align-items: center;
-    align-self: center;
-    min-width: max-content;
+    flex-direction: column;
+}
+
+textarea {
+    width: 100%;
+    min-height: 8rem;
 }
 
 .label {
@@ -16,4 +24,11 @@
 
 .jd-area {
     height: 14rem;
+    width: 24rem;
+}
+
+.wrapper-wh {
+    height: 86%;
+    margin-left: 8%;
+    margin-right: 8%;
 }

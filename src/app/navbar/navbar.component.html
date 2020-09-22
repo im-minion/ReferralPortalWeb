@@ -1,51 +1,21 @@
-<nav class="navbar navbar-expand-lg navbar-dark revert-background-color">
-    <a *ngIf="!valid()" class="navbar-brand" routerLink="/dashboard">Referral Portal</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul *ngIf="valid()" class="navbar-nav pl-8">
-            <li>
-                <a class="nav-link" routerLink="/dashboard" routerLinkActive="active">Home</a>
-            </li>
-            <li *ngIf="employeeRole != userRoleConstants.ADMIN" class="nav-item">
-                <a class="nav-link" routerLink="/refer">Refer a friend</a>
-            </li>
-            <li *ngIf="employeeRole != userRoleConstants.ADMIN" class="nav-item">
-                <a class="nav-link" routerLink="/status">Status</a>
-            </li>
-            <li *ngIf="employeeRole === userRoleConstants.HM" class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="hmDropDownTabs" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Hiring Manager Section
-                </a>
-                <div class="dropdown-menu" aria-labelledby="hmDropDownTabs">
-                    <a class="dropdown-item" routerLink="/hm/jobs" routerLinkActive="active">Jobs Status</a>
-                </div>
-            </li>
-
-            <li *ngIf="employeeRole === userRoleConstants.HR" class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="hrDropDownTabs" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        HR Section
-                    </a>
-                <div class="dropdown-menu" aria-labelledby="hrDropDownTabs">
-                    <a class="dropdown-item" routerLink="/hr/referrals" routerLinkActive="active">Referrals at HR Round</a>
-                    <a class="dropdown-item" routerLink="/hr/allReferrals" routerLinkActive="active">All Referrals</a>
-                </div>
-            </li>
-            <li *ngIf="employeeRole === userRoleConstants.ADMIN" class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="hrDropDownTabs" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Admin Section
-                    </a>
-                <div class="dropdown-menu" aria-labelledby="hrDropDownTabs">
-                    <a class="dropdown-item" routerLink="/admin" routerLinkActive="active">Update Users</a>
-                </div>
-            </li>
-        </ul>
+<header class="header-6">
+    <div class="branding">
+        <span class="title">Referral Portal</span>
     </div>
-    <ul *ngIf="valid()" class="navbar-nav navbar-right">
-        <li>
-            <button (click)="logout()" class="btn btn-outline-warning my-2 my-sm-0">Log Out</button>
-        </li>
-    </ul>
-</nav>
+    <div *ngIf="valid()" class="header-nav">
+        <a class="nav-link" routerLink="/dashboard" routerLinkActive="active">Home</a>
+
+        <a *ngIf="employeeRole != userRoleConstants.ADMIN" class="nav-link" routerLink="/refer" routerLinkActive="active">Refer a friend</a>
+        <a *ngIf="employeeRole != userRoleConstants.ADMIN" class="nav-link" routerLink="/status" routerLinkActive="active">Status</a>
+
+        <a *ngIf="employeeRole === userRoleConstants.HM" class="nav-link" routerLink="/hm/jobs" routerLinkActive="active">Jobs Status</a>
+
+        <a *ngIf="employeeRole === userRoleConstants.HR" class="nav-link" routerLink="/hr/referrals" routerLinkActive="active">Referrals at HR Round</a>
+        <a *ngIf="employeeRole === userRoleConstants.HR" class="nav-link" routerLink="/hr/allReferrals" routerLinkActive="active">All Referrals</a>
+
+        <a *ngIf="employeeRole === userRoleConstants.ADMIN" class="nav-link" routerLink="/admin" routerLinkActive="active">Update Users</a>
+    </div>
+    <div class="header-actions">
+        <button *ngIf="valid()" (click)="logout()" class="btn btn-outline-warning">Log Out</button>
+    </div>
+</header>

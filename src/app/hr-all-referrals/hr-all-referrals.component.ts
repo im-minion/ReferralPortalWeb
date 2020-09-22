@@ -1,31 +1,57 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { COLUMNS } from '../app.constants';
 import { HrService } from '../services/hr-service/hr.service';
-import { TableDataService } from '../services/shared-service/table-data.service';
+import { Referrals } from '../utilities/referrals-class';
 
 @Component({
   selector: 'app-hr-all-referrals',
   templateUrl: './hr-all-referrals.component.html',
   styleUrls: ['./hr-all-referrals.component.scss']
 })
-export class HrAllReferralsComponent implements OnInit {
-  detailsData: any;
+export class HrAllReferralsComponent implements OnInit, OnDestroy {
   public isLoading: boolean = true;
-  constructor(private hrService: HrService, private tableDataService: TableDataService) { }
+  private subscriptions$: Subscription[] = [];
+  public displayedColumns: string[] = [COLUMNS.JOB_ID, COLUMNS.REFERRAL_NAME, COLUMNS.RESUME, COLUMNS.CURRENT_LEVEL, COLUMNS.CURRENT_STATUS];
+  public data: Array<Referrals> = [];
+  public selectedReferral: Referrals = null;
+  public isDetailsModalOpen: boolean = false;
 
-  ngOnInit() {
+  constructor(private hrService: HrService) { }
+
+  ngOnInit(): void {
     this.loadData();
   }
 
-  loadData() {
-    this.isLoading = true;
-    this.hrService.getAllReferralsForHr().subscribe((resp)=> {
-      this.isLoading = false;
-      this.tableDataService.changeDataSource(resp);
-      this.tableDataService.changeDisplayedColumns(['Job Id', 'Referral Name', 'Resume', 'Current Level', 'Current Status', 'See Details']);
-    });
+  ngOnDestroy(): void {
+    this.subscriptions$.map(sub => sub && sub.unsubscribe());
   }
 
-  onClicked(data: any) {
-    this.detailsData = data;
+  private loadData(): void {
+    this.isLoading = true;
+    const allRefSub$ = this.hrService.getAllReferralsForHr().subscribe((resp) => {
+      this.isLoading = false;
+      this.data = resp;
+    });
+    this.subscriptions$.push(allRefSub$);
   }
+
+  public onClicked(data: any) {
+    this.selectedReferral = data;
+  }
+
+  public onRefreshed(data): void {
+    if (data) {
+      this.loadData();
+    }
+  }
+
+  public closeDetailsModal(data): void {
+    this.isDetailsModalOpen = false;
+  }
+
+  public openDetailsModal(): void {
+    this.isDetailsModalOpen = true;
+  }
+
 }

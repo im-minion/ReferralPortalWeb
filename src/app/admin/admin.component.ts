@@ -3,7 +3,7 @@ import { Employee } from "../employee";
 import { AdminService } from "../services/admin-service/admin.service";
 import { Subscription } from "rxjs";
 import { TableDataService } from "../services/shared-service/table-data.service";
-import { UserRoles } from "../app.constants";
+import { COLUMNS, UserRoles } from "../app.constants";
 import { FormGroup, FormControl } from "@angular/forms";
 declare var $: any;
 
@@ -19,17 +19,15 @@ export class AdminComponent implements OnInit, OnDestroy {
   public userRoles = [];
   public isDataAvailable: boolean = false;
   public updateEmployeeForm: FormGroup;
-  private displayedColumns: string[] = [
-    "Employee Id",
-    "Employee Role",
-    "Update",
+  public displayedColumns: string[] = [
+    COLUMNS.EMPLOYEE_ID, COLUMNS.EMPLOYEE_ROLE
   ];
-  private dataSource: Array<Employee>;
+  public data: Array<Employee> = [];
+  public isEmployeeModalOpen: boolean = false;
   private subscriptions$: Subscription[] = [];
 
   public constructor(
-    private adminService: AdminService,
-    private tableDataService: TableDataService
+    private adminService: AdminService
   ) {}
 
   ngOnInit() {
@@ -46,10 +44,10 @@ export class AdminComponent implements OnInit, OnDestroy {
   }
 
   private loadEmployees(): void {
+    this.isLoading = true;
     const employeesSub$ = this.adminService.getAllEmployees().subscribe(
-      (data: Array<Employee>) => {
-        this.tableDataService.changeDataSource(data);
-        this.tableDataService.changeDisplayedColumns(this.displayedColumns);
+      (resp: Array<Employee>) => {
+        this.data = resp;
         this.isLoading = false;
       },
       (err) => {
@@ -63,11 +61,8 @@ export class AdminComponent implements OnInit, OnDestroy {
     this.subscriptions$.map((sub) => sub && sub.unsubscribe());
   }
 
-  public onClicked(event) {
-    this.selectedEmployee = event;
-    this.updateEmployeeForm
-      .get("employeeRole")
-      .setValue(this.selectedEmployee.employeeRole);
+  public onClicked(data:any): void {
+    this.selectedEmployee = data;
   }
 
   public updateEmployee(): void {
@@ -81,7 +76,7 @@ export class AdminComponent implements OnInit, OnDestroy {
       () => {
         this.loadEmployees();
         this.isLoadingUpdate = false;
-        $("#updateModal").modal("hide");
+        this.isEmployeeModalOpen = false;
       },
       (err) => {
         this.isLoadingUpdate = false;
@@ -89,5 +84,18 @@ export class AdminComponent implements OnInit, OnDestroy {
       }
     );
     this.subscriptions$.push(changeRole$);
+  }
+
+  public openUpdateEmployeeModal(): void {
+      this.isEmployeeModalOpen = true;
+      this.updateEmployeeForm
+      .get("employeeRole")
+      .setValue(this.selectedEmployee.employeeRole);
+  }
+
+  public onRefreshed(data): void {
+    if(data) {
+      this.loadEmployees();
+    }
   }
 }

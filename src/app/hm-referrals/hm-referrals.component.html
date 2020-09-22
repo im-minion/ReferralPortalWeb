@@ -1,116 +1,34 @@
-<nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a routerLink="/hm/jobs">Job Status</a></li>
-        <li class="breadcrumb-item">Referrals</li>
-    </ol>
-</nav>
-<h3 class="heading-tag">
-    Referrals for the Job - #{{jobId}}
-</h3>
-<div *ngIf="isLoading" class="loader-align">
-    <app-loader></app-loader>
-</div>
-<div *ngIf="!isLoading">
-    <app-rp-table (clicked)="onClicked($event)"></app-rp-table>
-</div>
+<div class="wrapper-wh">
+    <div class="btn-group btn-sm btn-primary btn-icon">
+        <button routerLink="/hm/jobs" class="btn">
+      <clr-icon shape="angle-double" style="transform: rotate(270deg);"></clr-icon>
+        Go back To Jobs you have created
+      </button>
+        <button disabled class="btn">
+          Referrals
+      </button>
+    </div>
 
-<div *ngIf="(updateData != null) || (updateData != undefined)" class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="updateModalLabel">Update Referral</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
+    <h3 class="heading-tag">
+        Referrals for the Job - #{{jobId}}
+    </h3>
+    <div>
+        <div>
+            <button [disabled]="!selectedReferral" class="btn btn-sm col-btn btn-secondary" (click)="openDetailsModal()">
+              See Details
+            </button>
+            <button [disabled]="shouldDisableUpdate()" class="btn btn-sm col-btn btn-secondary" (click)="openUpdateStatusModal()">
+              Update Status
           </button>
-            </div>
-            <div class="modal-body">
-                <form [formGroup]="updateForm">
-                    <div class="form-group">
-                        <label for="referralEmailId">Referral Email Id:</label>
-                        <input type="text" readonly class="form-control" id="referralEmailId" value="{{updateData.referralEmailId}}">
-                    </div>
-                    <div class="form-group">
-                        <label for="currentLevel">Referral Current Level:</label>
-                        <input type="text" readonly class="form-control" id="currentLevel" value="{{updateData.referralCurrentLevel}}">
-                    </div>
-                    <div class="form-group">
-                        <label for="referralCurrentStatus">Referral Current Status:</label>
-                        <input type="text" readonly class="form-control" id="referralCurrentStatus" value="{{updateData.referralCurrentStatus}}">
-                    </div>
-                    <div class="form-group">
-                        <label for="status">Update Status To:</label>
-                        <select formControlName="status" name="status" class="form-control status-options" id="status">
-                          <option>ACCEPTED</option>
-                          <option>REJECTED</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="reason">Reason/Comments</label>
-                        <textarea formControlName="reason" type="text" name="reason" class="form-control" id="reason">
-                        </textarea>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <div *ngIf="isLoadingUpdate">
-                    <app-loader></app-loader>
-                </div>
-                <button *ngIf="!isLoadingUpdate" type="button" class="btn btn-primary" (click)="updateReferral(updateData)">Update</button>
-            </div>
+        </div>
+        <div>
+            <app-rp-datagrid [isDataLoading]="isLoading" [columnsToDisplay]="displayedColumns" [allRows]="data" (clicked)="onClicked($event)" (refreshed)="onRefreshed(data)"></app-rp-datagrid>
         </div>
     </div>
 </div>
-
-<div *ngIf="(detailsData != null) || (detailsData != undefined)" class="modal fade" id="seeDetails" tabindex="-1" role="dialog" aria-labelledby="seeDetails" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="seeDetails">{{detailsData.referralName}}</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-            </div>
-            <div class="modal-body">
-                <h6>Email : {{detailsData.referralEmailId}}</h6>
-                <h6>Current Level : {{detailsData.referralCurrentLevel}}</h6>
-                <h6>Current Status : {{detailsData.referralCurrentStatus}}</h6>
-                <h6>Resume :
-                    <span [ngClass]="{'link': true, 'loadingCursor': isLoadingResume}" (click)="getFile(detailsData.resumeV2)">click to open in new tab</span>
-                </h6>
-                <h6>Referred By : {{detailsData.referredBy}}</h6>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>
-                                Level
-                            </th>
-                            <th>
-                                Status
-                            </th>
-                            <th>
-                                Reason/Comment
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let reason of detailsData.referralStatusReasonsList">
-                            <td>
-                                {{reason.level}}
-                            </td>
-                            <td>
-                                {{reason.status}}
-                            </td>
-                            <td>
-                                {{reason.reasonToUpdate}}
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
+<ng-container *ngIf="isDetailsModalOpen">
+    <app-see-referral-details [isModalOpen]="isDetailsModalOpen" [detailsData]="selectedReferral" (closeModal)="closeDetailsModal(data)"></app-see-referral-details>
+</ng-container>
+<ng-container *ngIf="isUpdateModalOpen">
+    <app-update-referral-status [isModalOpen]="isUpdateModalOpen" [updateData]="selectedReferral" (closeModal)="closeUpdateModal(data)"></app-update-referral-status>
+</ng-container>

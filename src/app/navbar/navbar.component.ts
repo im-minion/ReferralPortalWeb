@@ -1,5 +1,4 @@
 import { Component, OnInit, OnChanges, Input, OnDestroy } from '@angular/core';
-import { isNullOrUndefined } from 'util';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/authentication/auth.service';
 import { Subscription } from 'rxjs';
@@ -10,7 +9,6 @@ import { UserRoles } from '../app.constants';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
-
 export class NavbarComponent implements OnInit, OnDestroy {
   employeeRole: string;
   employeeRoleSubscription: Subscription;
@@ -37,7 +35,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   valid() {
     // check if login is successful or not
-    if (!isNullOrUndefined(sessionStorage.getItem('employeeRole')) && !isNullOrUndefined(sessionStorage.getItem('employeeId'))) {
+    if ((sessionStorage.getItem('employeeRole')) && (sessionStorage.getItem('employeeId'))) {
       return true;
     } else {
       return false;
@@ -52,5 +50,5 @@ export class NavbarComponent implements OnInit, OnDestroy {
     sessionStorage.clear();
     this.router.navigateByUrl('login');
   }
-  
+
 }

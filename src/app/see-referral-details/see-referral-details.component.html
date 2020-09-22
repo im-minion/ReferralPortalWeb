@@ -1,0 +1,44 @@
+<clr-modal [(clrModalOpen)]="isModalOpen && detailsData">
+    <h3 class="modal-title">{{detailsData.referralName}}</h3>
+    <div class="modal-body">
+        <h6>Email : {{detailsData.referralEmailId}}</h6>
+        <h6>Current Level : {{detailsData.referralCurrentLevel}}</h6>
+        <h6>Current Status : {{detailsData.referralCurrentStatus}}</h6>
+        <h6>Resume :
+            <span [ngClass]="{'link': true, 'loadingCursor': isLoadingResume}" (click)="getFile(detailsData.resumeV2)">click to open in new tab</span>
+        </h6>
+        <h6>Referred By : {{detailsData.referredBy}}</h6>
+        <table *ngIf="detailsData.referralStatusReasonsList && detailsData.referralStatusReasonsList.length > 0" class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Level
+                    </th>
+                    <th>
+                        Status
+                    </th>
+                    <th>
+                        Reason/Comment
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let reason of detailsData.referralStatusReasonsList">
+                    <td>
+                        {{reason.level}}
+                    </td>
+                    <td>
+                        {{reason.status}}
+                    </td>
+                    <td>
+                        {{reason.reasonToUpdate}}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline" (click)="close()">Cancel</button>
+    </div>
+</clr-modal>

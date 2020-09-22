@@ -1,7 +1,16 @@
-<h3 class="heading-tag"> Your Referrals</h3>
-<div *ngIf="isLoading" class="loader-align">
-    <app-loader></app-loader>
-</div>
-<div *ngIf="!isLoading">
-    <app-rp-table></app-rp-table>
+<div class="wrapper-wh">
+
+    <h3 class="heading-tag">
+        Your Referrals
+    </h3>
+    <div>
+        <div>
+            <button [disabled]="!selectedReferral" type="button" class="btn btn-sm col-btn btn-primary">
+              See Details
+            </button>
+        </div>
+        <div>
+            <app-rp-datagrid [isDataLoading]="isLoading" [columnsToDisplay]="displayedColumns" [allRows]="data" (clicked)="onClicked($event)" (refreshed)="onRefreshed(data)"></app-rp-datagrid>
+        </div>
+    </div>
 </div>

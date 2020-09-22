@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/authentication/auth.service';
-import { isNullOrUndefined } from 'util';
 import { Employee } from '../employee';
 import { ResponseTypes } from '../app.constants';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -30,7 +29,7 @@ export class LoginComponent implements OnInit {
   login() {
     this.loader = true;
     this.authService.login(this.employeeId, this.password).subscribe((loginResponse: any) => {
-      if (!isNullOrUndefined(loginResponse) && !isNullOrUndefined(loginResponse.employeeId)) {
+      if ((loginResponse) && (loginResponse.employeeId)) {
         this.authService.setAuthToken(loginResponse);
         this.router.navigate(['dashboard']);
         this.messageBool = true;

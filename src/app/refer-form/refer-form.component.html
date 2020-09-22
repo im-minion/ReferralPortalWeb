@@ -1,85 +1,114 @@
-<nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a routerLink="/refer">Refer a friend</a></li>
-        <li class="breadcrumb-item">Refer-Form</li>
-    </ol>
-</nav>
+<div class="wrapper-wh">
+    <div class="btn-group btn-sm btn-primary btn-icon">
+        <button routerLink="/refer" class="btn">
+          <clr-icon shape="angle-double" style="transform: rotate(270deg);"></clr-icon>
+          Go back To All Open Jobs
+        </button>
+        <button disabled class="btn">
+          <clr-icon shape="form"></clr-icon>
+          Refer-Form
+        </button>
+    </div>
 
-<div *ngIf="isLoading" class="loader-align">
-    <app-loader></app-loader>
-</div>
-<div *ngIf="!isLoading && job == null">
-    Invalid JobId
-</div>
-<div class="flex-container" *ngIf="job != null && !isLoading">
-    <h2 class="flex-title">Applying for Position: {{ job.jobTitle }} - #{{ jobId }}</h2>
-    <h6>{{job.jobDescription}}</h6>
-    <hr width="100%">
-    <h5 class="heading">Fill Up the Referral's Details : </h5>
-    <div class="col-md-8">
-        <form [formGroup]="referForm" (ngSubmit)="submit()">
-            <div class="form-group row">
-                <label for="referralEmailId" class="col-sm-2 col-form-label">Email ID</label>
-                <div class="control col-sm-10">
-                    <input formControlName="referralEmailId" name="referralEmailId" type="email" class="form-control" id="referralEmailId" placeholder="Email">
+    <div *ngIf="isLoading" class="loader-align">
+        <span class="spinner spinner-md"></span>
+    </div>
+
+    <div *ngIf="!isLoading && job == null" class="alert alert-danger" role="alert">
+        <div class="alert-items">
+            <div class="alert-item static">
+                <div class="alert-icon-wrapper">
+                    <clr-icon class="alert-icon" shape="exclamation-circle"></clr-icon>
                 </div>
+                <span class="alert-text">
+                Invalid JobId
+              </span>
             </div>
-            <div class="form-group row">
-                <label for="referralName" class="col-sm-2 col-form-label">Referral Name</label>
-                <div class="control col-sm-10">
-                    <input formControlName="referralName" name="referralName" type="text" class="form-control" id="referralName" placeholder="Referral Name">
+        </div>
+    </div>
+
+    <div *ngIf="job != null && !isLoading">
+        <h3>
+            Applying for Position: {{ job.jobTitle }} - #{{ jobId }}
+        </h3>
+        <p>{{job.jobDescription}}</p>
+        <hr width="100%">
+        <h5 class="heading-tag">Fill Up the Referral's Details : </h5>
+        <div>
+            <form [formGroup]="referForm" clrForm (ngSubmit)="submit()" clrLayout="horizontal">
+                <clr-input-container>
+                    <label>Email ID</label>
+                    <input clrInput formControlName="referralEmailId" type="email" name="referralEmailId" required />
+                    <clr-control-helper>Email ID of referral</clr-control-helper>
+                    <clr-control-error>This is required Field.</clr-control-error>
+                </clr-input-container>
+
+                <clr-input-container>
+                    <label>Referral Name</label>
+                    <input clrInput formControlName="referralName" type="text" name="referralName" required />
+                    <clr-control-helper>Referral full name</clr-control-helper>
+                    <clr-control-error>This is required Field.</clr-control-error>
+                </clr-input-container>
+
+                <clr-input-container>
+                    <label>Job ID</label>
+                    <input disabled clrInput formControlName="jobId" type="text" name="jobId" required />
+                    <clr-control-helper>Job ID</clr-control-helper>
+                </clr-input-container>
+                <clr-input-container>
+                    <label>PAN ID</label>
+                    <input clrInput formControlName="panNumber" type="text" name="panNumber" required />
+                    <clr-control-helper>10 digit PAN ID</clr-control-helper>
+                    <clr-control-error>This is required Field.</clr-control-error>
+                </clr-input-container>
+
+                <clr-date-container>
+                    <label>DOB</label>
+                    <input min="1966-01-01" formControlName="dob" type="date" name="dob" clrDate>
+                </clr-date-container>
+
+                <clr-input-container>
+                    <label>Experience(years)</label>
+                    <input clrInput formControlName="yoe" value="0" min="0" max="99" type="number" name="yoe" required />
+                    <clr-control-helper>Experience in years</clr-control-helper>
+                    <clr-control-error>This is required Field.</clr-control-error>
+                </clr-input-container>
+
+                <clr-input-container>
+                    <label>Primary Skill</label>
+                    <input clrInput formControlName="primarySkill" type="text" name="primarySkill" required />
+                    <clr-control-helper>Enter Primary Skill of referral</clr-control-helper>
+                    <clr-control-error>This is required Field.</clr-control-error>
+                </clr-input-container>
+
+                <clr-input-container>
+                    <label>Secondary Skill</label>
+                    <input clrInput formControlName="secondarySkill" type="text" name="secondarySkill" />
+                    <clr-control-helper>Enter Secondary Skill of referral</clr-control-helper>
+                    <clr-control-error>This is required Field.</clr-control-error>
+                </clr-input-container>
+
+                <div class="file-fg">
+                    <clr-input-container class="file-upload">
+                        <label>Resume</label>
+                    </clr-input-container>
+                    <label class="btn btn-link">
+                      <input type="file"
+                             (change)="onFileChange($event)"
+                             placeholder="Upload file"
+                             accept="*">
+                  </label>
                 </div>
-            </div>
-            <div class="form-group row">
-                <label for="jobId" class="col-sm-2 col-form-label">Job ID</label>
-                <div class="col-sm-10">
-                    <input type="text" readonly class="form-control" id="jobId" value="{{jobId}}">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="panNumber" class="col-sm-2 col-form-label">Pan Number</label>
-                <div class="control col-sm-10">
-                    <input formControlName="panNumber" name="panNumber" type="text" class="form-control" id="panNumber" placeholder="Pan Number">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="dob" class="col-sm-2 col-form-label">DOB</label>
-                <div class="control col-sm-10">
-                    <input formControlName="dob" name="dob" type="date" class="form-control" id="dob" placeholder="DOB">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="yoe" class="col-sm-2 col-form-label">Experience(years)</label>
-                <div class="control col-sm-10">
-                    <input formControlName="yoe" name="yoe" type="text" class="form-control" id="yoe" placeholder="Experience (in Years)">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="primarySkill" class="col-sm-2 col-form-label">Primary Skill</label>
-                <div class="control col-sm-10">
-                    <input formControlName="primarySkill" name="primarySkill" type="text" class="form-control" id="primarySkill" placeholder="Primary Skill">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="secondarySkill" class="col-sm-2 col-form-label">Secondary Skill</label>
-                <div class="control col-sm-10">
-                    <input formControlName="secondarySkill" name="secondarySkill" type="text" class="form-control" id="secondarySkill" placeholder="Secondary Skill">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="resume" class="col-sm-2 col-form-label">Resume</label>
-                <div class="control col-sm-10">
-                    <input (change)="onFileChange($event)" type="file" value="resume" id="resume" class="form-control-file" id="resume">
-                </div>
-            </div>
-            <div class="field is-grouped">
-                <div class="control">
-                    <div *ngIf="isLoadingSubmit">
-                        <app-loader></app-loader>
+
+                <div>
+                    <div>
+                        <div *ngIf="isLoadingSubmit">
+                            <app-loader></app-loader>
+                        </div>
+                        <button *ngIf="!isLoadingSubmit" type="button" class="btn btn-primary" [disabled]="!referForm.valid || !resumeAdded" (click)="submit()">Submit</button>
                     </div>
-                    <button *ngIf="!isLoadingSubmit" type="button" class="btn btn-primary" [disabled]="!referForm.valid && !resumeAdded" (click)="submit()">Submit</button>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
 </div>
