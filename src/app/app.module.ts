@@ -23,6 +23,8 @@ import { HrReferralsComponent } from './hr-referrals/hr-referrals.component';
 import { HrAllReferralsComponent } from './hr-all-referrals/hr-all-referrals.component';
 import { AdminComponent } from './admin/admin.component';
 import { ClarityModule } from '@clr/angular';
+import { SeeReferralDetailsComponent } from './see-referral-details/see-referral-details.component';
+import { UpdateReferralStatusComponent } from './update-referral-status/update-referral-status.component';
 
 
 @NgModule({
@@ -42,7 +44,9 @@ import { ClarityModule } from '@clr/angular';
     HmJobsFormComponent,
     HrReferralsComponent,
     HrAllReferralsComponent,
-    AdminComponent
+    AdminComponent,
+    SeeReferralDetailsComponent,
+    UpdateReferralStatusComponent
   ],
   imports: [
     BrowserModule,

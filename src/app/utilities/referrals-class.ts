@@ -11,6 +11,8 @@ export class Referrals {
   resumeV2: string;
   referralCurrentLevel: string;
   referralCurrentStatus: string;
+  referredBy: string;
+  referralStatusReasonsList: Array<LevelDetails>;
 
   constructor(
     $referralEmailId: string,
@@ -39,4 +41,10 @@ export class Referrals {
     this.referralCurrentLevel = $referralCurrentLevel;
     this.referralCurrentStatus = $referralCurrentStatus;
   }
+}
+
+export class LevelDetails {
+  level: string;
+  status: string;
+  reasonToUpdate: string;
 }
