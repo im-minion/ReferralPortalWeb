@@ -1,133 +1,24 @@
-<h3 class="heading-tag">
-    Referral For HR Round
-</h3>
-
-<div *ngIf="isLoading" class="loader-align">
-    <app-loader></app-loader>
-</div>
-<div *ngIf="!isLoading" class="loader-align">
-    <app-rp-table (clicked)="onClicked($event)"></app-rp-table>
-</div>
-<div *ngIf="(updateData != null) || (updateData != undefined)" class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="updateModalLabel">Update Referral</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-            </div>
-            <div class="modal-body">
-                <form [formGroup]="updateForm">
-                    <div class="form-group">
-                        <label for="referralEmailId">Referral Email Id:</label>
-                        <input type="text" readonly class="form-control" id="referralEmailId" value="{{updateData.referralEmailId}}">
-                    </div>
-                    <div class="form-group">
-                        <label for="currentLevel">Referral Current Level:</label>
-                        <input type="text" readonly class="form-control" id="currentLevel" value="{{updateData.referralCurrentLevel}}">
-                    </div>
-                    <div class="form-group">
-                        <label for="referralCurrentStatus">Referral Current Status:</label>
-                        <input type="text" readonly class="form-control" id="referralCurrentStatus" value="{{updateData.referralCurrentStatus}}">
-                    </div>
-                    <div class="form-group">
-                        <label for="status">Update Status To:</label>
-                        <select formControlName="status" name="status" class="form-control" id="status">
-                          <option>ACCEPTED</option>
-                          <option>REJECTED</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="reason">Reason/Comments</label>
-                        <textarea formControlName="reason" type="text" name="reason" class="form-control" id="reason">
-                        </textarea>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <div *ngIf="isLoadingUpdate">
-                    <app-loader></app-loader>
-                </div>
-                <button *ngIf="!isLoadingUpdate" type="button" class="btn btn-primary" (click)="updateReferral(updateData)">Update</button>
-            </div>
+<div class="wrapper-wh">
+    <h3 class="heading-tag">
+        Referrals at HR Round
+    </h3>
+    <div>
+        <div>
+            <button [disabled]="!selectedReferral" class="btn btn-sm btn-warning" (click)="openUpdateStatusModal()">
+            Hire / Reject
+            </button>
+            <button [disabled]="!selectedReferral" class="btn btn-sm btn-secondary" (click)="openDetailsModal()">
+            See Details
+            </button>
+        </div>
+        <div>
+            <app-rp-datagrid [isDataLoading]="isLoading" [columnsToDisplay]="displayedColumns" [allRows]="data" (clicked)="onClicked($event)" (refreshed)="onRefreshed(data)"></app-rp-datagrid>
         </div>
     </div>
 </div>
-<div *ngIf="(detailsData != null) || (detailsData != undefined)" class="modal fade" id="seeDetails" tabindex="-1" role="dialog" aria-labelledby="seeDetails" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="seeDetails">{{detailsData.referralName}}</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-            </div>
-            <div class="modal-body">
-                <!-- <p>{{detailsData}}</p> -->
-                <h6>Email : {{detailsData.referralEmailId}}</h6>
-                <h6>Current Level : {{detailsData.referralCurrentLevel}}</h6>
-                <h6>Current Status : {{detailsData.referralCurrentStatus}}</h6>
-                <h6>Resume :(fileId) {{detailsData.resumeV2}}</h6>
-                <h6>Referred By : {{detailsData.referredBy}}</h6>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>
-                                Level
-                            </th>
-                            <th>
-                                Status
-                            </th>
-                            <th>
-                                Reason/Comment
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let reason of detailsData.referralStatusReasonsList">
-                            <td>
-                                {{reason.level}}
-                            </td>
-                            <td>
-                                {{reason.status}}
-                            </td>
-                            <td>
-                                {{reason.reasonToUpdate}}
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <!-- <form [formGroup]="updateJobForm">
-                    <div class="form-group">
-                        <label for="jobDescription">Job Description:</label>
-                        <textarea formControlName="jobDescription" type="text" name="jobDescription" class="form-control" id="jobDescription">
-                        </textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="jobVisibility">Visible:</label>
-                        <div class="custom-control custom-switch">
-                            <input type="checkbox" name="jobVisibility" formControlName="jobVisibility" [checked]="openJob.jobVisibility" class="checkbox form-control" id="jobVisibility">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="jobStatus">Job Status:</label>
-                        <select formControlName="jobStatus" name="jobStatus" class="form-control" id="jobStatus">
-                          <option [selected]="openJob.jobStatus == _JobStatus.OPEN">OPEN</option>
-                          <option [selected]="openJob.jobStatus == _JobStatus.ONHOLD">ONHOLD</option>
-                          <option [selected]="openJob.jobStatus == _JobStatus.CLOSED">CLOSED</option>
-                        </select>
-                    </div>
-                </form> -->
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <!-- <div *ngIf="isLoadingUpdate">
-                    <app-loader></app-loader>
-                </div> -->
-                <!-- <button *ngIf="!isLoadingUpdate" type="button" class="btn btn-primary" (click)="updateJob()">Update</button> -->
-            </div>
-        </div>
-    </div>
-</div>
+<ng-container *ngIf="isDetailsModalOpen">
+    <app-see-referral-details [isModalOpen]="isDetailsModalOpen" [detailsData]="selectedReferral" (closeModal)="closeDetailsModal(data)"></app-see-referral-details>
+</ng-container>
+<ng-container *ngIf="isUpdateModalOpen">
+    <app-update-referral-status [isModalOpen]="isUpdateModalOpen" [updateData]="selectedReferral" [isHrRound]="true" (closeModal)="closeUpdateModal(data)"></app-update-referral-status>
+</ng-container>

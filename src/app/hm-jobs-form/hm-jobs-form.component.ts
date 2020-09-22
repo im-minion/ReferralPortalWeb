@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { HmService } from '../services/hm-services/hm.service';
 import { OpenJob } from '../utilities/open-job-class';
 
@@ -13,10 +14,11 @@ export class HmJobsFormComponent implements OnInit {
   createJobForm: FormGroup;
   employeeId: string;
   isLoadingSubmit: boolean = false;
+  private subscriptions$: Subscription[] =[];
 
   constructor(private hmService: HmService) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
 
     this.employeeId = sessionStorage.getItem('employeeId');
 
@@ -37,11 +39,15 @@ export class HmJobsFormComponent implements OnInit {
     });
   }
 
+  ngOnDestroy(): void {
+    this.subscriptions$.map(sub => sub && sub.unsubscribe());
+  }
+
   submit() {
     this.isLoadingSubmit = true;
     let newJob: OpenJob;
     newJob = this.createJobForm.value;
-    this.hmService.insertJob(newJob).subscribe((resp)=>{
+    const addJob$ = this.hmService.insertJob(newJob).subscribe((resp)=>{
       console.log(resp);
       if (resp.inserted) {
         this.createJobForm.reset();
@@ -49,6 +55,7 @@ export class HmJobsFormComponent implements OnInit {
       alert(resp.message);
       this.isLoadingSubmit = false
     });
+    this.subscriptions$.push(addJob$);
   }
 
 }

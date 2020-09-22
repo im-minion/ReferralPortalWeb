@@ -15,7 +15,6 @@ import { HttpClientModule, HTTP_INTERCEPTORS }    from '@angular/common/http';
 import { SharedModule } from './shared/shared.module';
 import { HmReferralsComponent } from './hm-referrals/hm-referrals.component';
 import { HmJobsComponent } from './hm-jobs/hm-jobs.component';
-import { HmReferralsStatusComponent } from './hm-referrals-status/hm-referrals-status.component';
 import { TokenInterceptorService } from './services/interceptor/token-interceptor.service';
 import { ReferFormComponent } from './refer-form/refer-form.component';
 import { HmJobsFormComponent } from './hm-jobs-form/hm-jobs-form.component';
@@ -39,7 +38,6 @@ import { UpdateReferralStatusComponent } from './update-referral-status/update-r
     RegisterComponent,
     HmReferralsComponent,
     HmJobsComponent,
-    HmReferralsStatusComponent,
     ReferFormComponent,
     HmJobsFormComponent,
     HrReferralsComponent,

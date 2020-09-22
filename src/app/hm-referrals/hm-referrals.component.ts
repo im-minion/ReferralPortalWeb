@@ -77,6 +77,7 @@ export class HmReferralsComponent implements OnInit, OnDestroy {
       this.loadData();
     }
   }
+
   public closeDetailsModal(data): void {
     this.isDetailsModalOpen = false;
   }

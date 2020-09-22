@@ -3,9 +3,8 @@ import { HmService } from '../services/hm-services/hm.service';
 import { OpenJob } from '../utilities/open-job-class';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { COLUMNS, JobStatus} from '../app.constants';
-import { TableDataService } from '../services/shared-service/table-data.service';
 import { ClrForm } from '@clr/angular';
-declare var $: any;
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-hm-jobs',
   templateUrl: './hm-jobs.component.html',
@@ -25,6 +24,7 @@ export class HmJobsComponent implements OnInit, OnChanges, OnDestroy {
   public isJobModalOpen: boolean = false;
   public displayedColumns: string[] = [COLUMNS.JOB_ID, COLUMNS.JOB_TITLE, COLUMNS.JOB_VISIBILITY, COLUMNS.JOB_STATUS];
 
+  private subscriptions$: Subscription[] =[];
   constructor(private hmService: HmService) {
   }
 
@@ -43,16 +43,17 @@ export class HmJobsComponent implements OnInit, OnChanges, OnDestroy {
     this.loadOpenJobs();
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
+    this.subscriptions$.map(sub => sub && sub.unsubscribe());
   }
 
   loadOpenJobs() {
     this.isLoading= true;
-    this.hmService.getOpenJobsByEmployeeId(this.employeeId).subscribe((resp: Array<OpenJob>) => {
+    const jobsSub$= this.hmService.getOpenJobsByEmployeeId(this.employeeId).subscribe((resp: Array<OpenJob>) => {
       this.data = resp;
       this.isLoading = false;
     });
-
+    this.subscriptions$.push(jobsSub$);
   }
 
   onClicked(data: any) {
@@ -72,8 +73,8 @@ export class HmJobsComponent implements OnInit, OnChanges, OnDestroy {
 
   update() {
     this.isLoadingUpdate = true;
-    this.hmService.updateJobStatus(this.updateJobForm.value).subscribe(
-      (resp: any) => {
+    const updateJobSub$ = this.hmService.updateJobStatus(this.updateJobForm.value).subscribe(
+      () => {
         this.isJobModalOpen = false;
         this.isLoadingUpdate = false;
         this.loadOpenJobs();
@@ -83,6 +84,7 @@ export class HmJobsComponent implements OnInit, OnChanges, OnDestroy {
         this.isLoadingUpdate = false;
       }
     );
+    this.subscriptions$.push(updateJobSub$);
   }
 
   public onRefreshed(data): void {
