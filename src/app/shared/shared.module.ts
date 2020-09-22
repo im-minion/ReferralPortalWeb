@@ -1,8 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MessageComponent } from './message/message.component';
-import { LoaderComponent } from './loader/loader.component';
-import { RpTableComponent } from './rp-table/rp-table.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -15,7 +12,7 @@ import { RpDatagridComponent } from './rp-datagrid/rp-datagrid.component';
 import { ClarityModule } from '@clr/angular';
 
 @NgModule({
-  declarations: [MessageComponent, LoaderComponent, RpTableComponent, PercentProgressPipe, RpDatagridComponent],
+  declarations: [PercentProgressPipe, RpDatagridComponent],
   imports: [
     CommonModule,
     BrowserAnimationsModule,
@@ -28,6 +25,6 @@ import { ClarityModule } from '@clr/angular';
     AppRoutingModule,
     ClarityModule
   ],
-  exports: [ MessageComponent, LoaderComponent, RpTableComponent, RpDatagridComponent ]
+  exports: [RpDatagridComponent]
 })
 export class SharedModule { }
