@@ -31,11 +31,12 @@ export class HrReferralsComponent implements OnInit, OnDestroy {
 
   private loadData(): void {
     this.isLoading = true;
-    this.hrService.getReferralsAtHr().subscribe((resp) => {
+    const getAllRefSub$ = this.hrService.getReferralsAtHr().subscribe((resp) => {
       this.isLoading = false;
       this.data = resp;
       this.selectedReferral = null;
     });
+    this.subscriptions$.push(getAllRefSub$);
   }
 
   public onClicked(data: any): void {
