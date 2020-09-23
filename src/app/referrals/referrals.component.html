@@ -5,7 +5,7 @@
     </h3>
     <div>
         <div>
-            <button [disabled]="!selectedReferral" type="button" class="btn btn-sm col-btn btn-primary">
+            <button [disabled]="!selectedReferral" type="button" class="btn btn-sm col-btn btn-primary" (click)="openDetailsModal()">
               See Details
             </button>
         </div>
@@ -14,3 +14,7 @@
         </div>
     </div>
 </div>
+
+<ng-container *ngIf="isDetailsModalOpen">
+  <app-see-referral-details [isModalOpen]="isDetailsModalOpen" [detailsData]="selectedReferral" (closeModal)="closeDetailsModal($event)"></app-see-referral-details>
+</ng-container>

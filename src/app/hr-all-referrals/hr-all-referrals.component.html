@@ -14,5 +14,5 @@
     </div>
 </div>
 <ng-container *ngIf="isDetailsModalOpen">
-    <app-see-referral-details [isModalOpen]="isDetailsModalOpen" [detailsData]="selectedReferral" (closeModal)="closeDetailsModal(data)"></app-see-referral-details>
+    <app-see-referral-details [isModalOpen]="isDetailsModalOpen" [detailsData]="selectedReferral" (closeModal)="closeDetailsModal($event)"></app-see-referral-details>
 </ng-container>

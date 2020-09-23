@@ -41,7 +41,7 @@ export class UpdateReferralStatusComponent implements OnInit, OnDestroy {
   }
 
   close() {
-    this.closeModal.next(false);
+    this.closeModal.emit(false);
   }
 
   updateReferral(data: any) {
@@ -51,7 +51,7 @@ export class UpdateReferralStatusComponent implements OnInit, OnDestroy {
     const updateSub$ = this.isHrRound ? this.hrService.updateReferral(payload).subscribe((resp: any) => {
       if(resp.updated) {
         this.isLoadingUpdate = false;
-        this.closeModal.next(true);
+        this.closeModal.emit(true);
         this.updateForm.reset();
       } else {
         alert('ERROR!');
@@ -66,7 +66,7 @@ export class UpdateReferralStatusComponent implements OnInit, OnDestroy {
     ) : this.hmService.updateReferral(payload).subscribe((resp: any) => {
       if(resp.updated) {
         this.isLoadingUpdate = false;
-        this.closeModal.next(true);
+        this.closeModal.emit(true);
         this.updateForm.reset();
       } else {
         alert('ERROR!');

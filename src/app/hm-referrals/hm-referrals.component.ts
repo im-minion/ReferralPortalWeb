@@ -20,7 +20,7 @@ export class HmReferralsComponent implements OnInit, OnDestroy {
   public isDetailsModalOpen: boolean = false;
   public isUpdateModalOpen: boolean = false;
 
-  private subscriptions$: Subscription[] =[];
+  private subscriptions$: Subscription[] = [];
 
   constructor(private route: ActivatedRoute, private hmService: HmService) { }
 
@@ -61,7 +61,7 @@ export class HmReferralsComponent implements OnInit, OnDestroy {
     this.subscriptions$.push(refOfJobSub$);
   }
 
-  onClicked(data: any) {
+  public onClicked(data: any): void {
     this.selectedReferral = data;
   }
 
@@ -82,9 +82,10 @@ export class HmReferralsComponent implements OnInit, OnDestroy {
     this.isDetailsModalOpen = false;
   }
 
-  public closeUpdateModal(data): void {
+  public closeUpdateModal(doRefresh: boolean): void {
     this.isUpdateModalOpen = false;
-    if(data) {
+    debugger;
+    if (doRefresh) {
       this.loadData();
     }
   }

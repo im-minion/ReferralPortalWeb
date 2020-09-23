@@ -13,7 +13,7 @@ export class ReferralsComponent implements OnInit, OnDestroy {
   public displayedColumns: string[] = [COLUMNS.REFERRAL_NAME, COLUMNS.JOB_ID, COLUMNS.CURRENT_LEVEL, COLUMNS.CURRENT_STATUS, COLUMNS.PROGRESS];
   public data: Array<Referrals> = [];
   public selectedReferral: Referrals;
-
+  public isDetailsModalOpen: boolean = false;
   constructor(private employeeService: EmployeeService) { }
 
   ngOnInit() {
@@ -42,4 +42,12 @@ export class ReferralsComponent implements OnInit, OnDestroy {
       this.loadData();
     }
   }
+  public openDetailsModal(): void {
+    this.isDetailsModalOpen = true;
+  }
+
+  public closeDetailsModal(data): void {
+    this.isDetailsModalOpen = false;
+  }
+
 }
