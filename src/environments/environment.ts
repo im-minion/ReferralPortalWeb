@@ -13,6 +13,7 @@ export const environment = {
 };
 // https://referral-portal-ws.herokuapp.com/
 // ng build --prod --base-href https://im-minion.github.io/ReferralPortalWeb/
+// node --max_old_space_size=4096 node_modules/@angular/cli/bin/ng build --prod --base-href https://im-minion.github.io/ReferralPortalWeb/
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
