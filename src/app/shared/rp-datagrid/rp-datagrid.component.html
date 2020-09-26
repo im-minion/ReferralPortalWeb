@@ -30,10 +30,12 @@
         <clr-dg-cell *ngIf="columnsToDisplay.includes(columns.CURRENT_LEVEL)">{{row.referralCurrentLevel}}</clr-dg-cell>
         <clr-dg-cell *ngIf="columnsToDisplay.includes(columns.CURRENT_STATUS)">{{row.referralCurrentStatus}}</clr-dg-cell>
         <clr-dg-cell *ngIf="columnsToDisplay.includes(columns.PROGRESS)">{{(row.referralCurrentLevel) | percentProgress }}</clr-dg-cell>
-        <clr-dg-cell *ngIf="columnsToDisplay.includes(columns.RESUME)">rrr
-            <!-- <span [ngClass]="{'link': true, 'loadingCursor': isLoadingResume}" (click)="getFile(row.resumeV2)">open</span> -->
+        <clr-dg-cell *ngIf="columnsToDisplay.includes(columns.RESUME)">
+            <button class="btn btn-icon" (click)="getFile(row.resumeV2)">
+                <span [ngClass]="{'link': true, 'loadingCursor': isLoadingResume}">open</span>
+                <clr-icon shape="link"></clr-icon>
+            </button>
         </clr-dg-cell>
-
     </clr-dg-row>
     <clr-dg-footer>{{allRows.length}} Jobs</clr-dg-footer>
 </clr-datagrid>
