@@ -38,7 +38,7 @@ const routes: Routes = [
     canActivate: [EmployeeGuard]
   },
   {
-    path:'referForm/:jobId',
+    path: 'referForm/:jobId',
     component: ReferFormComponent,
     canActivate: [EmployeeGuard]
   },
@@ -84,7 +84,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {useHash: true})],
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

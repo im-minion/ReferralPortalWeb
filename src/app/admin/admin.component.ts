@@ -1,16 +1,14 @@
-import { Component, OnInit, OnDestroy } from "@angular/core";
-import { Employee } from "../employee";
-import { AdminService } from "../services/admin-service/admin.service";
-import { Subscription } from "rxjs";
-import { TableDataService } from "../services/shared-service/table-data.service";
-import { COLUMNS, UserRoles } from "../app.constants";
-import { FormGroup, FormControl } from "@angular/forms";
-declare var $: any;
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Employee } from '../employee';
+import { AdminService } from '../services/admin-service/admin.service';
+import { Subscription } from 'rxjs';
+import { COLUMNS, UserRoles } from '../app.constants';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
-  selector: "app-admin",
-  templateUrl: "./admin.component.html",
-  styleUrls: ["./admin.component.scss"],
+  selector: 'app-admin',
+  templateUrl: './admin.component.html',
+  styleUrls: ['./admin.component.scss'],
 })
 export class AdminComponent implements OnInit, OnDestroy {
   public isLoading: boolean = true;
@@ -28,7 +26,7 @@ export class AdminComponent implements OnInit, OnDestroy {
 
   public constructor(
     private adminService: AdminService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.userRoles = [
@@ -61,14 +59,14 @@ export class AdminComponent implements OnInit, OnDestroy {
     this.subscriptions$.map((sub) => sub && sub.unsubscribe());
   }
 
-  public onClicked(data:any): void {
+  public onClicked(data: any): void {
     this.selectedEmployee = data;
   }
 
   public updateEmployee(): void {
     const payload = {
       employeeId: this.selectedEmployee.employeeId,
-      employeeNewRole: this.updateEmployeeForm.get("employeeRole").value,
+      employeeNewRole: this.updateEmployeeForm.get('employeeRole').value,
     };
     this.isLoadingUpdate = true;
     this.isLoading = true;
@@ -87,14 +85,14 @@ export class AdminComponent implements OnInit, OnDestroy {
   }
 
   public openUpdateEmployeeModal(): void {
-      this.isEmployeeModalOpen = true;
-      this.updateEmployeeForm
-      .get("employeeRole")
+    this.isEmployeeModalOpen = true;
+    this.updateEmployeeForm
+      .get('employeeRole')
       .setValue(this.selectedEmployee.employeeRole);
   }
 
   public onRefreshed(data): void {
-    if(data) {
+    if (data) {
       this.loadEmployees();
     }
   }

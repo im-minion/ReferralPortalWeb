@@ -1,4 +1,4 @@
-export class Referrals {
+export class Referral {
   referralEmailId: string;
   referralName: string;
   jobId: string;

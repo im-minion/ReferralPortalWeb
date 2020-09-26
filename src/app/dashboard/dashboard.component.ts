@@ -10,22 +10,23 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit, OnDestroy {
-  employee: Employee;
-  analyticalInfo: any;
-  private subscriptions$: Subscription[] =[];
-  userRoleConstants = UserRoles;
+  public employee: Employee;
+  public analyticalInfo: any;
+  private subscriptions$: Subscription[] = [];
+  public userRoleConstants = UserRoles;
+
   constructor(private employeeService: EmployeeService) {
   }
 
   ngOnInit() {
     this.employee = new Employee(sessionStorage.getItem('employeeRole'), sessionStorage.getItem('employeeId'));
     const empAnalyticalSub$ = this.employeeService.getAnalyticalInfo(this.employee.employeeId, this.employee.employeeRole).subscribe(
-      (resp)=> {
+      (resp) => {
         this.analyticalInfo = resp;
-    },
-    (err) => {
+      },
+      (err) => {
 
-    });
+      });
     this.subscriptions$.push(empAnalyticalSub$);
   }
 

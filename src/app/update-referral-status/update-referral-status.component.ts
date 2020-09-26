@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { HmService } from '../services/hm-services/hm.service';
 import { HrService } from '../services/hr-service/hr.service';
-import { Referrals } from '../utilities/referrals-class';
+import { Referral } from '../utilities/referrals-class';
 
 @Component({
   selector: 'app-update-referral-status',
@@ -14,7 +14,7 @@ export class UpdateReferralStatusComponent implements OnInit, OnDestroy {
   @Input()
   public isModalOpen: boolean = false;
   @Input()
-  public updateData: Referrals = null;
+  public updateData: Referral = null;
   @Input()
   private isHrRound: boolean = false;
   @Output()

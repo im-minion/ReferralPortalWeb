@@ -2,7 +2,7 @@ import { Component, OnInit, OnChanges, OnDestroy, ViewChild } from '@angular/cor
 import { HmService } from '../services/hm-services/hm.service';
 import { OpenJob } from '../utilities/open-job-class';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { COLUMNS, JobStatus} from '../app.constants';
+import { COLUMNS, JobStatus } from '../app.constants';
 import { ClrForm } from '@clr/angular';
 import { Subscription } from 'rxjs';
 @Component({
@@ -17,14 +17,14 @@ export class HmJobsComponent implements OnInit, OnChanges, OnDestroy {
   public openJob: OpenJob = null;
   public updateJobForm: FormGroup;
   public isLoadingUpdate: boolean = false;
-  @ViewChild(ClrForm, {static: true}) clrForm;
+  @ViewChild(ClrForm, { static: true }) clrForm;
   private employeeId: string;
-  public data:Array<OpenJob> = [];
+  public data: Array<OpenJob> = [];
   public selectedJob: OpenJob = null;
   public isJobModalOpen: boolean = false;
   public displayedColumns: string[] = [COLUMNS.JOB_ID, COLUMNS.JOB_TITLE, COLUMNS.JOB_VISIBILITY, COLUMNS.JOB_STATUS];
 
-  private subscriptions$: Subscription[] =[];
+  private subscriptions$: Subscription[] = [];
   constructor(private hmService: HmService) {
   }
 
@@ -48,8 +48,8 @@ export class HmJobsComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   loadOpenJobs() {
-    this.isLoading= true;
-    const jobsSub$= this.hmService.getOpenJobsByEmployeeId(this.employeeId).subscribe((resp: Array<OpenJob>) => {
+    this.isLoading = true;
+    const jobsSub$ = this.hmService.getOpenJobsByEmployeeId(this.employeeId).subscribe((resp: Array<OpenJob>) => {
       this.data = resp;
       this.isLoading = false;
     });
@@ -88,7 +88,7 @@ export class HmJobsComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   public onRefreshed(data): void {
-    if(data) {
+    if (data) {
       this.loadOpenJobs();
     }
   }

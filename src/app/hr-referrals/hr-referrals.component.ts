@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { HrService } from '../services/hr-service/hr.service';
 import { TableDataService } from '../services/shared-service/table-data.service';
 import { Subscription } from 'rxjs';
-import { Referrals } from '../utilities/referrals-class';
+import { Referral } from '../utilities/referrals-class';
 import { COLUMNS } from '../app.constants';
 declare var $: any;
 @Component({
@@ -14,8 +14,8 @@ export class HrReferralsComponent implements OnInit, OnDestroy {
   public isLoading: boolean = true;
   private subscriptions$: Subscription[] = [];
   public displayedColumns: string[] = [COLUMNS.JOB_ID, COLUMNS.REFERRAL_NAME, COLUMNS.RESUME, COLUMNS.CURRENT_LEVEL, COLUMNS.CURRENT_STATUS];
-  public data: Array<Referrals> = [];
-  public selectedReferral: Referrals = null;
+  public data: Array<Referral> = [];
+  public selectedReferral: Referral = null;
   public isDetailsModalOpen: boolean = false;
   public isUpdateModalOpen: boolean = false;
 

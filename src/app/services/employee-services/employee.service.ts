@@ -4,7 +4,7 @@ import { environment } from 'src/environments/environment';
 import { OpenJob } from '../../utilities/open-job-class';
 import { Observable } from 'rxjs';
 import { HttpParams } from '@angular/common/http';
-import { Referrals } from 'src/app/utilities/referrals-class';
+import { Referral } from 'src/app/utilities/referrals-class';
 
 @Injectable({
   providedIn: 'root'
@@ -31,7 +31,7 @@ export class EmployeeService {
     return this.commonService.postFormDataMethod(environment.BASE_URL + environment.EMPLOYEE_END_POINT + 'addReferral', hp, fd);
   }
 
-  getReferralsByEmployeeId(employeeId: string): Observable<Array<Referrals>> {
+  getReferralsByEmployeeId(employeeId: string): Observable<Array<Referral>> {
     let hp = new HttpParams();
     hp = hp.append('employeeId', employeeId);
     return this.commonService.getMethodWithQueryParam(environment.BASE_URL + environment.EMPLOYEE_END_POINT + 'getReferralsByEmployeeId', hp);

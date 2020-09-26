@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HmService } from '../services/hm-services/hm.service';
-import { Referrals } from '../utilities/referrals-class';
+import { Referral } from '../utilities/referrals-class';
 import { ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { COLUMNS, ReferralLevels, ReferralStatus } from '../app.constants';
@@ -15,8 +15,8 @@ export class HmReferralsComponent implements OnInit, OnDestroy {
   public isLoading: boolean = true;
   public updateForm: FormGroup;
   public displayedColumns: string[] = [COLUMNS.JOB_ID, COLUMNS.REFERRAL_NAME, COLUMNS.RESUME, COLUMNS.CURRENT_LEVEL, COLUMNS.CURRENT_STATUS, COLUMNS.PROGRESS];
-  public selectedReferral: Referrals = null;
-  public data: Array<Referrals> = [];
+  public selectedReferral: Referral = null;
+  public data: Array<Referral> = [];
   public isDetailsModalOpen: boolean = false;
   public isUpdateModalOpen: boolean = false;
 
@@ -53,7 +53,7 @@ export class HmReferralsComponent implements OnInit, OnDestroy {
 
   private loadData(): void {
     this.isLoading = true;
-    const refOfJobSub$ = this.hmService.getReferralsOfJobId(this.jobId).subscribe((resp: Array<Referrals>) => {
+    const refOfJobSub$ = this.hmService.getReferralsOfJobId(this.jobId).subscribe((resp: Array<Referral>) => {
       this.isLoading = false;
       this.data = resp;
       this.selectedReferral = null;

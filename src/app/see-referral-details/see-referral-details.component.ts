@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { HmService } from '../services/hm-services/hm.service';
-import { Referrals } from '../utilities/referrals-class';
+import { Referral } from '../utilities/referrals-class';
 
 @Component({
   selector: 'app-see-referral-details',
@@ -12,7 +12,7 @@ export class SeeReferralDetailsComponent implements OnInit {
   @Input()
   public isModalOpen: boolean = false;
   @Input()
-  public detailsData: Referrals = null;
+  public detailsData: Referral = null;
   @Output()
   closeModal = new EventEmitter<boolean>();
 
