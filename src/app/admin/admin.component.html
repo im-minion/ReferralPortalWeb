@@ -14,7 +14,7 @@
     </div>
 
 
-    <clr-modal [(clrModalOpen)]="isEmployeeModalOpen" *ngIf="selectedEmployee">
+    <clr-modal [clrModalClosable]="false" [(clrModalOpen)]="isEmployeeModalOpen" *ngIf="selectedEmployee">
         <h3 class="modal-title">{{ selectedEmployee.employeeId }} - Role {{ selectedEmployee.employeeRole }}</h3>
         <div class="modal-body">
             <form clrForm [formGroup]="updateEmployeeForm" clrLayout="horizontal">

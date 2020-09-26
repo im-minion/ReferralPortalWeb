@@ -1,4 +1,4 @@
-<clr-modal [(clrModalOpen)]="isModalOpen && detailsData">
+<clr-modal [clrModalClosable]="false" [(clrModalOpen)]="isModalOpen && detailsData">
     <h3 class="modal-title">{{detailsData.referralName}}</h3>
     <div class="modal-body">
         <h6>Email : {{detailsData.referralEmailId}}</h6>

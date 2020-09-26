@@ -1,4 +1,4 @@
-<clr-modal [(clrModalOpen)]="isModalOpen && updateData" [clrModalSize]="'md'">
+<clr-modal [clrModalClosable]="false" [(clrModalOpen)]="isModalOpen && updateData" [clrModalSize]="'md'">
     <h3 class="modal-title">Update Referral - {{updateData.referralName}}</h3>
     <div class="modal-body">
         <form clrForm [formGroup]="updateForm" clrLayout="horizontal">

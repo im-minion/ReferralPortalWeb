@@ -18,7 +18,7 @@
             <app-rp-datagrid [isDataLoading]="isLoading" [columnsToDisplay]="displayedColumns" [allRows]="data" (clicked)="onClicked($event)" (refreshed)="onRefreshed(data)"></app-rp-datagrid>
         </div>
     </div>
-    <clr-modal [(clrModalOpen)]="isJobModalOpen" *ngIf="openJob">
+    <clr-modal [clrModalClosable]="false" [(clrModalOpen)]="isJobModalOpen" *ngIf="openJob">
         <h3 class="modal-title">{{ openJob.jobTitle }} - # {{ openJob.jobId }}</h3>
         <div class="modal-body">
 
