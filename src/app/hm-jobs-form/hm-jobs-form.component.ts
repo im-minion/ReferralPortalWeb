@@ -11,7 +11,7 @@ import { OpenJob } from '../utilities/open-job-class';
 })
 export class HmJobsFormComponent implements OnInit {
 
-  createJobForm: FormGroup;
+  public createJobForm: FormGroup;
   employeeId: string;
   isLoadingSubmit: boolean = false;
   private subscriptions$: Subscription[] =[];

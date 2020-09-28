@@ -1,8 +1,118 @@
-<p>
-    register works!
-</p>
+<div class="container wh-100">
+  <div>
+    <div class="card">
+      <div class="card-header">
+        <h3>Register In</h3>
+      </div>
 
-<!-- 
+      <div class="card-body">
+        <!-- <form>
+                  <div class="form-group">
+                      <clr-input-container>
+                          <label>UserID</label>
+                      </clr-input-container>
+                      <input placeholder="User ID" clrInput name="employeeId" required />
+                  </div>
+                  <div class="form-group">
+                      <clr-input-container>
+                          <label>Password</label>
+                      </clr-input-container>
+                      <input placeholder="Password" clrInput name="password" type="password" required />
+                  </div>
+                  <div class="form-group">
+                    <clr-input-container>
+                        <label>Confirm Password</label>
+                    </clr-input-container>
+                    <input placeholder="Password" clrInput name="password" type="password" required />
+                </div>
+                  <button lass="btn btn-primary mt-2" type="submit" (click)="register()">Register</button>
+              </form> -->
+        <form [formGroup]="registerForm" clrForm (ngSubmit)="register()" clrLayout="horizontal">
+
+          <clr-input-container>
+            <label>User Id</label>
+            <input clrInput formControlName="userId" type="text" name="userId" required />
+            <clr-control-helper>User Id</clr-control-helper>
+            <clr-control-error>This is required Field.</clr-control-error>
+          </clr-input-container>
+
+          <clr-input-container>
+            <label>Password</label>
+            <input clrInput formControlName="password" type="password" name="password" required />
+            <clr-control-helper>Password</clr-control-helper>
+            <clr-control-error>This is required Field.</clr-control-error>
+          </clr-input-container>
+
+          <clr-input-container>
+            <label>Confirm Password</label>
+            <input clrInput formControlName="confirmPassword" type="confirmPassword" name="confirmPassword" required />
+            <clr-control-helper>Password</clr-control-helper>
+            <clr-control-error>This is required Field.</clr-control-error>
+          </clr-input-container>
+
+          <!-- <clr-input-container>
+                  <label>Created By</label>
+                  <input disabled clrInput formControlName="createdByEmployeeId" type="text" name="createdBy" required />
+                  <clr-control-helper>Job ID</clr-control-helper>
+                </clr-input-container>
+
+                <div class="fg-textarea">
+                  <clr-textarea-container>
+                    <label>Job Description</label>
+                    <textarea clrTextarea formControlName="jobDescription" name="jobDescription" required></textarea>
+                  </clr-textarea-container>
+                </div>
+
+                <clr-input-container>
+                  <label>Experience(years)</label>
+                  <input clrInput formControlName="yoe" value="0" min="0" max="99" type="number" name="yoe" required />
+                  <clr-control-helper>Minimum year of experience required for job.</clr-control-helper>
+                  <clr-control-error>This is required Field.</clr-control-error>
+                </clr-input-container>
+
+                <clr-input-container>
+                  <label>Primary Skill</label>
+                  <input clrInput formControlName="primarySkill" type="text" name="primarySkill" required />
+                  <clr-control-helper>Enter Primary Skill required for job.</clr-control-helper>
+                  <clr-control-error>This is required Field.</clr-control-error>
+                </clr-input-container>
+
+                <clr-input-container>
+                  <label>Secondary Skill</label>
+                  <input clrInput formControlName="secondarySkill" type="text" name="secondarySkill" required />
+                  <clr-control-helper>Enter Secondary Skill required for job.</clr-control-helper>
+                  <clr-control-error>This is required Field.</clr-control-error>
+                </clr-input-container>
+
+                <clr-input-container>
+                  <label>Preferred Location</label>
+                  <input clrInput formControlName="prefLocation" type="text" name="prefLocation" required />
+                  <clr-control-helper>Enter Preferred Location for job.</clr-control-helper>
+                  <clr-control-error>This is required Field.</clr-control-error>
+                </clr-input-container> -->
+
+          <div>
+            <div>
+              <div *ngIf="isLoadingRegister">
+                <span class="spinner spinner-md"></span>
+              </div>
+              <button *ngIf="!isLoadingRegister" type="button" class="btn btn-primary" [disabled]="!registerForm.valid"
+                (click)="register()">Register</button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="card-footer">
+        <div>
+          Back to Login
+          <button (click)="login()" class="btn register_btn">Login</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--
    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
                     <div class="form-group">
                         <label>First Name</label>

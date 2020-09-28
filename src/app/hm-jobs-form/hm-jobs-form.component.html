@@ -1,85 +1,86 @@
 <div class="wrapper-wh">
-    <div class="btn-group btn-sm btn-primary btn-icon">
-        <button routerLink="/hm/jobs" class="btn">
-          <clr-icon shape="angle-double" style="transform: rotate(270deg);"></clr-icon>
-            Go back To Jobs you have created
-        </button>
-        <button disabled class="btn">
-          <clr-icon shape="form"></clr-icon>
-            Create a New Job
-        </button>
-    </div>
+  <div class="btn-group btn-sm btn-primary btn-icon">
+    <button routerLink="/hm/jobs" class="btn">
+      <clr-icon shape="angle-double" style="transform: rotate(270deg);"></clr-icon>
+      Go back To Jobs you have created
+    </button>
+    <button disabled class="btn">
+      <clr-icon shape="form"></clr-icon>
+      Create a New Job
+    </button>
+  </div>
+  <div>
+    <h3>Create a New Job</h3>
+    <hr width="100%">
+    <h5 class="heading-tag">Please fill up the details : </h5>
     <div>
-        <h3>Create a New Job</h3>
-        <hr width="100%">
-        <h5 class="heading-tag">Please fill up the details : </h5>
-        <div>
-            <form [formGroup]="createJobForm" clrForm (ngSubmit)="submit()" clrLayout="horizontal">
+      <form [formGroup]="createJobForm" clrForm (ngSubmit)="submit()" clrLayout="horizontal">
 
-                <clr-input-container>
-                    <label>Job ID</label>
-                    <input clrInput formControlName="jobId" type="text" name="jobId" required/>
-                    <clr-control-helper>Job ID of referral</clr-control-helper>
-                    <clr-control-error>This is required Field.</clr-control-error>
-                </clr-input-container>
+        <clr-input-container>
+          <label>Job ID</label>
+          <input clrInput formControlName="jobId" type="text" name="jobId" required />
+          <clr-control-helper>Job ID of referral</clr-control-helper>
+          <clr-control-error>This is required Field.</clr-control-error>
+        </clr-input-container>
 
-                <clr-input-container>
-                    <label>Job Title</label>
-                    <input clrInput formControlName="jobTitle" type="text" name="jobTitle" required/>
-                    <clr-control-helper>Job Title of referral</clr-control-helper>
-                    <clr-control-error>This is required Field.</clr-control-error>
-                </clr-input-container>
+        <clr-input-container>
+          <label>Job Title</label>
+          <input clrInput formControlName="jobTitle" type="text" name="jobTitle" required />
+          <clr-control-helper>Job Title of referral</clr-control-helper>
+          <clr-control-error>This is required Field.</clr-control-error>
+        </clr-input-container>
 
-                <clr-input-container>
-                    <label>Created By</label>
-                    <input disabled clrInput formControlName="createdByEmployeeId" type="text" name="createdBy" required/>
-                    <clr-control-helper>Job ID</clr-control-helper>
-                </clr-input-container>
+        <clr-input-container>
+          <label>Created By</label>
+          <input disabled clrInput formControlName="createdByEmployeeId" type="text" name="createdBy" required />
+          <clr-control-helper>Job ID</clr-control-helper>
+        </clr-input-container>
 
-                <div class="fg-textarea">
-                    <clr-textarea-container>
-                        <label>Job Description</label>
-                        <textarea clrTextarea formControlName="jobDescription" name="jobDescription" required></textarea>
-                    </clr-textarea-container>
-                </div>
-
-                <clr-input-container>
-                    <label>Experience(years)</label>
-                    <input clrInput formControlName="yoe" value="0" min="0" max="99" type="number" name="yoe" required />
-                    <clr-control-helper>Minimum year of experience required for job.</clr-control-helper>
-                    <clr-control-error>This is required Field.</clr-control-error>
-                </clr-input-container>
-
-                <clr-input-container>
-                    <label>Primary Skill</label>
-                    <input clrInput formControlName="primarySkill" type="text" name="primarySkill" required/>
-                    <clr-control-helper>Enter Primary Skill required for job.</clr-control-helper>
-                    <clr-control-error>This is required Field.</clr-control-error>
-                </clr-input-container>
-
-                <clr-input-container>
-                    <label>Secondary Skill</label>
-                    <input clrInput formControlName="secondarySkill" type="text" name="secondarySkill" required/>
-                    <clr-control-helper>Enter Secondary Skill required for job.</clr-control-helper>
-                    <clr-control-error>This is required Field.</clr-control-error>
-                </clr-input-container>
-
-                <clr-input-container>
-                    <label>Preferred Location</label>
-                    <input clrInput formControlName="prefLocation" type="text" name="prefLocation" required/>
-                    <clr-control-helper>Enter Preferred Location for job.</clr-control-helper>
-                    <clr-control-error>This is required Field.</clr-control-error>
-                </clr-input-container>
-
-                <div>
-                    <div>
-                        <div *ngIf="isLoadingSubmit">
-                            <span class="spinner spinner-md"></span>
-                        </div>
-                        <button *ngIf="!isLoadingSubmit" type="button" class="btn btn-primary" [disabled]="!createJobForm.valid" (click)="submit()">Submit</button>
-                    </div>
-                </div>
-            </form>
+        <div class="fg-textarea">
+          <clr-textarea-container>
+            <label>Job Description</label>
+            <textarea clrTextarea formControlName="jobDescription" name="jobDescription" required></textarea>
+          </clr-textarea-container>
         </div>
+
+        <clr-input-container>
+          <label>Experience(years)</label>
+          <input clrInput formControlName="yoe" value="0" min="0" max="99" type="number" name="yoe" required />
+          <clr-control-helper>Minimum year of experience required for job.</clr-control-helper>
+          <clr-control-error>This is required Field.</clr-control-error>
+        </clr-input-container>
+
+        <clr-input-container>
+          <label>Primary Skill</label>
+          <input clrInput formControlName="primarySkill" type="text" name="primarySkill" required />
+          <clr-control-helper>Enter Primary Skill required for job.</clr-control-helper>
+          <clr-control-error>This is required Field.</clr-control-error>
+        </clr-input-container>
+
+        <clr-input-container>
+          <label>Secondary Skill</label>
+          <input clrInput formControlName="secondarySkill" type="text" name="secondarySkill" required />
+          <clr-control-helper>Enter Secondary Skill required for job.</clr-control-helper>
+          <clr-control-error>This is required Field.</clr-control-error>
+        </clr-input-container>
+
+        <clr-input-container>
+          <label>Preferred Location</label>
+          <input clrInput formControlName="prefLocation" type="text" name="prefLocation" required />
+          <clr-control-helper>Enter Preferred Location for job.</clr-control-helper>
+          <clr-control-error>This is required Field.</clr-control-error>
+        </clr-input-container>
+
+        <div>
+          <div>
+            <div *ngIf="isLoadingSubmit">
+              <span class="spinner spinner-md"></span>
+            </div>
+            <button *ngIf="!isLoadingSubmit" type="button" class="btn btn-primary" [disabled]="!createJobForm.valid"
+              (click)="submit()">Submit</button>
+          </div>
+        </div>
+      </form>
     </div>
+  </div>
 </div>
