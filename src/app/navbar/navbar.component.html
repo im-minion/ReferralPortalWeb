@@ -1,9 +1,12 @@
 <clr-header class="header-6">
-  <div class="branding">
+  <div *ngIf="valid()" class="branding">
     <a class="nav-link">
-      <clr-icon shape="employee"></clr-icon>
-      <span class="title">Referral Portal</span>
+      <clr-icon shape="employee"></clr-icon>Referral Portal
     </a>
+  </div>
+
+  <div *ngIf="!valid()" class="branding">
+    <a>Referral Portal</a>
   </div>
   <div *ngIf="valid()" class="header-nav" [clr-nav-level]="1">
     <a class="nav-link" routerLink="/dashboard" routerLinkActive="active">Home</a>

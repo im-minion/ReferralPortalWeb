@@ -7,7 +7,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-  private userRole$: BehaviorSubject<string> = new BehaviorSubject<string>(null);
+  public userRole$: BehaviorSubject<string> = new BehaviorSubject<string>(null);
 
   public isLoggedIn(): boolean {
     return !!sessionStorage.getItem('employeeRole');

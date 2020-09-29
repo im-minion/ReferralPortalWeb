@@ -2,10 +2,11 @@
   <div>
     <div class="card">
       <div class="card-header">
-        <h3>Register In</h3>
+        <h3>Register as Employee</h3>
       </div>
 
       <div class="card-body">
+        <span>*Ask admin to change your role</span>
         <form [formGroup]="registerForm" (ngSubmit)="register()">
 
           <clr-input-container class="fg">
@@ -39,7 +40,7 @@
       </div>
       <div class="card-footer">
         <div>
-          Back to Login
+          Go back to Login
           <button (click)="login()" class="btn register_btn">Login</button>
         </div>
       </div>

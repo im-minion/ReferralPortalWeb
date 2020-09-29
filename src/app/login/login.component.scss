@@ -11,15 +11,22 @@
     align-items: center;
     justify-content: center;
 }
-
-.mt-2 {
-    margin-top: 2rem;
+.clr-form-control {
+  margin-top: 0.5rem !important;
 }
 
 label {
-    min-width: 4rem
+  min-width: 7rem;
 }
 
-.form-group {
-    display: flex;
+.fg {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.register-btn {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
 }
